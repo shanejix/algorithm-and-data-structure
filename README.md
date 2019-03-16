@@ -61,5 +61,5 @@
 
 >​					
 
-![datastructure](images/datastructure.png)
+![datastructure](src/datastructure.png)
 
