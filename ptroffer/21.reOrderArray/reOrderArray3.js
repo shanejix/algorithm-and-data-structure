@@ -30,3 +30,30 @@ function reOrderArray(array) {
         }
     }
 }
+
+//拓展：负数在非负数前面？？能被3整除的数在不能被3整除的数的前面？？
+
+//----解决系列问题的通用办法——可扩展性——单独的函数来判断是否符合标准
+
+//函数解耦成两部分：1.判断的标准2.拆分数组
+
+function reOrderArray(array,fn) {
+    if (!array || array.length == 0) {
+        return 0;
+    }
+
+    let podd = 0;
+    let peven = array.length - 1;
+
+    while (podd < peven) {
+        while (podd < peven && fn) {
+            podd++;
+        }
+        while (podd < peven && fn) {
+            peven--;
+        }
+        if (podd < peven) {
+            [array[podd], arrya[peven]] = [array[peven], arrya[podd]];
+        }
+    }
+}

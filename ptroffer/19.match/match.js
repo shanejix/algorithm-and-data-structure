@@ -4,8 +4,13 @@
 // 在本题中，匹配是指字符串的所有字符匹配整个模式。
 // 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配
 
+//思路一：利用js的正则
+
 //s, pattern都是字符串
 function match(s, pattern)
 {
-    // write code here
+     // write code here
+     var pattern = '^'+pattern +'$';
+     var pat = new RegExp(pattern,'g');
+     return pat.test(s);
 }

@@ -10,23 +10,18 @@
 
 //当一个指针的指向的值为偶数并且第二个指针指向的值为奇数时——交换
 
+
+//思路二：双数组法；不推荐
+
 function reOrderArray(array) {
-    if (!array || array.length == 0) {
-        return 0;
-    }
-
-    let podd = 0;
-    let peven = array.length - 1;
-
-    while (podd < peven) {
-        while (podd < peven && array[podd] & 0x1 !== 0) {
-            podd++;
-        }
-        while (podd < peven && array[peven] & 0x1 == 0) {
-            peven--;
-        }
-        if (podd < peven) {
-            [array[podd], arrya[peven]] = [array[peven], arrya[podd]];
+    var odd = [];
+    var even = [];
+    for (var i = 0; i < array.length; i++) {
+        if ((array[i] % 2) === 0) {
+            even.push(array[i]);
+        } else {
+            odd.push(array[i])
         }
     }
+    return odd.concat(even);
 }
