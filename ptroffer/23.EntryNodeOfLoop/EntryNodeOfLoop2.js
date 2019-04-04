@@ -15,33 +15,38 @@ function ListNode(x){
 
 //确定入口节点：快指针先走环中节点个数步，快慢指针同时出发，相遇节点即为环的入口节点
 
+
+//更加优雅的写法
+
 function EntryNodeOfLoop(pHead)
 {
-    if (pHead == null || pHead.next== null) {
+    if (pHead == null || pHead.next== null ||pHead.next.next) {
         return null;
     }
 
     //fast and slow
 
-    let slow = pHead, fast = pHead;
+    let slow = pHead.next;
+    let fast = pHead.next.next;
 
-    while (slow && fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
+    //cilcle?
 
-        if (slow.val == fast.val) {
-            break;
+    while (slow!=fast) {
+        if (fast.next && fast.next.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        } else {
+            return null;
         }
     }
 
-    //node 
+    //slow == fast
 
-    let p1 = pHead;
-    let p2 = slow;
+    fast = pHead;
 
-    while (p1 != p2) {
-        p1 = p1.next;
-        p2 = p2.next;
+    while (slow != fast) {
+        fast = fast.next;
+        slow = slow.next;
     }
-    return p1;
+    return slow;
 }
