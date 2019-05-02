@@ -24,16 +24,35 @@ function TreeNode(x) {
 
 //递归实现
 
+
+//思路二：层次遍历；
+
+//循环实现
+
 function Mirror(root)
 {
     if(root === null) {
         return;
     }
     
-    var temp = root.left;
-    root.left = root.right;
-    root.right = temp;
+    let queue = [];
 
-    Mirror(root.left);
-    Mirror(root.right);
+    queue.push(root);
+
+    while (queue.length>0) {
+        let temp = queue.shift();
+
+        if (temp.left !== null || temp.right !== null) {
+            [temp.left, temp.right] = [temp.right, temp.left];
+
+            if (temp.left) {
+                queue.push(temp.left);
+            }
+
+            if (temp.right) {
+                queue.push(temp.right);
+            }
+        }
+    }
+    return root;
 }
