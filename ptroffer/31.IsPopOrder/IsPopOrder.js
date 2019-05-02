@@ -4,8 +4,21 @@
 // 例如序列1, 2, 3, 4, 5是某栈的压入顺序，序列4, 5, 3, 2, 1是该压栈序列对应的一个弹出序列，
 // 但4, 3, 5, 1, 2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
 
+//思路：辅助栈
 
 function IsPopOrder(pushV, popV)
 {
-    // write code here
+    let stack = [];
+    let idx = 0;
+    if (!pushV.length) {
+        return
+    }
+    for (let i = 0; i < pushV.length; i++){
+        stack.push(pushV[i]);
+        while (stack.length && stack[stack.length - 1] == popV[idx]) {
+            stack.pop();
+            idx++;
+        }
+    }
+    return stack.length == 0;
 }
