@@ -4,7 +4,7 @@
 // （注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 
 //思路：递归
-
+/*
 function RandomListNode(x){
     this.label = x;
     this.next = null;
@@ -22,4 +22,17 @@ function Clone(pHead)
     newhead.next = Clone(pHead.next);
     
     return newhead;
-}
+}*/
+
+//思路二：
+
+//遍历链表，并创建新的链表，并且创建random的哈希表——空间换取时间
+
+//思路三：
+
+//1.遍历链表，依次复制新的节点到当前节点的后面
+
+//2.重新遍历链表，修改新节点上的random指向
+
+//3.再次遍历链表，拆分新的链表和旧的链表
+
