@@ -4,12 +4,13 @@
 // （注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 
 //思路：递归
-/*
+
 function RandomListNode(x){
     this.label = x;
     this.next = null;
     this.random = null;
 }
+/*
 function Clone(pHead)
 {
     if (!pHead) {
@@ -35,4 +36,36 @@ function Clone(pHead)
 //2.重新遍历链表，修改新节点上的random指向
 
 //3.再次遍历链表，拆分新的链表和旧的链表
+
+function Clone(pHead)
+{
+    if (!pHead) {
+        return;
+    }
+    //遍历并且复制节点，并且将复制的结点放在当前节点的后面
+    let curr = pHead;
+    while (curr) {
+        let next = new RandomListNode(curr.label);
+        next.next = curr.next;
+        curr.next = next;
+        curr = next.next;
+    }
+    //遍历，赋值random指针
+    curr = pHead;
+    while (curr) {
+        let randNode = curr.random;
+        curr.next.random = randNode.next;
+        curr.next = curr.next.next;
+    }
+    //拆分
+    let newhead = new RadioNodeList(null);
+    let newheadClone = new RadioNodeList(null);;
+    while (pHead) {
+        newhead.next = pHead;
+        newheadClone.next = pHead;
+        pHead = pHead.next.next;
+    }
+    
+    return newheadClone.next;
+}
 
