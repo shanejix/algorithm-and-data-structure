@@ -2,30 +2,29 @@
 // 输入一个字符串, 按字典序打印出该字符串中字符的所有排列。
 // 例如输入字符串abc, 则打印出由字符a, b, c所能排列出来的所有字符串abc, acb, bac, bca, cab和cba。
 
-//递归全排列解法
-
 function Permutation(str) {
+    if (str.length == 0) return '';
+    let str_arr = str.split('');
+    str_arr.sort();
     let res = [];
-    if (str.length <= 0) return res;
-    arr = str.split(''); // 将字符串转化为字符数组
-    res = permutate2(arr, 0, res);
-    res = [...new Set(res)]; // 去重
-    res.sort(); // 排序
+    for (let i = 0; i < str_arr.length; i++) {
+        if (i > 0 && str_arr[i] === str_arr[i - 1]) continue;
+        let front = str_arr.slice(0, i);
+        let end = str_arr.slice(i + 1);
+        PermutationHelp(res, str_arr[i], front.concat(end));
+    }
     return res;
-}
-function permutate2(arr, index, res) {
-    if (arr.length === index) {
-        let s = '';
-        for (let i = 0; i < arr.length; i++) {
-            s += arr[i];
-        }
-        return res.push(s);
-    }
-    for (let i = index; i < arr.length; i++) {
-        [arr[index], arr[i]] = [arr[i], arr[index]]; // 交换
-        permutate2(arr, index + 1, res);
-        [arr[index], arr[i]] = [arr[i], arr[index]]; // 交换
-    }
 
-    return res;
+}
+function PermutationHelp(res, temp, arr) {
+    if (arr.length === 0) {
+        res.push(temp);
+    } else {
+        for (let i = 0; i < arr.length; i++) {
+            if (i > 0 && arr[i] === arr[i - 1]) continue;
+            let front = arr.slice(0, i);
+            let end = arr.slice(i + 1);
+            PermutationHelp(res, temp + arr[i], front.concat(end));
+        }
+    }
 }
