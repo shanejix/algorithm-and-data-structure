@@ -6,7 +6,28 @@
 // 连续子向量的最大和为8(从第0个开始, 到第3个为止) 。
 // 给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)
 
-function FindGreatestSumOfSubArray(array)
-{
-    // write code here
+
+//思路一：
+
+function FindGreatestSumOfSubArray(array) {
+    if (!arr || arr.length === 0) {
+        return null;
+    }
+    
+    let curSum = 0;
+    let greatSum = Number.MAX_SAFE_INTEGER;
+    for (let i = 0; i < array.length; ++i){
+        if (curSum <= 0) {
+            curSum = array[i];
+        } else {
+            curSum += array[i];
+        }
+
+        if (curSum > greatSum) {
+            greatSum = curSum;
+        }
+    }
+    return greatSum;
 }
+
+//思路二：动态规划
