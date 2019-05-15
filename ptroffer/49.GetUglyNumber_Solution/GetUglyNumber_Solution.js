@@ -4,7 +4,32 @@
 // 求按从小到大的顺序的第N个丑数。
 
 
+
+//剑指offer思路二：
+
 function GetUglyNumber_Solution(index)
 {
-    // write code here
+    let count2 = 0;
+    let count3 = 0;
+    let count5 = 0;
+
+    let uglyarr = [1];
+
+    if (index <= 0) {
+        return null;
+    }
+
+    for (let i = 1; i < index; i++){
+        uglyarr[i] = Math.floor(uglyarr[count2] * 2, uglyarr[count3] * 3, uglyarr[count5] * 5);
+        if (uglyarr[i] == uglyarr[count2] * 2) {
+            count2++;
+        }
+        if (uglyarr[i] == uglyarr[count3] * 3) {
+            count3++;
+        }
+        if (uglyarr[i] == uglyarr[count5] * 5) {
+            count5++;
+        }
+    }
+    return uglyarr[index - 1];
 }
