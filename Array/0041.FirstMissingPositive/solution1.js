@@ -24,37 +24,32 @@
  * @return {number}
  */
 
-// solution1: sort
+// solution1:
 var firstMissingPositive = function (nums) {
-  let result = 1;
   if (nums && nums.length) {
-    // increase sort
-    const insSorted = nums.sort((a, b) => a - b);
+    const len = nums.length;
 
-    // for loop
-    for (let i = 0; i < nums.length; i++) {
-      // skip less than 0
-      if (nums[i] <= 0) {
-        continue;
-      }
-      // if missing 1
-      if (nums[i] > 1) {
-        break;
-      }
-      // skip continuous number:1,2
-      if (nums[i] + 1 === nums[i + 1]) {
-        continue;
-      }
+    // the array first index
+    let i = 0;
 
-      // if miss middle number : 1,3
-      if (nums[i] + 1 !== nums[i + 1]) {
-        result = nums[i] + 1;
-        break;
+    // sort in place
+    while (i < len) {
+      if (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i]) {
+        // swap
+        [nums[nums[i] - 1], nums[i]] = [nums[i], nums[nums[i] - 1]];
+      } else {
+        i++;
       }
     }
-  }
 
-  return result;
+    for (let j = 0; j < len; j++) {
+      if (nums[j] != j + 1) {
+        return j + 1;
+      }
+    }
+
+    return len + 1;
+  }
 };
 
 console.log(firstMissingPositive([1, 2, 0]));
