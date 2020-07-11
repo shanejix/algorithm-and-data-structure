@@ -43,6 +43,10 @@ var isValid = function (s) {
   let obj = {
     "(": ")",
     ")": "(",
+    "[": "]",
+    "]": "[",
+    "{": "}",
+    "}": "{",
   };
   if (s && s.length) {
     let splitStrArr = s.split("");
@@ -63,10 +67,52 @@ var isValid = function (s) {
   if (stack.length === 0) {
     result = true;
   }
-  console.log(stack);
+  // console.log(stack);
 
   return result;
 };
 
 console.log(isValid("()"));
-// console.log(isValid("([)]"));
+console.log(isValid("()[]{}"));
+console.log(isValid("({[]})"));
+console.log(isValid("([)]"));
+console.log(isValid("("));
+console.log(isValid("(("));
+
+// optimization
+
+var isValid2 = function (s) {
+  const pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
+  let stack = [];
+
+  if (s && s.length) {
+    for (let i = 0; i < s.length; i++) {
+      // left pairs push stack
+      if (pairs[s[i]]) {
+        stack.push(pairs[s[i]]);
+      } else {
+        // right pairs pop stack
+        let item = stack.pop();
+        if (item !== s[i]) return false;
+      }
+    }
+  }
+
+  // if (stack.length === 0) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  return stack.length === 0;
+};
+
+console.log("2:", isValid2("()"));
+console.log("2:", isValid2("()[]{}"));
+console.log("2:", isValid2("({[]})"));
+console.log("2:", isValid2("([)]"));
+console.log("2:", isValid2("("));
+console.log("2:", isValid2("(("));
