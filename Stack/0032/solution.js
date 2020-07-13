@@ -21,4 +21,5 @@ function _(s) {
       }
     }
   }
+  return longest;
 }
