@@ -11,6 +11,7 @@ class Stack {
     this.head = null;
   }
 
+  // 入栈
   push(item) {
     if (this.top) {
       this.top.next = item;
@@ -21,17 +22,7 @@ class Stack {
     }
   }
 
-  findPreNode(item, target) {
-    let newHead = item;
-    while (newHead && newHead.next) {
-      if (newHead.next.value === target.value) {
-        return newHead;
-      }
-      newHead = newHead.next;
-    }
-    return null;
-  }
-
+  // 出栈
   pop() {
     if (!this.head || !this.top) {
       return null;
@@ -43,7 +34,8 @@ class Stack {
     }
   }
 
-  len() {
+  // 大小
+  size() {
     let num = 0;
     let newHead = this.head;
     while (newHead && newHead.value) {
@@ -55,6 +47,18 @@ class Stack {
     }
     return num;
   }
+
+  // 找到目标节点的前一个节点
+  findPreNode(item, target) {
+    let newHead = item;
+    while (newHead && newHead.next) {
+      if (newHead.next.value === target.value) {
+        return newHead;
+      }
+      newHead = newHead.next;
+    }
+    return null;
+  }
 }
 
 const node1 = new Node(1);
@@ -64,6 +68,6 @@ const stack = new Stack();
 
 stack.push(node1);
 stack.push(node2);
-console.log("length", stack.len());
-console.log("pop item", stack.pop());
-console.log("length", stack.len());
+console.log('length', stack.size());
+console.log('pop item', stack.pop());
+console.log('length', stack.size());
