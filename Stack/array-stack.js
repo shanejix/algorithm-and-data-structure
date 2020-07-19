@@ -3,17 +3,22 @@ class Stack {
     this.store = [];
   }
 
-  pop() {
-    if (this.store.length) {
-      return this.store.pop();
-    }
-  }
-
+  // 入栈
   push(item) {
     this.store.push(item);
   }
 
-  len() {
+  // 出栈
+  pop() {
+    if (this.store.length) {
+      return this.store.pop();
+    } else {
+      return null;
+    }
+  }
+
+  // 大小
+  size() {
     return this.store.length;
   }
 }
@@ -21,6 +26,6 @@ class Stack {
 const stack = new Stack();
 stack.push(1);
 stack.push(2);
-console.log("length", stack.len());
-console.log("pop item", stack.pop());
-console.log("lenght", stack.len());
+console.log('length', stack.size());
+console.log('pop item', stack.pop());
+console.log('length', stack.size());
