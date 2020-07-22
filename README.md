@@ -1,0 +1,1 @@
+![solution-method](./solution-method.png)
