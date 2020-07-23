@@ -16,22 +16,19 @@ class Queue {
     push(val) {
         let currentNode = new Node(val)
         if (this.tail) {
-            currentNode.next = this.tail
-            this.tail = currentNode;
-        } else {
-            this.head = currentNode
+            this.tail.next = currentNode
             this.tail = currentNode
+        } else {
+            this.head = this.tail = currentNode
         }
-
         this.length++
-
     }
     // 出队
     pop() {
         let removeNode = this.head
-        this.head = this.head.next;
-        removeNode = null
+        this.head = this.head.next
         this.length--
+        return removeNode.val
     }
     // 大小
     size() {
@@ -49,9 +46,9 @@ class Queue {
     }
     // 打印
     display() {
-        let newHead = this.head;
+        let newHead = this.head
         while (newHead) {
-            console.log('ele', newHead.val)
+            console.log(newHead.val)
             newHead = newHead.next
         }
     }
@@ -64,8 +61,10 @@ queue.push(2)
 queue.push(3)
 queue.display();
 console.log('len', queue.size());
-// console.log(queue.pop());
-// queue.display();
-// console.log(queue.isEmpt());
-// queue.clear();
-// console.log(queue.isEmpt());
+console.log(queue.pop());
+queue.display();
+console.log(queue.isEmpt());
+queue.clear();
+queue.display();
+console.log(queue.isEmpt());
+queue.display();
