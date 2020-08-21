@@ -10,6 +10,7 @@ function insertSort(arr) {
       // 升序
       if (arr[j - 1] > value) {
         arr[j] = arr[j - 1];
+        // 待优化
         arr[j - 1] = value;
       } else {
         break;
