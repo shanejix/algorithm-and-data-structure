@@ -1,7 +1,9 @@
 function mergeSort(arr, p, q) {
   if (p >= q) return [arr[q]];
 
-  let mid = Math.floor((p + q) / 2);
+  // let mid = Math.floor((p + q) / 2);
+  // optimize
+  let mid = Math.floor(p + (q - p) / 2);
 
   return merge(mergeSort(arr, p, mid), mergeSort(arr, mid + 1, q));
 }
@@ -10,10 +12,11 @@ function merge(left, right) {
   let result = [];
   while (left.length && right.length) {
     // 升序
-    if (left[0] > right[0]) {
-      result.push(right.shift());
-    } else {
+    // 保证是稳定排序
+    if (left[0] <= right[0]) {
       result.push(left.shift());
+    } else {
+      result.push(right.shift());
     }
   }
 
