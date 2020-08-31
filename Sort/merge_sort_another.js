@@ -1,22 +1,21 @@
-function mergeSort(arr, p, q) {
-  if (p >= q) return [arr[q]];
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  // let mid = Math.floor((p + q) / 2);
-  // optimize
-  let mid = Math.floor(p + (q - p) / 2);
+  let mid = Math.floor(arr.length / 2);
+  let left = arr.slice(0, mid);
+  let right = arr.slice(mid);
 
-  return merge(mergeSort(arr, p, mid), mergeSort(arr, mid + 1, q));
+  return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
   let result = [];
   while (left.length && right.length) {
     // 升序
-    // 保证是稳定排序
-    if (left[0] <= right[0]) {
-      result.push(left.shift());
-    } else {
+    if (left[0] > right[0]) {
       result.push(right.shift());
+    } else {
+      result.push(left.shift());
     }
   }
 
