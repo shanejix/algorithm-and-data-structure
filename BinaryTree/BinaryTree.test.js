@@ -17,6 +17,8 @@ node2.right = node5;
 node3.left = node6;
 node3.right = node7;
 
+// const tree = new BinaryTree(root);
+
 const tree = new BinaryTree(root, function (value) {
   console.log("(", value, ")");
 });
