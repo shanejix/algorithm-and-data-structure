@@ -1,2 +1,2 @@
 ![solution-method](./solution-method.png)
-![datastructrue](./datastructrue.png)
+![data-structure](./data-structure.png)
