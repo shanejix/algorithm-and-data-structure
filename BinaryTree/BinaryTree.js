@@ -7,31 +7,31 @@ BinaryTree.prototype.innerPrinter = function (value) {
   console.log(value);
 };
 
-BinaryTree.prototype.preorderTraversal = function (node) {
+BinaryTree.prototype.preorderTraversal = function (node, printer) {
   if (node === null) return;
 
-  this.printer(node.val);
-  this.preorderTraversal(node.left);
-  this.preorderTraversal(node.right);
+  printer ? printer(node.val) : this.printer(node.val);
+  this.preorderTraversal(node.left, printer);
+  this.preorderTraversal(node.right, printer);
 };
 
-BinaryTree.prototype.inorderTraversal = function (node) {
+BinaryTree.prototype.inorderTraversal = function (node, printer) {
   if (node === null) return;
 
-  this.inorderTraversal(node.left);
-  this.printer(node.val);
-  this.inorderTraversal(node.right);
+  printer ? printer(node.val) : this.inorderTraversal(node.left);
+  this.printer(node.val, printer);
+  this.inorderTraversal(node.right, printer);
 };
 
-BinaryTree.prototype.postorderTraversal = function (node) {
+BinaryTree.prototype.postorderTraversal = function (node, printer) {
   if (node === null) return;
 
-  this.postorderTraversal(node.left);
-  this.postorderTraversal(node.right);
-  this.printer(node.val);
+  this.postorderTraversal(node.left, printer);
+  this.postorderTraversal(node.right, printer);
+  printer ? printer(node.val) : this.printer(node.val);
 };
 
-BinaryTree.prototype.levelOrderTraversal = function (node) {
+BinaryTree.prototype.levelOrderTraversal = function (node, printer) {
   if (node === null) return;
 
   const queue = [];
@@ -40,7 +40,7 @@ BinaryTree.prototype.levelOrderTraversal = function (node) {
   while (queue.length) {
     const currNode = queue.shift();
 
-    this.printer(currNode.val);
+    printer ? printer(node.val) : this.printer(currNode.val);
 
     if (currNode.left) {
       queue.push(currNode.left);

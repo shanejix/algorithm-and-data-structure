@@ -17,16 +17,18 @@ node2.right = node5;
 node3.left = node6;
 node3.right = node7;
 
-// const tree = new BinaryTree(root);
+const tree = new BinaryTree(root);
 
-const tree = new BinaryTree(root, function (value) {
-  console.log("(", value, ")");
-});
+// const tree = new BinaryTree(root, function (value) {
+//   console.log("(", value, ")");
+// });
 
 console.log("tree--------------------------------");
 console.log(tree);
 console.log("pre --------------------------------");
-tree.preorderTraversal(tree.root);
+tree.preorderTraversal(tree.root, function (value) {
+  console.log("xxx", value);
+});
 console.log("in  --------------------------------");
 tree.inorderTraversal(tree.root);
 console.log("post--------------------------------");
