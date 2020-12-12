@@ -47,6 +47,24 @@ bst2.add(15);
 bst2.add(8);
 bst2.add(9);
 
-bst2.inorderTraversal(bst2.root);
 console.log("xxxxxxxxxxxxxxxxxxx");
+bst2.inorderTraversal(bst2.root);
 console.log(bst2.sizing());
+console.log(bst2.find());
+console.log(bst2.find(11));
+console.log(bst2.find(13));
+
+
+console.log("%%%%%%%%%%%%%%");
+const newRoot = new TreeNode(10);
+const bst3 = new BinarySearchTree(newRoot);
+bst3.insert(11);
+bst3.insert(12);
+bst3.insert(20);
+bst3.insert(30);
+bst3.insert(15);
+bst3.insert(8);
+bst3.insert(9);
+
+console.log(bst3);
+bst3.inorderTraversal(bst3.root);
