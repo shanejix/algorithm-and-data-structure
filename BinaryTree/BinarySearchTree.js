@@ -112,6 +112,8 @@ BinarySearchTree.prototype.remove = function (value) {
     }
 
     current.value = minRight.value;
+
+    // degree 0 or 1
     current = minRight
     parent = minRightParent
 
