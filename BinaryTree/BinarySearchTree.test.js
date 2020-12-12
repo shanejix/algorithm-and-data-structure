@@ -68,3 +68,8 @@ bst3.insert(9);
 
 console.log(bst3);
 bst3.inorderTraversal(bst3.root);
+console.log('----');
+// bst3.del(8)
+bst3.remove(10)
+console.log('----');
+bst3.inorderTraversal(bst3.root);

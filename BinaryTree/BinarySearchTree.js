@@ -83,6 +83,59 @@ BinarySearchTree.prototype.find = function (value) {
   return false
 }
 
+BinarySearchTree.prototype.remove = function (value) {
+
+  if (!value || !this.root) return;
+
+  let current = this.root;
+  let parent = null;
+
+  while (current && current.value !== value) {
+    parent = current
+    if (value > current.value) {
+      current = current.right
+    } else if (value < current.value) {
+      current = current.left;
+    }
+  }
+
+  if (!current) return;
+
+  // degree 2
+  if (current.left && current.right) {
+    let minRight = current.right;
+    let minRightParent = current;
+
+    while (minRight.left !== null) {
+      minRightParent = minRight
+      minRight = minRight.left
+    }
+
+    current.value = minRight.value;
+    current = minRight
+    parent = minRightParent
+
+  }
+
+  // degree 0 or 1
+  let child = null;
+  if (current.left) {
+    child = current.left
+  } else if (current.right) {
+    child = current.right
+  } else {
+    child = null;
+  }
+
+  if (parent === null) {
+    this.root = child
+  } else if (parent.left === current) {
+    parent.left = child
+  } else {
+    parent.right = child;
+  }
+
+}
 
 
 module.exports = BinarySearchTree;
