@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "Self-learning data structure and algorithm",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./src/**"
+  },
   "repository": "git@github.com:shanejixx/algorithm-and-data-structure.git",
   "author": "shanejixx <shanejixx@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
 }
