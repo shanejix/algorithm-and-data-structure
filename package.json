@@ -1,0 +1,9 @@
+{
+  "name": "algorithm-and-data-structure",
+  "version": "1.0.0",
+  "description": "Self-learning data structure and algorithm",
+  "main": "index.js",
+  "repository": "git@github.com:shanejixx/algorithm-and-data-structure.git",
+  "author": "shanejixx <shanejixx@outlook.com>",
+  "license": "MIT"
+}
