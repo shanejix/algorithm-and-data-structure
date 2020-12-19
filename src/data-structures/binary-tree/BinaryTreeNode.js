@@ -1,19 +1,9 @@
-import Comparator from "../../utils/Comparator";
+import TreeNode from "./TreeNode";
 
-export default class BinaryTreeNode {
-  constructor(value = null) {
-    this.left = null;
-    this.right = null;
+export default class BinaryTreeNode extends TreeNode {
+  constructor(value = null, compareFunction) {
+    super(value, compareFunction);
     this.parent = null;
-    this.value = value;
-
-    // used to compare binary tress nodes with each other
-    this.nodeComparator = new Comparator();
-  }
-
-  setValue(value) {
-    this.value = value;
-    return this;
   }
 
   setLeft(node) {
