@@ -44,4 +44,32 @@ export default class BinarySearchTreeNode {
     // curr.node.value === value
     return this;
   }
+
+  find(value) {
+    if (this.nodeValueComparator.equal(this.value, null)) {
+      return null
+    }
+
+    if (this.nodeValueComparator.equal(this.value, value)) {
+      return this
+    }
+
+    if (this.nodeValueComparator.lessThan(this.value, value)) {
+      if (this.right) {
+        this.right.find(value)
+      }
+      return null
+    }
+
+    if (this.nodeValueComparator.greaterThan(this.value, value)) {
+      if (this, left) {
+        this.left.find(value)
+      }
+      return null
+    }
+  }
+
+  delete(value) { }
+
+  add(value) { }
 }
