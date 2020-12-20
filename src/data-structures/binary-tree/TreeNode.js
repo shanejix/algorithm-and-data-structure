@@ -6,6 +6,9 @@ export default class TreeNode {
     this.right = null;
     this.value = value;
 
+    // to compare binary tree node
+    this.nodeComparator = new Comparator();
+    // to compare binary tree node value
     this.nodeValueComparator = new Comparator(compareFunction);
   }
 
