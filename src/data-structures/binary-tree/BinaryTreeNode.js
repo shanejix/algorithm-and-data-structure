@@ -1,12 +1,20 @@
 import TreeNode from "./TreeNode";
-import Comparator from "../../utils/Comparator";
 
 export default class BinaryTreeNode extends TreeNode {
+  /**
+   * @param {*} value
+   * @param {function} compareFunction
+   * @return {*}
+   */
   constructor(value = null, compareFunction) {
     super(value, compareFunction);
     this.parent = null;
   }
 
+  /**
+   * @param {BinaryTreeNode} node
+   * @return {BinaryTreeNode}
+   */
   setLeft(node) {
     if (this.left) {
       this.left.parent = null;
@@ -21,6 +29,10 @@ export default class BinaryTreeNode extends TreeNode {
     return this;
   }
 
+  /**
+   * @param {BinaryTreeNode} node
+   * @return {BinaryTreeNode}
+   */
   setRight(node) {
     if (this.right) {
       this.right.parent = null;
@@ -34,6 +46,10 @@ export default class BinaryTreeNode extends TreeNode {
     return this;
   }
 
+  /**
+   * @param {BinaryTreeNode} nodeToRemove
+   * @return {boolean}
+   */
   removeChild(nodeToRemove) {
     if (this.left && this.nodeComparator.equal(this.left, nodeToRemove)) {
       // nodeToRemove.parent = null
@@ -49,6 +65,11 @@ export default class BinaryTreeNode extends TreeNode {
     return false
   }
 
+  /**
+   * @param {BinaryTreeNode} nodeToReplace
+   * @param {BinaryTreeNode} replacementNode
+   * @return {boolean}
+   */
   replaceChild(nodeToReplace, replacementNode) {
 
     if (!nodeToReplace && !this.replacementNode) {
@@ -68,6 +89,11 @@ export default class BinaryTreeNode extends TreeNode {
     return false;
   }
 
+  /**
+   * @param {BinaryTreeNode} sourceNode
+   * @param {BinaryTreeNode} targetNode
+   * @return {*}
+   */
   static coypNode(sourceNode, targetNode) {
     targetNode.setValue(sourceNode.value);
     targetNode.setLeft(sourceNode.left);

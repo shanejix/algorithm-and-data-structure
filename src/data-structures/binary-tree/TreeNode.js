@@ -1,6 +1,11 @@
 import Comparator from "../../utils/Comparator";
 
 export default class TreeNode {
+  /**
+   * @param {*} value
+   * @param {function} compareFunction
+   * @return {*}
+   */
   constructor(value = null, compareFunction = null) {
     this.left = null;
     this.right = null;
@@ -12,11 +17,18 @@ export default class TreeNode {
     this.nodeValueComparator = new Comparator(compareFunction);
   }
 
+  /**
+   * @param {*} value
+   * @return {TreeNode}
+   */
   setValue(value) {
     this.value = value;
     return this;
   }
 
+  /**
+   * @return {[]}
+   */
   inorderTraversal() {
     let traversal = [];
 
@@ -33,6 +45,9 @@ export default class TreeNode {
     return traversal;
   }
 
+  /**
+   * @return {string}
+   */
   toString() {
     return this.inorderTraversal().toString();
   }

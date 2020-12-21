@@ -1,11 +1,20 @@
 import BinaryTreeNode from "../BinaryTreeNode";
 
 export default class BinarySearchTreeNode extends BinaryTreeNode {
+  /**
+   * @param {*} value
+   * @param {function} compareFunction
+   * @return {*}
+   */
   constructor(value, compareFunction) {
     super(value, compareFunction);
     this.compareFunction = compareFunction;
   }
 
+  /**
+   * @param {*} value
+   * @return {BinarySearchTreeNode}
+   */
   insert(value) {
     // curr.node.value === null
     if (this.nodeValueComparator.equal(this.value, null)) {
@@ -45,9 +54,11 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
     return this;
   }
 
+  /**
+   * @param {*} value
+   * @return {boolean}
+   */
   find(value) {
-
-
     if (this.nodeValueComparator.equal(this.value, value)) {
       return this
     }
@@ -63,6 +74,10 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
     return null
   }
 
+  /**
+   * @param {*} value
+   * @return {boolean | Error}
+   */
   remove(value) {
     const nodeToRemove = this.find(value)
 
@@ -109,10 +124,17 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
     return true;
   }
 
+  /**
+   * @param {*} value
+   * @return {boolean}
+   */
   contains(value) {
     return !!this.find(value)
   }
 
+  /**
+   * @return {BinarySearchTreeNode}
+   */
   findMin() {
     if (!this.left) {
       return this
