@@ -1,10 +1,12 @@
 import TreeNode from "./TreeNode";
 
 export default class BinaryTreeNode extends TreeNode {
+
+
   /**
-   * @param {*} value
-   * @param {function} compareFunction
-   * @return {*}
+   * Creates an instance of BinaryTreeNode.
+   * @param {*} [value=null]
+   * @param {*} compareFunction
    */
   constructor(value = null, compareFunction) {
     super(value, compareFunction);
@@ -12,8 +14,44 @@ export default class BinaryTreeNode extends TreeNode {
   }
 
   /**
-   * @param {BinaryTreeNode} node
-   * @return {BinaryTreeNode}
+   * @returns {number}  
+   */
+  get leftHeight() {
+    if (!this.left) {
+      return 0;
+    }
+
+    return this.left.height + 1;
+  }
+
+  /**
+   * @returns {number}  
+   */
+  get rightHeight() {
+    if (!this.right) {
+      return 0;
+    }
+
+    return this.right.height + 1;
+  }
+
+  /**
+   * @returns {number}  
+   */
+  get height() {
+    return Math.max(this.leftHeight, this.righHeight)
+  }
+
+  /**
+   * @returns {number}  
+   */
+  get balaneFactor() {
+    return this.leftHeight - this.rightHeight
+  }
+
+  /**
+   * @param {*} node
+   * @returns {*}  
    */
   setLeft(node) {
     if (this.left) {
