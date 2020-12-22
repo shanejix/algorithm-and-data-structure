@@ -39,7 +39,7 @@ export default class BinaryTreeNode extends TreeNode {
    * @returns {number}  
    */
   get height() {
-    return Math.max(this.leftHeight, this.righHeight)
+    return Math.max(this.leftHeight, this.rightHeight)
   }
 
   /**
