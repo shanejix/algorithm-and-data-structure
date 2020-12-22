@@ -39,9 +39,9 @@ export default class AvlTree extends BinarySearchTree {
         this.rotateLeftLeft(node);
       } else if (node.left.balanceFactor < 0) {
         // left-right rotate
-        this.rotateLefRight(node);
+        this.rotateLeftRight(node);
       }
-    } else if (node.balanceFactor > -1) {
+    } else if (node.balanceFactor < -1) {
       // right rotate
       if (node.right.balanceFactor < 0) {
         // right-right rotate
