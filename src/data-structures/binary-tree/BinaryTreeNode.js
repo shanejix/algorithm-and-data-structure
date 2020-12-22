@@ -45,7 +45,7 @@ export default class BinaryTreeNode extends TreeNode {
   /**
    * @returns {number}  
    */
-  get balaneFactor() {
+  get balanceFactor() {
     return this.leftHeight - this.rightHeight
   }
 
