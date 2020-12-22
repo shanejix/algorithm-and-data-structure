@@ -1,9 +1,8 @@
-import BinarySearchTree from '../binary-search-tree/BinarySearchTree';
+import BinarySearchTree from "../binary-search-tree/BinarySearchTree";
 
 export default class AvlTree extends BinarySearchTree {
   /**
    * @param {*} value
-   * @return {*}
    */
   insert(value) {
     // BinarySearchTree.insert
@@ -19,20 +18,17 @@ export default class AvlTree extends BinarySearchTree {
 
   /**
    * @param {*} value
-   * @return {*}
    */
   remove(value) {
     // BinarySearchTree.remove
     super.remove(value);
 
-    // 
-    this.balance(this.root)
-
+    //
+    this.balance(this.root);
   }
 
   /**
    * @param {BinarySearchTreeNode} node
-   * @return {*}
    */
   balance(node) {
     // balance factor is not ok
@@ -57,8 +53,11 @@ export default class AvlTree extends BinarySearchTree {
     }
   }
 
+  /**
+   * @param {BinarySearchTreeNode} rootNode
+   */
   rotateLeftLeft(rootNode) {
-    const leftNode = rootNode.left
+    const leftNode = rootNode.left;
     rootNode.setLeft(null);
 
     if (rootNode.parent) {
@@ -74,10 +73,67 @@ export default class AvlTree extends BinarySearchTree {
     leftNode.setRight(rootNode);
   }
 
-  rotateLeftRight(rootNode) { }
+  /**
+   * @param {BinarySearchTreeNode} rootNode
+   */
+  rotateLeftRight(rootNode) {
+    const leftNode = rootNode.left;
+    rootNode.setLeft(null);
 
-  rotateRightRight(rootNode) { }
+    const leftRightNode = leftNode.right;
+    leftNode.setRight(null);
 
-  rotateRightLeft(rootNode) { }
+    if (leftRightNode.left) {
+      leftNode.setRight(leftRightNode.left);
+      leftRightNode.setRight(null);
+    }
 
+    rootNode.setleft(leftRightNode);
+
+    leftRighNode.setRight(leftNode);
+
+    this.rotateLeftLeft(rootNode);
+  }
+
+  /**
+   * @param {BinarySearchTreeNode} rootNode
+   */
+  rotateRightRight(rootNode) {
+    const rightNode = rootNode.right;
+    rootNode.setRight(null);
+
+    const rightLeftNode = rightNode.left;
+    rightNode.setLeft(null);
+
+    if (rightLeftNode.right) {
+      rightNode.setLeft(rightLeftNode.right);
+      rightLeftNode.setRight(null);
+    }
+
+    rootNode.setRight(rightLeftNode);
+
+    rightLeftNode.setRight(rightNode);
+
+    this.rotateRightRight(rootNode);
+  }
+
+  /**
+   * @param {BinarySearchTreeNode} rootNode
+   */
+  rotateRightLeft(rootNode) {
+    const rightNode = rootNode.right;
+    rootNode.setRight(null);
+
+    if (rootNode.parent) {
+      rootNode.parent.setRight(rightNode);
+    } else if (rootNode.parent === this.root) {
+      this.root = rightNode;
+    }
+
+    if (rightNode.left) {
+      root.setRight(rightNode.left);
+    }
+
+    rightNode.setLeft(rootNode);
+  }
 }
