@@ -49,5 +49,28 @@ describe("AvlTree", () => {
     expect(tree.toString()).toBe("5,10,20,25,30,40");
   });
 
-  
+  it("should do simple right-right rotation", () => {
+    const tree = new AvlTree();
+
+    tree.insert(2);
+    tree.insert(3);
+    tree.insert(4);
+
+    expect(tree.toString()).toBe("2,3,4");
+    expect(tree.root.value).toBe(3);
+    expect(tree.root.height).toBe(1);
+
+    tree.insert(5);
+
+    expect(tree.toString()).toBe("2,3,4,5");
+    expect(tree.root.value).toBe(3);
+    expect(tree.root.height).toBe(2);
+
+    tree.insert(6);
+
+    expect(tree.toString()).toBe("2,3,4,5,6");
+    expect(tree.root.value).toBe(3);
+    expect(tree.root.right.value).toBe(5);
+    expect(tree.root.height).toBe(2);
+  });
 });

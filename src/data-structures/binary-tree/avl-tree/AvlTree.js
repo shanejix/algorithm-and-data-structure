@@ -102,6 +102,26 @@ export default class AvlTree extends BinarySearchTree {
     const rightNode = rootNode.right;
     rootNode.setRight(null);
 
+    if (rootNode.parent) {
+      rootNode.parent.setRight(rightNode);
+    } else if (rootNode === this.root) {
+      this.root = rightNode;
+    }
+
+    if (rightNode.left) {
+      rightNode.setRight(rightNode.left);
+    }
+
+    rightNode.setLeft(rootNode);
+  }
+
+  /**
+   * @param {BinarySearchTreeNode} rootNode
+   */
+  rotateRightLeft(rootNode) {
+    const rightNode = rootNode.right;
+    rootNode.setRight(null);
+
     const rightLeftNode = rightNode.left;
     rightNode.setLeft(null);
 
@@ -115,25 +135,5 @@ export default class AvlTree extends BinarySearchTree {
     rightLeftNode.setRight(rightNode);
 
     this.rotateRightRight(rootNode);
-  }
-
-  /**
-   * @param {BinarySearchTreeNode} rootNode
-   */
-  rotateRightLeft(rootNode) {
-    const rightNode = rootNode.right;
-    rootNode.setRight(null);
-
-    if (rootNode.parent) {
-      rootNode.parent.setRight(rightNode);
-    } else if (rootNode.parent === this.root) {
-      this.root = rightNode;
-    }
-
-    if (rightNode.left) {
-      root.setRight(rightNode.left);
-    }
-
-    rightNode.setLeft(rootNode);
   }
 }
