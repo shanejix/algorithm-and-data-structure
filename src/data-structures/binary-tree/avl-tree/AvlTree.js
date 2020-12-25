@@ -85,12 +85,12 @@ export default class AvlTree extends BinarySearchTree {
 
     if (leftRightNode.left) {
       leftNode.setRight(leftRightNode.left);
-      leftRightNode.setRight(null);
+      leftRightNode.setLeft(null);
     }
 
-    rootNode.setleft(leftRightNode);
+    rootNode.setLeft(leftRightNode);
 
-    leftRighNode.setRight(leftNode);
+    leftRightNode.setLeft(leftNode);
 
     this.rotateLeftLeft(rootNode);
   }
@@ -109,7 +109,7 @@ export default class AvlTree extends BinarySearchTree {
     }
 
     if (rightNode.left) {
-      rightNode.setRight(rightNode.left);
+      rootNode.setRight(rightNode.left);
     }
 
     rightNode.setLeft(rootNode);
