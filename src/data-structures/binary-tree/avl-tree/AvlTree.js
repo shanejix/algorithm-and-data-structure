@@ -218,6 +218,37 @@ export default class AvlTree extends BinarySearchTree {
   /**
    *
    *
+   * @param {*} grand
+   * @returns {*}
+   */
+  balance3(grand) {
+    const parent = grand.tallerChild();
+    const child = parent.tallerChild();
+
+    if (parent.isLeftChild(grand)) {
+      // left
+      if (child.isLeftChild(parent)) {
+        // left-left
+        rotate(grand, node, node.right, parent, parent.right, grand);
+      } else {
+        // left-right
+        rotate(grand, parent, node.left, node, node.right, grand);
+      }
+    } else {
+      // right
+      if (child.isRightChild(parent)) {
+        // right-right
+        rotate(grand, grand, parent.left, parent, node.left, node);
+      } else {
+        // right-left
+        rotate(grand, grand, node.left, node, node.right, parent);
+      }
+    }
+  }
+
+  /**
+   *
+   *
    * @param {*} r
    * @param {*} a
    * @param {*} b
@@ -226,5 +257,25 @@ export default class AvlTree extends BinarySearchTree {
    * @param {*} e
    * @param {*} f
    */
-  rotate(r, a, b, c, d, e, f) {}
+  rotate(r, a, b, c, d, e, f) {
+    // d
+    d.parent = r.parent;
+    if (r.isLeftChild()) {
+      r.parent.setLeft(d);
+    } else if (r.isRightChild()) {
+      r.parent.setRight(d);
+    } else {
+      this.root = d;
+    }
+
+    //b-c
+    b.setRight(c);
+
+    // e-f
+    f.setLeft(e);
+
+    // b-d-f
+    d.setLeft(b);
+    d.setRight(f);
+  }
 }
