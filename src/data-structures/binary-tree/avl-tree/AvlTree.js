@@ -74,6 +74,7 @@ export default class AvlTree extends BinarySearchTree {
   }
 
   /**
+   * 
    * @param {BinarySearchTreeNode} rootNode
    */
   rotateLeftRight(rootNode) {
@@ -136,4 +137,73 @@ export default class AvlTree extends BinarySearchTree {
 
     this.rotateRightRight(rootNode);
   }
+
+
+  /**
+   *
+   *
+   * @param {*} grand
+   * @returns {*}  
+   */
+  balance2(grand) {
+
+    const parent = grand.tallerChild();
+    const child = parent.tallerChild();
+
+    if (parent.isLeftChild(grand)) {
+      // left
+      if (child.isLeftChild(parent)) {
+        // left-left
+        rotateRight(grand)
+      } else {
+        // left-right
+        rotateLeft(parent);
+        rotateRight(grand);
+      }
+    } else {
+      // right
+      if (child.isRightChild(parent)) {
+        // right-right
+        rotateLeft(grand);
+      } else {
+        // right-left
+        rotateRight(parent);
+        rotateLeft(grand);
+      }
+    }
+  }
+
+  /**
+   *
+   *
+   * @param {*} node
+   */
+  rotateLeft(node) {
+
+  }
+
+  /**
+   *
+   *
+   * @param {*} node
+   */
+  rotateRight(node) {
+    
+  }
+
+  /**
+   *
+   *
+   * @param {*} r
+   * @param {*} a
+   * @param {*} b
+   * @param {*} c
+   * @param {*} d
+   * @param {*} e
+   * @param {*} f
+   */
+  rotate(r, a, b, c, d, e, f) {
+
+  }
 }
+
