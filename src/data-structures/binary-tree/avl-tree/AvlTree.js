@@ -74,7 +74,7 @@ export default class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * 
+   *
    * @param {BinarySearchTreeNode} rootNode
    */
   rotateLeftRight(rootNode) {
@@ -138,15 +138,13 @@ export default class AvlTree extends BinarySearchTree {
     this.rotateRightRight(rootNode);
   }
 
-
   /**
    *
    *
    * @param {*} grand
-   * @returns {*}  
+   * @returns {*}
    */
   balance2(grand) {
-
     const parent = grand.tallerChild();
     const child = parent.tallerChild();
 
@@ -154,7 +152,7 @@ export default class AvlTree extends BinarySearchTree {
       // left
       if (child.isLeftChild(parent)) {
         // left-left
-        rotateRight(grand)
+        rotateRight(grand);
       } else {
         // left-right
         rotateLeft(parent);
@@ -176,19 +174,45 @@ export default class AvlTree extends BinarySearchTree {
   /**
    *
    *
-   * @param {*} node
+   * @param {*} rootNode
    */
-  rotateLeft(node) {
+  rotateLeft(rootNode) {
+    const rightNode = rootNode.right;
+    rootNode.setRight(null);
 
+    if (rootNode.parent) {
+      rootNode.parent.setRight(rightNode);
+    } else if (rootNode === this.root) {
+      this.root = rightNode;
+    }
+
+    if (rightNode.left) {
+      rootNode.setRight(rightNode.left);
+    }
+
+    rightNode.setLeft(rootNode);
   }
 
   /**
    *
    *
-   * @param {*} node
+   * @param {*} rootNode
    */
-  rotateRight(node) {
-    
+  rotateRight(rootNode) {
+    const leftNode = rootNode.left;
+    rootNode.setLeft(null);
+
+    if (rootNode.parent) {
+      rootNode.parent.setLeft(leftNode);
+    } else if (rootNode === this.root) {
+      this.root = leftNode;
+    }
+
+    if (leftNode.right) {
+      rootNode.setLeft(leftNode.right);
+    }
+
+    leftNode.setRight(rootNode);
   }
 
   /**
@@ -202,8 +226,5 @@ export default class AvlTree extends BinarySearchTree {
    * @param {*} e
    * @param {*} f
    */
-  rotate(r, a, b, c, d, e, f) {
-
-  }
+  rotate(r, a, b, c, d, e, f) {}
 }
-
