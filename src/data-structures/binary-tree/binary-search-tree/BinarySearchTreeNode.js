@@ -8,6 +8,7 @@ export default class BinarySearchTreeNode extends BinaryTreeNode {
    */
   constructor(value, compareFunction) {
     super(value, compareFunction);
+
     this.compareFunction = compareFunction;
   }
 

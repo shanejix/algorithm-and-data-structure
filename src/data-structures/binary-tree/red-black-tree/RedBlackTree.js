@@ -39,7 +39,7 @@ export default class RedBlackTree extends BinarySearchTree {
       return;
     }
 
-    if (this.isNodeBlank(node.parent)) {
+    if (this.isNodeBlack(node.parent)) {
       return;
     }
 
