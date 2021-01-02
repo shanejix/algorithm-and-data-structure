@@ -49,6 +49,32 @@ export default class BinaryTreeNode extends TreeNode {
     return this.leftHeight - this.rightHeight
   }
 
+
+  /**
+   *
+   *
+   * @returns {BinaryTreeNode}
+   */
+  get uncle() {
+    if (!this.parent) {
+      return undefined;
+    }
+
+    if (!this.parent.parent) {
+      return undefined
+    }
+
+    if (!this.parent.parent.left || !this.parent.parent.right) {
+      return undefined;
+    }
+
+    if (this.nodeComparator.equal(this.parent, this.parent.parent.left)) {
+      return this.parent.parent.right
+    }
+
+    return this.parent.parent.left
+  }
+
   /**
    * @param {*} node
    * @returns {*}  
@@ -137,4 +163,5 @@ export default class BinaryTreeNode extends TreeNode {
     targetNode.setLeft(sourceNode.left);
     targetNode.setRight(sourceNode.right);
   }
+
 }
