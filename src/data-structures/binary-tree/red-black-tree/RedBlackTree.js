@@ -29,13 +29,67 @@ export default class RedBlackTree extends BinarySearchTree {
     }
 
     // check all conditions and balance the nodes
-    this.balance();
+    this.balance(insertedNode);
 
     return insertedNode;
   }
 
   balance(node) {
+    if (this.nodeComparator.equal(this.root, node)) {
+      return;
+    }
 
+    if (this.isNodeBlank(node.parent)) {
+      return;
+    }
+
+    const grandParent = node.parent.parent;
+
+    if (node.uncle && this.isNodeRed(node.uncle)) {
+      this.makeNodeBlack(node.uncle);
+      this.makeNodeRed(node.parent);
+
+      if (!this.nodeComparator.equal(this.root, grandParent)) {
+        this.makeNodeRed(grandParent);
+      } else {
+        return;
+      }
+
+      this.balance(grandParent);
+    } else if (!node.uncle || this.isNodeBlack(node.uncle)) {
+
+      if (grandParent) {
+        let newGrandParent;
+
+        if (this.nodeComparator.equal(grandParent.left, node.parent)) {
+          // left rotate 
+          if (this.nodeComparator.equal(node.parent.left, node)) {
+            // left-left rotate
+            newGrandParent = this.leftLeftRotate(grandParent)
+          } else {
+            // left-right rotate
+            newGrandParent = this.leftRightRotate(grandParent)
+          }
+        } else {
+          // right rotate
+          if (this.nodeComparator.equal(node.parent.right, node)) {
+            // right-right rotate
+            newGrandParent = this.rightRightRotate(grandParent);
+          } else {
+            // right-left rotate
+            newGrandParent = this.rightLeftRotate(grandParent)
+          }
+        }
+
+        if (newGrandParent && newGrandParent.parent === null) {
+          this.root = newGrandParent;
+
+          this.makeNodeBlack(this.root)
+        }
+
+        this.balance(newGrandParent);
+      }
+    }
   }
 
   /**
