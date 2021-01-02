@@ -11,6 +11,9 @@ export default class TreeNode {
     this.right = null;
     this.value = value;
 
+    // meta information
+    this.meta = new Map();
+
     // to compare binary tree node
     this.nodeComparator = new Comparator();
     // to compare binary tree node value

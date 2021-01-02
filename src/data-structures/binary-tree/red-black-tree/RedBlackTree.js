@@ -1,5 +1,14 @@
 import BinarySearchTree from "../binary-search-tree/BinarySearchTree";
 
+// Color property name in meta information of the nodes.
+const COLOR_PROP_NAME = 'color';
+
+// Possible colors of red-black tree nodes.
+const RED_BLACK_TREE_COLORS = {
+  red: 'red',
+  black: 'black',
+};
+
 export default class RedBlackTree extends BinarySearchTree {
 
   /**
@@ -25,15 +34,31 @@ export default class RedBlackTree extends BinarySearchTree {
     return insertedNode;
   }
 
+  balance(node) {
+
+  }
+
   /**
    *
-   * @param {*} value
+   *
+   * @param {*} node
+   * @returns {*}  
    */
-  remove(value) { }
+  makeNodeRed(node) {
+    node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.red);
 
-  balance(node) { }
+    return node
+  }
 
-  makeNodeRed(node) { }
+  /**
+   *
+   *
+   * @param {*} node
+   * @returns {*}  
+   */
+  makeNodeBlack(node) {
+    node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.black);
 
-  makeNodeBlack(node) { }
+    return node
+  }
 }
