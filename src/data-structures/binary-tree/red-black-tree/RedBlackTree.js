@@ -1,21 +1,20 @@
 import BinarySearchTree from "../binary-search-tree/BinarySearchTree";
 
 // Color property name in meta information of the nodes.
-const COLOR_PROP_NAME = 'color';
+const COLOR_PROP_NAME = "color";
 
 // Possible colors of red-black tree nodes.
 const RED_BLACK_TREE_COLORS = {
-  red: 'red',
-  black: 'black',
+  red: "red",
+  black: "black",
 };
 
 export default class RedBlackTree extends BinarySearchTree {
-
   /**
    *
    *
    * @param {*} value
-   * @returns {*}  
+   * @returns {*}
    */
   insert(value) {
     const insertedNode = super.insert(value);
@@ -34,6 +33,12 @@ export default class RedBlackTree extends BinarySearchTree {
     return insertedNode;
   }
 
+  /**
+   *
+   *
+   * @param {*} node
+   * @return {*}
+   */
   balance(node) {
     if (this.nodeComparator.equal(this.root, node)) {
       return;
@@ -57,18 +62,17 @@ export default class RedBlackTree extends BinarySearchTree {
 
       this.balance(grandParent);
     } else if (!node.uncle || this.isNodeBlack(node.uncle)) {
-
       if (grandParent) {
         let newGrandParent;
 
         if (this.nodeComparator.equal(grandParent.left, node.parent)) {
-          // left rotate 
+          // left rotate
           if (this.nodeComparator.equal(node.parent.left, node)) {
             // left-left rotate
-            newGrandParent = this.leftLeftRotate(grandParent)
+            newGrandParent = this.leftLeftRotate(grandParent);
           } else {
             // left-right rotate
-            newGrandParent = this.leftRightRotate(grandParent)
+            newGrandParent = this.leftRightRotate(grandParent);
           }
         } else {
           // right rotate
@@ -77,14 +81,14 @@ export default class RedBlackTree extends BinarySearchTree {
             newGrandParent = this.rightRightRotate(grandParent);
           } else {
             // right-left rotate
-            newGrandParent = this.rightLeftRotate(grandParent)
+            newGrandParent = this.rightLeftRotate(grandParent);
           }
         }
 
         if (newGrandParent && newGrandParent.parent === null) {
           this.root = newGrandParent;
 
-          this.makeNodeBlack(this.root)
+          this.makeNodeBlack(this.root);
         }
 
         this.balance(newGrandParent);
@@ -96,7 +100,7 @@ export default class RedBlackTree extends BinarySearchTree {
    *
    *
    * @param {*} grandParentNode
-   * @returns {*}  
+   * @returns {*}
    */
   leftLeftRotate(grandParentNode) {
     const grandGrandParent = grandParentNode.parent;
@@ -104,7 +108,10 @@ export default class RedBlackTree extends BinarySearchTree {
     let grandParentNodeIsLeft;
 
     if (grandGrandParent) {
-      grandParentNodeIsLeft = this.nodeComparator.equal(grandGrandParent.left, grandParentNode)
+      grandParentNodeIsLeft = this.nodeComparator.equal(
+        grandGrandParent.left,
+        grandParentNode
+      );
     }
 
     const parentNode = grandParentNode.left;
@@ -134,11 +141,11 @@ export default class RedBlackTree extends BinarySearchTree {
    *
    *
    * @param {*} grandParentNode
-   * @returns {*}  
+   * @returns {*}
    */
   leftRightRotate(grandParentNode) {
     const parentNode = grandParentNode.left;
-    const childNode = parentNode.right
+    const childNode = parentNode.right;
 
     const childLeftNode = childNode.left;
 
@@ -151,19 +158,21 @@ export default class RedBlackTree extends BinarySearchTree {
     return this.leftLeftRotate(grandParentNode);
   }
 
-
   /**
    *
    *
    * @param {*} grandParentNode
-   * @returns {*}  
+   * @returns {*}
    */
   rightRightRotate(grandParentNode) {
     const grandGrandParent = grandParentNode.parent;
 
     let grandParentIsLeft;
     if (grandGrandParent) {
-      grandParentIsLeft = this.nodeComparator.equal(grandGrandParent.left, grandParentNode);
+      grandParentIsLeft = this.nodeComparator.equal(
+        grandGrandParent.left,
+        grandParentNode
+      );
     }
 
     const parentNode = grandParentNode.right;
@@ -193,10 +202,9 @@ export default class RedBlackTree extends BinarySearchTree {
    *
    *
    * @param {*} grandParentNode
-   * @returns {*}  
+   * @returns {*}
    */
   rightLeftRotate(grandParentNode) {
-
     const parentNode = grandParentNode.right;
     const childNode = parentNode.left;
 
@@ -208,33 +216,31 @@ export default class RedBlackTree extends BinarySearchTree {
 
     grandParentNode.setRight(childNode);
 
-
     return this.rightRightRotate(grandParentNode);
-
   }
 
   /**
    *
    *
    * @param {*} node
-   * @returns {*}  
+   * @returns {*}
    */
   makeNodeRed(node) {
     node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.red);
 
-    return node
+    return node;
   }
 
   /**
    *
    *
    * @param {*} node
-   * @returns {*}  
+   * @returns {*}
    */
   makeNodeBlack(node) {
     node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.black);
 
-    return node
+    return node;
   }
 
   /**
