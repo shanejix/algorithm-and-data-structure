@@ -1,4 +1,4 @@
-import BinarySearchTree from "../binary-search-tree/BinarySearchTree";
+import BinarySearchTree from "../01-binary-search-tree/BinarySearchTree";
 
 // Color property name in meta information of the nodes.
 const COLOR_PROP_NAME = "color";
