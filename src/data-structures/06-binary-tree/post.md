@@ -422,6 +422,10 @@ insert(value) {
 ```
 **平衡**
 
+```
+通过平衡因子判断节点插入位置的情况
+```
+
 ```balance```
 ```js
 /**
@@ -449,6 +453,10 @@ balance(node) {
     }
   }
 }
+```
+
+```
+通过层次和有序判断节点插入位置的情况
 ```
 
 ```balance2```
@@ -485,6 +493,10 @@ balance2(grand) {
 }
 ```
 
+```
+通过层次和有序判断节点插入位置，4种情况统一处理
+```
+
 ```balance3```
 ```js
 /**
@@ -519,6 +531,16 @@ balance3(grand) {
 **left-left-右旋-单旋** 
 ![](https://raw.githubusercontent.com/shanejix/shanejix.github.io/master/images/How%20To%20Use%20Javascript%20To%20Implement%20A%20Binary%20Search%20Tree%20And%20More-ll.png)
 
+```
+1. grandparent.left = parent.right
+
+2. parent.parent = grandparent.parent
+
+3. parent.right = grandparent
+
+- 第1步和第2步可以交换
+```
+
 ```rotateLeftLeft```
 ```js
 /**
@@ -543,6 +565,12 @@ rotateLeftLeft(rootNode) {
 ```
 
 **left-right-左旋-右旋-双旋** 
+
+```
+- 先对parent节点左旋,变化为rotateLeftLeft情形
+
+- 处理rotateLeftLeft情形
+```
 
 ```rotateLeftRight```
 ```js
@@ -572,6 +600,16 @@ rotateLeftRight(rootNode) {
 
 **right-right-左旋-单旋** 
 
+```
+1. grandparent.right = parent.left
+
+2. parent.parent = grandparent.parent
+
+3. parent.left = grandparent
+
+- 第1步和第2步可以交换
+```
+
 ```rotateRightRight```
 ```js
 /**
@@ -595,6 +633,12 @@ rotateRightRight(rootNode) {
 }
 ```
 **right-left-右旋-左旋-双旋** 
+
+```
+- 先对parent节点右旋,变化为rotateRightRight情形
+
+- 处理rotateRightRight情形
+```
 
 ```rotateRightLeft```
 ```js
@@ -623,6 +667,18 @@ rotateRightLeft(rootNode) {
 
 **左旋**
 
+```
+- 和retateLeftLeft情况一致
+
+1. grandparent.left = parent.right
+
+2. parent.parent = grandparent.parent
+
+3. parent.right = grandparent
+
+- 第1步和第2步可以交换
+```
+
 ```rotateLeft```
 ```js
 /**
@@ -646,6 +702,18 @@ rotateLeft(rootNode) {
 }
 ```
 **右旋**
+
+```
+- 和rotateRightRight情况一直
+
+1. grandparent.right = parent.left
+
+2. parent.parent = grandparent.parent
+
+3. parent.left = grandparent
+
+- 第1步和第2步可以交换
+```
 
 ```rotateRight```
 ```js
