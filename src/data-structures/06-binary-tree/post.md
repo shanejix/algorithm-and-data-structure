@@ -1,5 +1,9 @@
 此文仅记录学习树相关的知识以及实现逻辑和代码片段。包含二叉树，二叉查找树，平衡二叉查找树（AVL树，红黑树），均已es6语法实现。查阅前默认你已经具备树相关的的基本概念，如果对某个部分感兴趣建议直接跳转到相应部分，have fun！
 
+（图太难画了，有空补，逃 ~）
+
+所有完整代码：[Code](https://github.com/shanejix/algorithm-and-data-structure/tree/master/src/data-structures/06-binary-tree)
+
 ---
 
 ## 树的基本概念
@@ -567,9 +571,9 @@ rotateLeftLeft(rootNode) {
 **left-right-左旋-右旋-双旋** 
 
 ```
-- 先对parent节点左旋,变化为rotateLeftLeft情形
+1.先对parent节点左旋,变化为rotateLeftLeft情形
 
-- 处理rotateLeftLeft情形
+2.处理rotateLeftLeft情形
 ```
 
 ```rotateLeftRight```
@@ -635,9 +639,9 @@ rotateRightRight(rootNode) {
 **right-left-右旋-左旋-双旋** 
 
 ```
-- 先对parent节点右旋,变化为rotateRightRight情形
+1.先对parent节点右旋,变化为rotateRightRight情形
 
-- 处理rotateRightRight情形
+2.处理rotateRightRight情形
 ```
 
 ```rotateRightLeft```
@@ -871,7 +875,7 @@ B树的具备二叉搜索树的性质，类似二分搜索的意思
 **删除**
 
 ```
-- 叶子节点,直接删除。元素个数低于最低限制 ceil(m/2) - 1 ,可能导致 下溢
+- 1.叶子节点,直接删除。元素个数低于最低限制 ceil(m/2) - 1 ,可能导致 下溢
   
   -下溢解决：
 
@@ -889,7 +893,7 @@ B树的具备二叉搜索树的性质，类似二分搜索的意思
 
       - 向下合并可能导致父节点下溢，进而传播到根节点 -> 高度 - 1
 
-- 非叶子节点，找到前驱或后继，替换待删除的元素，然后再删掉前驱或后继节点
+- 2.非叶子节点，找到前驱或后继，替换待删除的元素，然后再删掉前驱或后继节点
 
   - 非叶子节点的前驱或后继必定在叶子节点中
 
@@ -904,3 +908,196 @@ B树的具备二叉搜索树的性质，类似二分搜索的意思
 ## 红黑树
 
 
+**引入染色** ：节点非黑即红，满足红黑树的性质则能自平衡
+
+**红黑树5大性质**：
+
+```
+ 1.节点是要么是红色要么是黑色
+
+ 2.根节点必是黑色
+
+ 3.叶子节点都是黑色
+ 
+    - 按照空节点算
+
+ 4.红色节点的子节点都是黑色
+
+    - 不能出现连续的红色节点（被黑色包裹）
+
+    - 存在连续的黑色节点节点
+
+ 5.从任意节点到叶子节点的所有路径都包含相同数目的黑色节点
+```
+
+**等价变换**：
+
+```
+- 红黑树和4阶B树（2，3，4树）等价
+
+  - 黑色节点和它的红色子节点融合在一起形成一个4阶B树节点
+
+  - 红黑树的黑色节点个数和等价的4阶B树节点个数相等
+```
+
+### 实现红黑树
+
+**添加**
+
+4阶B树的元素个数（1 <= x <= 3)，新元素的添加必定添加到叶子节点中（参考二叉搜索）；
+
+如果添加的是黑色节点，不能很好的满足红黑树的性质。如果添加的是红色节点能满足5条中的4条，因此添加新节点时默认染成红色，添加后调整。
+
+以下列举所有的可能被添加节点(等价于4阶B树节点)的情况
+
+```
+(1)r<-b->r   (2)b->r  (3)r<-b  (4)b
+```
+
+**第一种情况：**
+
+```
+(2)b的左，(3)b的右，(4)b的左右
+```
+
+这四种情况，直接添加，满足红黑树的性质，不做处理
+
+**第二种情况：**
+
+```
+(2)b右边r的左右，（3）b左边r的左右
+```
+
+这四种情况，根据uncle节点是否是红色节点，不是红色，做LL/LR，RR/RL单旋或双旋操作
+
+LL/RR
+
+```
+1.parent右旋/左旋
+
+2.parent和grandparent交换节点颜色
+
+```
+
+LR/RL
+
+```
+1.先对parent左旋/右旋 变换为 LL/RR情况
+
+2.针对新的LL/RR处理
+
+```
+
+插入的新节点和parent，grandparent合并为B树的一个节点
+
+**第三种情况：**
+
+```
+(1)b左边r的左右，(1)b右边r的左右
+```
+
+这四种情况，根据uncle节点是否是红色节点，是红色，如果和将grandparent（黑色）合并为一个B树节点则会发生上溢
+
+```
+- 上溢解决
+
+- 1.将uncle和parent染成黑色（分裂成B中的两个节点）
+
+- 2.将grandparent染成红色当作新的待插入的节点，向上合并
+
+- 3.插入新节点grandparent（递归），可能导致上溢向上传播直至根节点
+
+```
+
+**实现：**
+
+```js
+
+/**
+ * @param {*} value
+ * @returns {*}
+ */
+insert(value) {
+  const insertedNode = super.insert(value);
+
+  if (this.nodeComparator.equal(insertedNode, this.root)) {
+    // make root always be black
+    this.makeNodeBlack(insertedNode);
+  } else {
+    // make all newly inserted nodes to be red
+    this.makeNodeRed(insertedNode);
+  }
+
+  // check all conditions and balance the nodes
+  this.balance(insertedNode);
+
+  return insertedNode;
+}
+
+/**
+ * @param {*} node
+ * @return {*}
+ */
+balance(node) {
+  if (this.nodeComparator.equal(this.root, node)) {
+    return;
+  }
+
+  if (this.isNodeBlack(node.parent)) {
+    return;
+  }
+
+  const grandParent = node.parent.parent;
+
+  if (node.uncle && this.isNodeRed(node.uncle)) {
+    this.makeNodeBlack(node.uncle);
+    this.makeNodeBlack(node.parent);
+
+    if (!this.nodeComparator.equal(this.root, grandParent)) {
+      this.makeNodeRed(grandParent);
+    } else {
+      return;
+    }
+
+    this.balance(grandParent);
+  } else if (!node.uncle || this.isNodeBlack(node.uncle)) {
+    if (grandParent) {
+      let newGrandParent;
+
+      if (this.nodeComparator.equal(grandParent.left, node.parent)) {
+        // left rotate
+        if (this.nodeComparator.equal(node.parent.left, node)) {
+          // left-left rotate
+          newGrandParent = this.leftLeftRotate(grandParent);
+        } else {
+          // left-right rotate
+          newGrandParent = this.leftRightRotate(grandParent);
+        }
+      } else {
+        // right rotate
+        if (this.nodeComparator.equal(node.parent.right, node)) {
+          // right-right rotate
+          newGrandParent = this.rightRightRotate(grandParent);
+        } else {
+          // right-left rotate
+          newGrandParent = this.rightLeftRotate(grandParent);
+        }
+      }
+
+      if (newGrandParent && newGrandParent.parent === null) {
+        this.root = newGrandParent;
+
+        this.makeNodeBlack(this.root);
+      }
+
+      this.balance(newGrandParent);
+    }
+  }
+}
+```
+**删除：**
+todo
+
+## 参考
+
+- https://github.com/trekhleb/javascript-algorithms
