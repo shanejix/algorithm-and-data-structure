@@ -25,6 +25,28 @@ function twoSum(nums, target) {
   return result[target];
 }
 
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+
+  if(!nums){
+      return
+  }
+
+  for(let i = 0;i<nums.length;i++){
+      let curr = nums[i]
+      let minu  = target - curr;
+      let tIdx = nums.indexOf(minu,i+1);
+
+      if(tIdx !== -1){
+          return [i,tIdx];
+      }
+  }
+};
+
 //solution2: for-loop
 
 function twoSum2(nums, target) {
