@@ -47,3 +47,33 @@ var subSort = function (array) {
     }
 
 };
+
+// Optimization
+
+var subSortOptimization = function (array) {
+    if (!array || array.length === 0) {
+        return [-1, -1]
+    }
+
+    let max = Number.MIN_VALUE;
+    let min = Number.MAX_VALUE;
+    let last = -1;
+    let first = -1;
+    let len = array.length;
+
+    for (let i = 0; i < len; i++) {
+        if (array[i] >= max) {
+            max = array[i];
+        } else {
+            last = i;
+        }
+
+        if (array[len - 1 - i] <= min) {
+            min = array[len - 1 - i];
+        } else {
+            first = len - 1 - i
+        }
+    }
+
+    return [first, last];
+};
