@@ -36,3 +36,22 @@ var removeElements = function (head, val) {
     return newHead;
 
 };
+
+var removeElementsOpitmization = function (head, val) {
+    let sentinel = new ListNode(0);
+    sentinel.next = head;
+
+    let prev = sentinel;
+    let curr = head;
+
+    while (curr) {
+        if (curr.val === val) {
+            prev.next = curr.next;
+        } else {
+            prev = curr
+        }
+        curr = curr.next;
+    }
+
+    return sentinel.next;
+}
