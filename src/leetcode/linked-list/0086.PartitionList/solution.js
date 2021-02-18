@@ -56,3 +56,25 @@ var partition = function (head, x) {
 
     return h1.next;
 };
+
+
+var partitionOptmization = function (head, x) {
+    let h1 = t1 = new ListNode(0);
+    let h2 = t2 = new ListNode(0);
+
+    while (head) {
+        if (head.val < x) {
+            t1.next = head;
+            t1 = t1.next;
+        } else {
+            t2.next = head;
+            t2 = t2.next;
+        }
+        head = head.next;
+    }
+
+    t2.next = null;
+    t1.next = h2.next;
+
+    return h1.next;
+};
