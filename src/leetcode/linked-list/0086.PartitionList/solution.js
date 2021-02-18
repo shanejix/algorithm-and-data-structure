@@ -78,3 +78,24 @@ var partitionOptmization = function (head, x) {
 
     return h1.next;
 };
+
+var partitionOptmization1 = function (head, x) {
+    let smallHead = smallTail = new ListNode(0);
+    let bigHead = bigTail = new ListNode(0);
+
+    while (head) {
+        if (head.val < x) {
+            smallTail.next = head;
+            smallTail = smallTail.next;
+        } else {
+            bigTail.next = head;
+            bigTail = bigTail.next;
+        }
+        head = head.next;
+    }
+
+    bigTail.next = null;
+    smallTail.next = bigHead.next;
+
+    return smallHead.next;
+};
