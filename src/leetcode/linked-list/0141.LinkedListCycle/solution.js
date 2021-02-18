@@ -66,3 +66,40 @@ node4.next = node5;
 node5.next = node2;
 
 console.log(hasCycle(head)); // return true
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function (head) {
+  if (!head) return false;
+  if (!head.next) return false;
+  if (!head.next.next && head.next !== head) return false;
+
+  let fast = slow = head;
+
+  while (fast && slow) {
+    if (fast.next === null) {
+      return false
+    } else {
+      fast = fast.next.next;
+    }
+
+    slow = slow.next;
+
+    if (slow === fast) {
+      return true;
+    }
+  }
+
+  return false
+};
