@@ -25,10 +25,37 @@ var reverseList = function (head) {
     let newHead = new ListNode(0);
 
     while (head) {
-        let tmp = new ListNode(head.val);
-        tmp.next = newHead.next;
-        newHead.next = tmp;
+        let insert = new ListNode(head.val);
+        insert.next = newHead.next;
+        newHead.next = insert;
         head = head.next;
+    }
+
+    return newHead.next;
+};
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseListOptmization = function (head) {
+
+    let newHead = new ListNode(0);
+
+    while (head) {
+        let insert = head;
+        head = head.next;
+        insert.next = newHead.next;
+        newHead.next = insert;
     }
 
     return newHead.next;
