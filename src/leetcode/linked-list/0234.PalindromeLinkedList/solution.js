@@ -51,3 +51,58 @@ function revert(head) {
     }
     return newHead.next;
 }
+
+// 利用对称性，快慢指针
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function (head) {
+    let mid = middleNode(head);
+
+    let newHead = mid && revert(mid.next);
+
+    console.log(mid, newHead);
+
+    while (newHead !== null) {
+        if (head.val !== newHead.val) {
+            return false
+        }
+        newHead = newHead.next;
+        head = head.next;
+    }
+
+    return true
+};
+
+function revert(head) {
+    if (!head || !head.next) {
+        return head
+    }
+
+    let newHead = revert(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
+}
+
+function middleNode(head) {
+    let slow = fast = head;
+    let prev = null;
+
+    while (fast && fast.next) {
+        prev = slow;
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    return prev;
+}
