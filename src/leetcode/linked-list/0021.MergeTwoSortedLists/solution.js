@@ -5,73 +5,83 @@
 // Input: 1->2->4, 1->3->4
 // Output: 1->1->2->3->4->4
 
-// Definition for singly-linked list.
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
-}
-
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
  */
 var mergeTwoLists = function (l1, l2) {
-  let p1 = l1;
-  let p2 = l2;
-  let result = new ListNode(null);
-  let p3 = result;
 
-  while (p1 && p2) {
-    if (p1.val > p2.val) {
-      p3.next = p2;
-      p2 = p2.next;
+  let r = c = new ListNode(0);
+
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      c.next = new ListNode(l1.val);
+      l1 = l1.next;
     } else {
-      p3.next = p1;
-      p1 = p1.next;
+      c.next = new ListNode(l2.val);
+      l2 = l2.next;
     }
-    p3 = p3.next;
+    c = c.next;
   }
 
-  if (p1) {
-    p3.next = p1;
-  }
-  if (p2) {
-    p3.next = p2;
+  if (l1) {
+    c.next = l1;
   }
 
-  return result.next;
+  if (l2) {
+    c.next = l2;
+  }
+
+  return r.next;
 };
 
-var L1 = new ListNode(1);
-L1.next = new ListNode(2);
-L1.next.next = new ListNode(4);
-var L2 = new ListNode(1);
-L2.next = new ListNode(3);
-L2.next.next = new ListNode(4);
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoListsOptimization = function (l1, l2) {
 
-// console.log(JSON.stringify(mergeTwoLists(L1, L2)));
+  let r = c = new ListNode(0);
 
-var mergeTwoLists2 = function (l1, l2) {
-  let p1 = l1;
-  let p2 = l2;
-  let result = new ListNode(null);
-  let p3 = result;
-
-  while (p1 && p2) {
-    if (p1.val > p2.val) {
-      p3.next = p2;
-      p2 = p2.next;
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      // c.next = new ListNode(l1.val);
+      c.next = l1;
+      l1 = l1.next;
     } else {
-      p3.next = p1;
-      p1 = p1.next;
+      // c.next = new ListNode(l2.val);
+      c.next = l2;
+      l2 = l2.next;
     }
-    p3 = p3.next;
+    c = c.next;
   }
 
-  p3.next = p1 || p2;
+  // if(l1){
+  //     c.next = l1;
+  // }
 
-  return result.next;
+  // if(l2){
+  //     c.next  = l2;
+  // }
+
+  c.next = l1 || l2;
+
+  return r.next;
+
 };
-
-console.log('2:',JSON.stringify(mergeTwoLists2(L1, L2)));
