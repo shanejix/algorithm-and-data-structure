@@ -16,6 +16,7 @@
  * }
  */
 
+// 头插法
 
 /**
  * @param {ListNode} head
@@ -42,6 +43,7 @@ var reverseList = function (head) {
  * }
  */
 
+// 头插法优化
 
 /**
  * @param {ListNode} head
@@ -69,6 +71,7 @@ var reverseListOptmization = function (head) {
  * }
  */
 
+// 迭代
 
 /**
  * @param {ListNode} head
