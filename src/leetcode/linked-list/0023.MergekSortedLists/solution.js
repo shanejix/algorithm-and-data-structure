@@ -16,6 +16,8 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next;
 }
 
+// 分治合并 - 递归
+
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}
