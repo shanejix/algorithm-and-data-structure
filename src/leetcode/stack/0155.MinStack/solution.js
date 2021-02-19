@@ -40,6 +40,12 @@ var MinStack = function () {
     this.minStack = [];
 };
 
+// Optimization
+var MinStack = function () {
+    this.stack = [];
+    // this.minStack = [];
+    this.minStack = [Infinity];
+};
 /** 
  * @param {number} x
  * @return {void}
@@ -57,6 +63,24 @@ MinStack.prototype.push = function (x) {
             this.minStack.push(min);
         }
     }
+};
+
+// Optimization
+MinStack.prototype.push = function (x) {
+    this.stack.push(x);
+
+    // if (this.minStack.length === 0) {
+    //     this.minStack.push(x);
+    // } else {
+    //     let min = this.minStack[this.minStack.length - 1];
+    //     if (x < min) {
+    //         this.minStack.push(x);
+    //     } else {
+    //         this.minStack.push(min);
+    //     }
+    // }
+
+    this.minStack.push(Math.min(this.minStack[this.minStack.length - 1], x));
 };
 
 /**
