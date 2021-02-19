@@ -60,3 +60,30 @@ var reverseListOptmization = function (head) {
 
     return newHead.next;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseListOptmization1 = function (head) {
+
+    let prev = null;
+
+    while (head) {
+        let curr = head;
+        head = head.next;
+        curr.next = prev;
+        prev = curr;
+    }
+
+    return prev;
+};
