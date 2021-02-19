@@ -26,7 +26,7 @@
  * @return {boolean}
  */
 var isPalindrome = function (head) {
-    let newHead = revert(head);
+    let newHead = reverseList(head);
 
     while (head && newHead) {
 
@@ -40,7 +40,7 @@ var isPalindrome = function (head) {
     return true
 };
 
-function revert(head) {
+function reverseList(head) {
     let newHead = new ListNode(0);
     let curr = head;
     while (curr) {
@@ -67,10 +67,7 @@ function revert(head) {
  */
 var isPalindrome = function (head) {
     let mid = middleNode(head);
-
-    let newHead = mid && revert(mid.next);
-
-    console.log(mid, newHead);
+    let newHead = mid && reverseList(mid.next);
 
     while (newHead !== null) {
         if (head.val !== newHead.val) {
@@ -83,12 +80,12 @@ var isPalindrome = function (head) {
     return true
 };
 
-function revert(head) {
+function reverseList(head) {
     if (!head || !head.next) {
         return head
     }
 
-    let newHead = revert(head.next);
+    let newHead = reverseList(head.next);
     head.next.next = head;
     head.next = null;
     return newHead;
