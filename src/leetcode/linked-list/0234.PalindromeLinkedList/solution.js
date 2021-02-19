@@ -61,6 +61,7 @@ function reverseList(head) {
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
 /**
  * @param {ListNode} head
  * @return {boolean}
@@ -103,3 +104,34 @@ function middleNode(head) {
 
     return prev;
 }
+
+function middleNodeOptmization(head) {
+    let slow = fast = head;
+
+    while (fast.next !== null && fast.next.next !== null) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    return slow;
+}
+
+
+var isPalindromeOptmization = function (head) {
+    let mid = middleNodeOptmization(head);
+    let newHead = mid && reverseList(mid.next);
+
+    let result = true;
+    let p = newHead;
+    while (result && newHead !== null) {
+        if (head.val !== newHead.val) {
+            return false
+        }
+        newHead = newHead.next;
+        head = head.next;
+    }
+
+    if (mid) mid.next = reverseList(p)
+
+    return result;
+};
