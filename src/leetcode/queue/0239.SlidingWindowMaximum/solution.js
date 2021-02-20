@@ -25,23 +25,42 @@
 // -10^4 <= nums[i] <= 10^4
 // 1 <= k <= nums.length
 
+// 方法一： 暴力破解，（超出时间限制）
+
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {number[]}
  */
 var maxSlidingWindow = function (nums, k) {
-    if (!nums || !nums.length) {
-        return null
-    }
-    if (k === 0) {
-        return nums
+
+    // if(!nums) return [];
+
+    let len = nums.length;
+    let result = [];
+
+    let curr = 0;
+
+    while (curr !== len - k + 1) {
+        let prev = curr;
+        let last = prev + k - 1;
+        // last - prev = k-1;
+
+        let max = -Infinity;
+        while (prev !== last + 1) {
+            console.log(nums[prev], max)
+            if (nums[prev] > max) {
+                max = nums[prev];
+            }
+            prev++;
+        }
+
+        console.log('----')
+
+        result.push(max);
+
+        curr++;
     }
 
-    let window = []
-    let result = []
-
-    for (let i = 0; i < nums.length; i++) {
-        // TODO:
-    }
+    return result;
 };
