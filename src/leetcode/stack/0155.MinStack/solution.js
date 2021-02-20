@@ -30,7 +30,7 @@
 
 // Methods pop, top and getMin operations will always be called on non-empty stacks.
 
-// 双栈法
+// 方法一：双栈法
 
 /**
  * initialize your data structure here.
@@ -106,8 +106,6 @@ MinStack.prototype.getMin = function () {
 };
 
 
-
-
 /**
  * Your MinStack object will be instantiated and called as such:
  * var obj = new MinStack()
@@ -125,7 +123,7 @@ var MinStack = function () {
     this.min = Infinity;
 };
 
-// 单栈-最小值法
+// 方法二：单栈-最小值法
 
 /** 
  * @param {number} x
@@ -173,7 +171,7 @@ MinStack.prototype.getMin = function () {
  * var param_4 = obj.getMin()
  */
 
-// 单栈-差值法
+// 方法三：单栈-差值法
 
 /**
 * initialize your data structure here.
@@ -245,6 +243,86 @@ MinStack.prototype.top = function () {
  */
 MinStack.prototype.getMin = function () {
     return this.min;
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
+
+
+
+/** 
+ * @param {number} next
+ * @param {number} min
+ * @return {void}
+ */
+function ListNode(val, min) {
+    this.val = val;
+    this.min = min;
+    this.next = null;
+}
+
+// 方法四：链表模拟栈-同步最小值-尾插法
+
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function () {
+    this.head = null;
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function (x) {
+
+    if (this.head === null) {
+        this.head = new ListNode(x, x);
+    } else {
+        let insert = new ListNode(x, Math.min(this.head.min, x))
+
+        // 头插
+        // insert.next = this.head.next;
+        // this.head.next = insert;
+
+        // 尾插
+        insert.next = this.head;
+        this.head = insert;
+    }
+
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+    if (!this.head) {
+        head = null;
+    }
+
+    this.head = this.head.next;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+    if (!this.head) return
+    return this.head.val
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+    if (!this.head) return;
+    return this.head.min;
 };
 
 /**
