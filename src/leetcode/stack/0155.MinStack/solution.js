@@ -333,3 +333,89 @@ MinStack.prototype.getMin = function () {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+
+// 方法四：替换为头节点尝试
+
+/** 
+ * @param {number} next
+ * @param {number} min
+ * @return {void}
+ */
+function ListNode(val, min) {
+    this.val = val;
+    this.min = min;
+    this.next = null;
+}
+
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function () {
+    this.head = new ListNode(null, null);
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function (x) {
+    if (this.head.next === null) {
+        this.head.next = new ListNode(x, x);
+    } else {
+        let insert = new ListNode(x, Math.min(this.head.next.min, x))
+
+        // 头插
+        insert.next = this.head.next;
+        this.head.next = insert;
+
+        // 尾插
+        // insert.next = this.head;
+        // this.head = insert;
+    }
+
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+    // if(!this.head) {
+    //     head = null;
+    // }
+
+    // this.head = this.head.next;
+
+    if (!this.head.next) return;
+    this.head.next = this.head.next.next;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+    // if(!this.head) return
+    // return this.head.val
+
+    if (!this.head.next) return;
+    return this.head.next.val;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+    // if(!this.head) return;
+    // return this.head.min;
+
+    if (!this.head.next) return;
+    return this.head.next.min;
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
