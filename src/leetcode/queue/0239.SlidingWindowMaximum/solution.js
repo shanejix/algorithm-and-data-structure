@@ -64,3 +64,54 @@ var maxSlidingWindow = function (nums, k) {
 
     return result;
 };
+
+// 方法二：单调队列（第17个用例超时）
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var maxSlidingWindow = function (nums, k) {
+    let queque = [];
+    let res = [];
+
+
+    for (let i = 0; i < nums.length; i++) {
+        let last = i;
+        let prev = i - k + 1;
+
+        // 维护单调递减队列
+        let curr = nums[i];
+        let tail = nums[queque[queque.length - 1]];
+
+        console.log('ee', queque.length - 1);
+        console.log('yy', tail, curr);
+        while (tail < curr) {
+            queque.pop();
+            tail = nums[queque[queque.length - 1]];
+        }
+
+        queque.push(i)
+
+        console.log('滑动窗口下标：', prev, last);
+        // console.log(prev,last);
+        console.log('单调队列下标：', queque);
+
+        // 求滑动窗口的最大值
+        if (prev >= 0) {
+            let idx = queque[0];
+            console.log('xx', queque, idx, prev);
+            while (idx < prev) {
+                queque.shift();
+                idx = queque[0];
+            }
+            let max = nums[idx];
+            res.push(max);
+        }
+        console.log('窗口最值结果：', res)
+        console.log('------------------------')
+    }
+
+    return res;
+};
