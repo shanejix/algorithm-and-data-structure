@@ -154,3 +154,39 @@ var maxSlidingWindow = function (nums, k) {
 
     return res;
 };
+
+// 方法三：分块 + 预处理(稀疏表类似)
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var maxSlidingWindow = function (nums, k) {
+    const len = nums.length;
+    const prefixMax = new Array(len).fill(0);
+    const suffixMax = new Array(len).fill(0);
+
+    for (let i = 0; i < len; i++) {
+        if (i % k === 0) {
+            prefixMax[i] = nums[i];
+        } else {
+            prefixMax[i] = Math.max(prefixMax[i - 1], nums[i]);
+        }
+    }
+
+    for (let i = len - 1; i >= 0; i--) {
+        if (i === len || (i + 1) % k === 0) {
+            suffixMax[i] = nums[i];
+        } else {
+            suffixMax[i] = Math.max(suffixMax[i + 1], nums[i])
+        }
+    }
+
+    const res = [];
+    for (let i = 0; i < len - k + 1; i++) {
+        res.push(Math.max(prefixMax[i + k - 1], suffixMax[i]));
+    }
+
+    return res;
+};
