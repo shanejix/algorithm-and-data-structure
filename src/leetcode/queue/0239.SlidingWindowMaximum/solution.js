@@ -115,3 +115,42 @@ var maxSlidingWindow = function (nums, k) {
 
     return res;
 };
+
+// 方法二：单调队列 - 优化版
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var maxSlidingWindow = function (nums, k) {
+    let len = nums.length;
+    let queue = [];
+    let res = [];
+
+    for (let i = 0; i < k; i++) {
+        while (queue.length && nums[queue[queue.length - 1]] <= nums[i]) {
+            queue.pop();
+        }
+        queue.push(i)
+    }
+
+    // i === k
+    res.push(nums[queue[0]]);
+    console.log(queue, res)
+
+
+    for (let i = k; i < len; i++) {
+        while (queue.length && nums[queue[queue.length - 1]] < nums[i]) {
+            queue.pop();
+        }
+        queue.push(i);
+
+        while (queue.length && queue[0] < i - k + 1) {
+            queue.shift();
+        }
+        res.push(nums[queue[0]]);
+    }
+
+    return res;
+};
