@@ -116,3 +116,46 @@ console.log("2:", isValid2("({[]})"));
 console.log("2:", isValid2("([)]"));
 console.log("2:", isValid2("("));
 console.log("2:", isValid2("(("));
+
+// 方法一: 辅助栈法
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  if (!s || s.length === 1) return false;
+  const paren = s.split('');
+
+  const map = {
+    '(': ')',
+    ')': '(',
+    '{': '}',
+    '}': '{',
+    '[': ']',
+    ']': '['
+  }
+
+  const stack = [];
+
+  for (let i = 0; i < paren.length; i++) {
+    let curr = paren[i];
+
+    if (stack.length === 0) {
+      if (curr === ']' || curr === '}' || curr === ')') return false
+      stack.push(curr);
+      continue;
+    }
+
+    let top = stack[stack.length - 1];
+
+    if ((top === '(' || top === '[' || top === '{') && top === map[curr]) {
+      stack.pop();
+    } else {
+      stack.push(curr);
+    }
+  }
+
+  return stack.length === 0;
+
+};

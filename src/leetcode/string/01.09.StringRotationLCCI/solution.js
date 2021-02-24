@@ -26,3 +26,10 @@ var isFlipedString = function (s1, s2) {
 
     return (s1 + s1).includes(s2)
 };
+
+
+for (var i = 0; i < arrary.length; i++) {
+
+    let sequential = arrary[i];
+    let reverse = arrary[arrary.length - 1 - i];
+}
