@@ -87,3 +87,27 @@ var reverse = function (x) {
         return newX;
     }
 };
+
+
+
+// 方法二：模拟栈 ，弹出和推入数字法
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function (x) {
+
+    let rev = 0;
+
+    while (x !== 0) {
+        if (rev >= Math.pow(2, 31) - 1 || rev < Math.pow(-2, 31)) {
+            return 0;
+        }
+        let pop = x % 10;
+        rev = rev * 10 + pop;
+        x = parseInt(x / 10);
+    }
+
+    return rev;
+};
