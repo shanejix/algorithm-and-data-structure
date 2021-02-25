@@ -60,3 +60,30 @@ var reverse = function (x) {
 
     return (Number(isSymbol ? '-' + res : res) > 2147483647 || Number(isSymbol ? '-' + res : res) < -2147483647) ? 0 : Number(isSymbol ? '-' + res : res);
 };
+
+// 方法一：转字符串 ，优化
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function (x) {
+    let str = x.toString();
+    let newX;
+
+    if (x >= 0) {
+        newX = str.split('').reverse().join('');
+    }
+    if (x < 0) {
+        let num = str.substring(1);
+        let newNum = num.split('').reverse().join('');
+        console.log(newNum, typeof newNum, -newNum)
+        newX = - newNum;
+    }
+
+    if (newX < Math.pow(-2, 31) || newX >= Math.pow(2, 31) - 1) {
+        return 0
+    } else {
+        return newX;
+    }
+};
