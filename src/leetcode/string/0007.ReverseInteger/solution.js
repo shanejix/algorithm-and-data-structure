@@ -101,7 +101,8 @@ var reverse = function (x) {
     let rev = 0;
 
     while (x !== 0) {
-        if (rev >= Math.pow(2, 31) - 1 || rev < Math.pow(-2, 31)) {
+        // if (rev >= Math.pow(2, 31) - 1 || rev < Math.pow(-2, 31)) {
+        if (rev > 214748364 || rev < -214748364) {
             return 0;
         }
         let pop = x % 10;
