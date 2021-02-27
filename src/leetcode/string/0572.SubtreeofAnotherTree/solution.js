@@ -58,3 +58,25 @@ function toString(t) {
     if (!t) return '#!';
     return toString(t.left) + toString(t.right) + t.val + '!'
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 方法二：真没想到
+
+/**
+ * @param {TreeNode} s
+ * @param {TreeNode} t
+ * @return {boolean}
+ */
+var isSubtree = function (s, t) {
+    console.log(JSON.stringify(t));
+    return (JSON.stringify(s).indexOf(JSON.stringify(t))) > -1 ? true : false
+};
+
