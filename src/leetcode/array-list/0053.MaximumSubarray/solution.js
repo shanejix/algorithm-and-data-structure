@@ -61,3 +61,48 @@ var maxSubArray = function (nums) {
     return max
 
 };
+
+// 方法二：分治
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+
+    if (nums.length === 1) {
+        return nums[0]
+    }
+
+    return maxSublingArray(nums, 0, nums.length);
+};
+
+function maxSublingArray(nums, begin, end) {
+    if (end - begin < 2) {
+        return nums[begin];
+    }
+
+    let mid = (end - begin) >> 2;
+
+    let leftMax = -Infinity;
+    let leftSum = 0;
+    for (let i = mid - 1; i >= 0; i--) {
+        leftSum += nums[i]
+        if (leftSum > leftMax) {
+            leftMax = leftSum;
+        }
+    }
+
+    let rightMax = -Infinity;
+    let rightSum = 0;
+    for (let i = mid; i < nums.length; i++) {
+        rightSum += nums[i];
+        if (rightSum > rightMax) {
+            rightMax = rightSum;
+        }
+    }
+
+    let currMax = leftSum + rightSum;
+
+    return Math.max(currMax, Math.max(maxSublingArray(nums, begin, mid), maxSublingArray(nums, mid, end)))
+}
