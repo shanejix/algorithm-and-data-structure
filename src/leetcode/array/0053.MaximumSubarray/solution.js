@@ -106,3 +106,32 @@ function maxSublingArray(nums, begin, end) {
 
     return Math.max(currMax, Math.max(maxSublingArray(nums, begin, mid), maxSublingArray(nums, mid, end)))
 }
+
+
+// 方法三：动态规划
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+
+    const dp = new Array(nums.length);
+
+    dp[0] = nums[0];
+    let max = dp[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        if (dp[i - 1] <= 0) {
+            dp[i] = nums[i];
+        } else {
+            dp[i] = dp[i - 1] + nums[i];
+        }
+
+        if (dp[i] > max) {
+            max = dp[i];
+        }
+    }
+
+    return max;
+};
