@@ -73,3 +73,48 @@ NumMatrix.prototype.sumRegion = function (row1, col1, row2, col2) {
  * var obj = new NumMatrix(matrix)
  * var param_1 = obj.sumRegion(row1,col1,row2,col2)
  */
+
+
+//  方法二：预处理+按行求二维前缀和（在一维前缀和的基础上）
+
+/**
+ * @param {number[][]} matrix
+ */
+var NumMatrix = function (matrix) {
+    let row = matrix.length;
+
+    if (row) {
+        const col = matrix[0].length;
+        // col+1 为求和考虑
+        this.sums = new Array(row).fill(0).map(() => new Array(col + 1).fill(0));
+
+        for (let i = 0; i < row; i++) {
+            for (let j = 0; j < col; j++) {
+                // [0,x] => 0 到x-1的和 
+                this.sums[i][j + 1] = this.sums[i][j] + matrix[i][j]
+            }
+        }
+    }
+};
+
+/** 
+ * @param {number} row1 
+ * @param {number} col1 
+ * @param {number} row2 
+ * @param {number} col2
+ * @return {number}
+ */
+NumMatrix.prototype.sumRegion = function (row1, col1, row2, col2) {
+    let sum = 0;
+    for (let i = row1; i <= row2; i++) {
+        sum += this.sums[i][col2 + 1] - this.sums[i][col1]
+    }
+
+    return sum
+};
+
+/**
+ * Your NumMatrix object will be instantiated and called as such:
+ * var obj = new NumMatrix(matrix)
+ * var param_1 = obj.sumRegion(row1,col1,row2,col2)
+ */
