@@ -42,3 +42,30 @@ function getSum(num) {
 
     return sum;
 }
+
+
+// 方法一：暴力循环-位运算优化
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    const bits = new Array(num + 1).fill(0);
+    for (let i = 0; i <= num; i++) {
+        bits[i] = countOnes(i);
+    }
+    return bits
+};
+
+
+function countOnes(x) {
+    let sum = 0;
+
+    while (x) {
+        x = x & (x - 1);
+        sum++
+    }
+
+    return sum
+}
