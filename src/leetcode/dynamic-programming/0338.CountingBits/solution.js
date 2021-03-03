@@ -58,6 +58,36 @@ var countBits = function (num) {
     return bits
 };
 
+// 方法二: 递归
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        ones[i] = countOnes(i);
+    }
+
+    return ones;
+
+};
+
+function countOnes(num) {
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        return countOnes(num - 1) + 1;
+    } else {
+        return countOnes(num >> 1)
+    }
+}
+
+
 
 function countOnes(x) {
     let sum = 0;
