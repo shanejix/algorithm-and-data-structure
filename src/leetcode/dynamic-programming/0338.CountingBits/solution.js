@@ -70,3 +70,26 @@ function countOnes(x) {
 
     return sum
 }
+
+// 方法四：动态规划 - 低位有效
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        if (i === 0) {
+            ones[0] = 0;
+        } else if (i % 2 === 0) {
+            ones[i] = ones[i / 2];
+        } else {
+            ones[i] = ones[parseInt(i / 2)] + 1;
+        }
+    }
+
+    return ones;
+
+};
