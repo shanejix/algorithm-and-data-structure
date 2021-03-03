@@ -87,7 +87,42 @@ function countOnes(num) {
     }
 }
 
+// 方法三：递归 - 记忆化存储
 
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+    let memo = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        ones[i] = countOnes(i, memo);
+    }
+
+    return ones;
+
+};
+
+function countOnes(num, memo) {
+
+    if (memo[num] !== 0) {
+        return memo[num];
+    }
+
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        memo[num] = countOnes(num - 1, memo) + 1;
+    } else {
+        memo[num] = countOnes(num >> 1, memo)
+    }
+
+    return memo[num]
+}
 
 function countOnes(x) {
     let sum = 0;
