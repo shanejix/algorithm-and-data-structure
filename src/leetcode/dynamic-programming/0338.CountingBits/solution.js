@@ -63,7 +63,8 @@ function countOnes(x) {
     let sum = 0;
 
     while (x) {
-        x = x & (x - 1);
+        // x= x&(x-1);
+        x &= (x - 1);
         sum++
     }
 
