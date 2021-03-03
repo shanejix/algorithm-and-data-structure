@@ -49,3 +49,36 @@ var longestPalindrome = function (s) {
 
     return max;
 };
+
+// 方法二：动态规划-回文串的对称性
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function (s) {
+
+    let dp = new Array(s.length).fill(0).map(() => new Array(s.length).fill(0));
+
+    let res = '';
+
+    for (let l = 0; l < s.length; l++) {
+
+        for (let i = 0; i + l < s.length; i++) {
+            let j = i + l;
+            if (l === 0) {
+                dp[i][j] = true;
+            } else if (l === 1) {
+                dp[i][j] = s[i] === s[j];
+            } else {
+                dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1];
+            }
+
+            if (dp[i][j] && l + 1 > res.length) {
+                res = s.slice(i, i + l + 1)
+            }
+        }
+    }
+
+    return res
+};
