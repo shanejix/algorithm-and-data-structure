@@ -58,6 +58,18 @@ var countBits = function (num) {
     return bits
 };
 
+function countOnes(num) {
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        return countOnes(num - 1) + 1;
+    } else {
+        return countOnes(num >> 1)
+    }
+}
+
 // 方法二: 递归
 
 /**
