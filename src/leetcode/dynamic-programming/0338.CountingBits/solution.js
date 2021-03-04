@@ -58,6 +58,83 @@ var countBits = function (num) {
     return bits
 };
 
+function countOnes(num) {
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        return countOnes(num - 1) + 1;
+    } else {
+        return countOnes(num >> 1)
+    }
+}
+
+// 方法二: 递归
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        ones[i] = countOnes(i);
+    }
+
+    return ones;
+
+};
+
+function countOnes(num) {
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        return countOnes(num - 1) + 1;
+    } else {
+        return countOnes(num >> 1)
+    }
+}
+
+// 方法三：递归 - 记忆化存储
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+    let memo = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        ones[i] = countOnes(i, memo);
+    }
+
+    return ones;
+
+};
+
+function countOnes(num, memo) {
+
+    if (memo[num] !== 0) {
+        return memo[num];
+    }
+
+    if (num === 0) {
+        return 0;
+    }
+
+    if (num & 1) {
+        memo[num] = countOnes(num - 1, memo) + 1;
+    } else {
+        memo[num] = countOnes(num >> 1, memo)
+    }
+
+    return memo[num]
+}
 
 function countOnes(x) {
     let sum = 0;
@@ -70,3 +147,41 @@ function countOnes(x) {
 
     return sum
 }
+
+// 方法四：动态规划 - 低位有效
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    let ones = new Array(num + 1).fill(0);
+
+    for (let i = 0; i <= num; i++) {
+        if (i === 0) {
+            ones[0] = 0;
+        } else if (i % 2 === 0) {
+            ones[i] = ones[i / 2];
+        } else {
+            ones[i] = ones[parseInt(i / 2)] + 1;
+        }
+    }
+
+    return ones;
+
+};
+
+// 方法四：动态规划 - 低位有效- 优化
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function (num) {
+    const bits = new Array(num + 1).fill(0);
+    for (let i = 1; i <= num; i++) {
+        bits[i] = bits[i >> 1] + (i & 1);
+    }
+    return bits;
+};
+
