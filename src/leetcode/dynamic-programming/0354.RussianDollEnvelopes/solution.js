@@ -135,17 +135,17 @@ var maxEnvelopes = function (envelopes) {
     // return max;
 
     let max = 1;
-    let p = increase.length -1;
+    let p = increase.length - 1;
 
-    for(let i = increase.length-2; i >=0; i--){
+    for (let i = increase.length - 2; i >= 0; i--) {
         let last = increase[p];
         let curr = increase[i];
 
-        if(curr[0] === last[0]){
+        if (curr[0] === last[0]) {
             continue;
         }
 
-        if(curr[0] < last[0] && curr[1] < last[1]){
+        if (curr[0] < last[0] && curr[1] < last[1]) {
             p = i;
             max++;
         }
@@ -202,3 +202,45 @@ function merge(l1, l2) {
 
     return res;
 }
+
+
+// 方法一：真正的解决方案，动态规划
+
+/**
+ * @param {number[][]} envelopes
+ * @return {number}
+ */
+var maxEnvelopes = function (envelopes) {
+    if (envelopes.length === 0) {
+        return 0
+    }
+
+    let len = envelopes.length
+
+    // 按照第一个值 W 升序，如果第一个值 W 相等，按照第二个值 H 降序，
+    // [(1,1),(1,2),(1,3),(1,4)] 对于每一种 w 值，我们最多只能选择 1 个信封
+    envelopes.sort((a, b) => {
+        if (a[0] !== b[0]) {
+            return a[0] - b[0]
+        } else {
+            return b[1] - a[1]
+        }
+    })
+
+    // 将二维度转化为一维度，在 W 值 严格单调递增时 => 求最大上升子序列问题
+    let dp = new Array(len).fill(1);
+    let max = dp[0];
+
+    for (let i = 0; i < len; i++) {
+        for (let j = 0; j < i; j++) {
+            if (envelopes[i][1] > envelopes[j][1]) {
+                dp[i] = Math.max(dp[j] + 1, dp[i])
+            }
+
+            max = Math.max(max, dp[i])
+        }
+    }
+
+    return max;
+
+};
