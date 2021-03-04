@@ -61,3 +61,6 @@ var lengthOfLIS = function (nums) {
 
     return max;
 };
+
+
+// 方法二：分治
