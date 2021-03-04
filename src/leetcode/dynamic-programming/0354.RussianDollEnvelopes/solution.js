@@ -103,3 +103,102 @@ function merge(l1, l2) {
 
     return res;
 }
+
+
+// 方法一：升序排列后，求最大套娃数- 逆序后依然不行
+
+// [[46,89],[50,53],[52,68],[72,45],[77,81]] 用例不通过
+
+/**
+ * @param {number[][]} envelopes
+ * @return {number}
+ */
+var maxEnvelopes = function (envelopes) {
+    let increase = mergeSort(envelopes, 0, envelopes.length - 1);
+
+    console.log(increase);
+
+    // let max = 1;
+    // let pre = 0;
+
+    // for (let i = 1; i < increase.length; i++) {
+    //     let last = increase[i];
+
+    //     if (last[0] > increase[pre][0] && last[1] > increase[pre][1]) {
+    //         console.log(increase[pre], last)
+    //         pre = i;
+    //         max++
+    //     }
+
+    // }
+
+    // return max;
+
+    let max = 1;
+    let p = increase.length -1;
+
+    for(let i = increase.length-2; i >=0; i--){
+        let last = increase[p];
+        let curr = increase[i];
+
+        if(curr[0] === last[0]){
+            continue;
+        }
+
+        if(curr[0] < last[0] && curr[1] < last[1]){
+            p = i;
+            max++;
+        }
+    }
+
+    return max;
+};
+
+function mergeSort(envelopes, l, r) {
+
+    if (r === l) {
+        // console.log(l,envelopes[l])
+        return [envelopes[l]];
+    }
+
+    let mid = (l + r) >> 1;
+
+    return merge(mergeSort(envelopes, l, mid), mergeSort(envelopes, mid + 1, r));
+}
+
+function merge(l1, l2) {
+    let res = [];
+
+    while (l1 && l2 && l1.length > 0 && l2.length > 0) {
+        let a1 = l1[0];
+        let a2 = l2[0];
+
+        // console.log(l1,l2,a1,a2)
+
+        if (a1[0] < a2[0]) {
+            res.push(a1);
+            l1.shift();
+        } else if (a1[0] === a2[0]) {
+            if (a1[1] <= a2[1]) {
+                res.push(a1)
+                l1.shift();
+            } else {
+                res.push(a2);
+                l2.shift();
+            }
+        } else {
+            res.push(a2);
+            l2.shift();
+        }
+    }
+
+    if (l1) {
+        res.push(...l1)
+    }
+
+    if (l2) {
+        res.push(...l2)
+    }
+
+    return res;
+}
