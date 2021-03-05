@@ -64,3 +64,39 @@ function squareSum(n) {
 
     return sum;
 }
+
+// 方法二：快慢指针（解决环的问题）
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+
+    let slow = squareSum(n);
+    let fast = squareSum(squareSum(n));
+
+    while (slow !== 1 && fast !== 1) {
+        if (slow === fast) {
+            return false;
+        }
+        slow = squareSum(slow);
+        fast = squareSum(squareSum(fast));
+    }
+
+    return true;
+
+};
+
+function squareSum(n) {
+    let sum = 0;
+
+    let newNum = n;
+    while (newNum) {
+        let last = newNum % 10;
+        newNum = parseInt(newNum / 10);
+        sum += last ** 2;
+    }
+
+    return sum;
+}
