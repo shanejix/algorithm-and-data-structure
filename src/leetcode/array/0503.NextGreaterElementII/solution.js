@@ -65,3 +65,36 @@ function findNextMax(nums, i) {
         return max;
     }
 }
+
+
+// 方法二：单调栈法：
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var nextGreaterElements = function (nums) {
+    const len = nums.length;
+
+    // 初始化为-1，考虑到最大值的下一个最大值是-1
+    const res = new Array(len).fill(-1);
+
+    // 维护一个单调不增的数组下标序列，
+    // 如果当前值比栈顶元素对应的元素值小则入栈,
+    // 大则出栈并且更新出栈元素的下一个最大值为当前元素，直到为空或者小于栈顶小标所对应的元素
+    const stack = [];
+
+    // 注意到只遍历一次序列是不够的，例如序列 [2,3,1][2,3,1]，最后单调栈中将剩余 [3,1][3,1]，其中元素 [1][1] 的下一个更大元素还是不知道的
+    // 朴素的思想是，将循环数组拉直,相当将前n-1个元素拼接到数组末尾。
+    // why？因为最后一个元素就是要从 0 - n-1 遍历找到下一个最大值。
+    // 而且，这里用到下标取模的技巧，隐性的遍历了 0 - n-1 个元素 👍
+    for (let i = 0; i < len * 2 - 1; i++) {
+        while (stack.length && nums[stack[stack.length - 1]] < nums[i % len]) {
+            res[stack[stack.length - 1]] = nums[i % len];
+            stack.pop();
+        }
+        stack.push(i % len)
+    }
+
+    return res
+};
