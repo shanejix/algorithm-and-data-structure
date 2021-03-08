@@ -70,10 +70,15 @@ var minDistance = function (word1, word2) {
         for (let j = 1; j < m + 1; j++) {
             // 转化为 dp[i][j] 的可能
 
+            // word1 插入：
             // s[0,i) 到 s[0,j) 先从 s[0,i) 到 s[0,j-1) 再 s[0,j-1) 到 s[0,j) 添加一个元素
             let left = dp[i][j - 1] + 1
+
+            // word2 插入：
             // s[0,i) 到 s[0,j) 先从 s[0,i-1) 到 s[0,j) 再 s[0,i-1) 到 s[0,i) 添加一个元素
             let up = dp[i - 1][j] + 1;
+            
+            // word1 或 word2 替换：
             // s[0,i) 到 s[0,j) 先从 s[0,i-1) 到 s[0,j-1) 
             let left_up = dp[i - 1][j - 1];
 
