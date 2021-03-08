@@ -106,3 +106,26 @@ function toString(node) {
 
     return res = toString(node.left) + node.val + '!' + toString(node.right)
 }
+
+// 方法二：双指针，（镜像）对称得特点，- 递归实现
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+
+    return check(root, root);
+};
+
+function check(p, q) {
+    if (p === null && q === null) {
+        return true;
+    }
+
+    if (p === null || q === null) {
+        return false;
+    }
+
+    return p.val === q.val && check(p.left, q.right) && check(p.right, q.left);
+}
