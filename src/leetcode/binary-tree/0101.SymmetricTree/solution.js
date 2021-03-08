@@ -129,3 +129,44 @@ function check(p, q) {
 
     return p.val === q.val && check(p.left, q.right) && check(p.right, q.left);
 }
+
+
+// 方法二：双指针，（镜像）对称得特点，- 递归借助队列得 - 迭代实现
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+
+    return check(root, root);
+};
+
+function check(p, q) {
+    const queue = [];
+
+    // 头节点入队两次，方便后续处理对称得节点
+    queue.push(p);
+    queue.push(q);
+
+    while (queue.length) {
+        p = queue.shift();
+        q = queue.shift();
+
+        if (p === null && q === null) {
+            continue;
+        }
+
+        if (p === null || q === null || p.val !== q.val) {
+            return false
+        }
+
+        queue.push(p.left);
+        queue.push(q.right);
+
+        queue.push(p.right);
+        queue.push(q.left);
+    }
+
+    return true;
+}
