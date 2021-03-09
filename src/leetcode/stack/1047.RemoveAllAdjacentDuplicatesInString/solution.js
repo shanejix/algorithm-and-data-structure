@@ -45,3 +45,20 @@ var removeDuplicates = function (S) {
 
     return stack.join('');
 };
+
+
+// 方法一：利用栈 - 优化
+
+var removeDuplicates = function (S) {
+    const stack = [];
+
+    for (let ch of S) {
+        if (stack.length && stack[stack.length - 1] === ch) {
+            stack.pop();
+        } else {
+            stack.push(ch)
+        }
+    }
+
+    return stack.join('')
+}
