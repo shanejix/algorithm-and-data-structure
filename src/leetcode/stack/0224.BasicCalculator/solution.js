@@ -33,7 +33,52 @@ var calculate = function (s) {
     return eval(s);
 };
 
-// 方法二：双栈法
+// 方法二： 括号展开 + 栈
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var calculate = function (s) {
+    const opt = [1];
+    let sign = 1
+
+    let res = 0
+    let len = s.length;
+    let i = 0;
+
+    while (i < len) {
+        if (s[i] === ' ') {
+            i++;
+        } else if (s[i] === '+') {
+            sign = opt[opt.length - 1];
+            i++
+        } else if (s[i] === '-') {
+            sign = -opt[opt.length - 1];
+            i++;
+        } else if (s[i] === '(') {
+            opt.push(sign);
+            i++;
+        } else if (s[i] === ')') {
+            opt.pop();
+            i++;
+        } else {
+            let continue_num = 0;
+
+            while (i < len && !isNaN(Number(s[i])) && s[i] !== ' ') {
+                continue_num = continue_num * 10 + s[i].charCodeAt() - '0'.charCodeAt();
+                i++
+            }
+
+            res += sign * continue_num
+        }
+    }
+
+    return res;
+};
+
+// 方法三：双栈法
 
 /**
  * @param {string} s
