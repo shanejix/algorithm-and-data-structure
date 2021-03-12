@@ -90,3 +90,45 @@ var isValidSerialization = function (preorder) {
     // 槽位刚好被填满 - 合法
     return diff === 0;
 };
+
+
+// 方法三：槽位 + 栈
+
+/**
+ * @param {string} preorder
+ * @return {boolean}
+ */
+var isValidSerialization = function (preorder) {
+    const pre_order = preorder.split(',');
+
+    const stack = [];
+
+    stack.push(1);
+
+    for (let i = 0; i < pre_order.length; i++) {
+        if (stack.length === 0) {
+            return false;
+        }
+
+        if (pre_order[i] === '#') {
+            stack[stack.length - 1] = stack[stack.length - 1] - 1;
+
+            if (stack[stack.length - 1] === 0) {
+                stack.pop();
+            }
+        } else {
+            // 不是 # 即为 数字
+
+            stack[stack.length - 1] = stack[stack.length - 1] - 1;
+
+            if (stack[stack.length - 1] === 0) {
+                stack.pop();
+            }
+
+            stack.push(2);
+
+        }
+    }
+
+    return stack.length === 0;
+};
