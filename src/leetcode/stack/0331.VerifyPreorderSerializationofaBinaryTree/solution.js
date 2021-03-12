@@ -57,3 +57,34 @@ var isValidSerialization = function (preorder) {
 
     return stack.length === 1 && stack[stack.length - 1] === '#';
 };
+
+// 方法二：计算入度出度
+
+/**
+ * @param {string} preorder
+ * @return {boolean}
+ */
+var isValidSerialization = function (preorder) {
+    const pre_order = preorder.split(',');
+
+    // 考虑根节点 出度为2 入度为 0  计算结果 diff == 2；此处为了方便根节点计算
+    let diff = 1;
+
+    for (let i = 0; i < pre_order.length; i++) {
+
+        // 入度 - 1
+        diff = diff - 1;
+
+        if (diff < 0) {
+            return false;
+        }
+
+        // 非叶子节点 出度 + 2 
+        if (pre_order[i] !== '#') {
+            diff = diff + 2;
+        }
+
+    }
+
+    return diff === 0;
+};
