@@ -68,13 +68,14 @@ var isValidSerialization = function (preorder) {
     const pre_order = preorder.split(',');
 
     // 考虑根节点 出度为2 入度为 0  计算结果 diff == 2；此处为了方便根节点计算
-    let diff = 1;
+    let diff = 1; // diff 其实就是当前槽位
 
     for (let i = 0; i < pre_order.length; i++) {
 
         // 入度 - 1
         diff = diff - 1;
 
+        // 槽位 < 0  - 当前槽位不足不合法
         if (diff < 0) {
             return false;
         }
@@ -86,5 +87,6 @@ var isValidSerialization = function (preorder) {
 
     }
 
+    // 槽位刚好被填满 - 合法
     return diff === 0;
 };
