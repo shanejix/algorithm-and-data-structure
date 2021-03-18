@@ -94,7 +94,7 @@ var numDistinct = function (s, t) {
 
     for (let row = 1; row <= n; row++) {
         for (let col = 1; col <= m; col++) {
-            if (s[col] === t[row]) {
+            if (s[col - 1] === t[row - 1]) {
                 dp[row][col] = dp[row - 1][col - 1] + dp[row][col - 1]
             } else {
                 dp[row][col] = dp[row][col - 1]
@@ -105,4 +105,30 @@ var numDistinct = function (s, t) {
     console.log(dp);
 
     return dp[n][m];
+};
+
+// 方法一：动态规划
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {number}
+ */
+var numDistinct = function (s, t) {
+
+    const dp = new int[t.length() + 1][s.length() + 1];
+
+    for (let j = 0; j < s.length() + 1; j++) dp[0][j] = 1;
+
+    for (let i = 1; i < t.length() + 1; i++) {
+        for (let j = 1; j < s.length() + 1; j++) {
+            if (t.charAt(i - 1) == s.charAt(j - 1)) {
+                dp[i][j] = dp[i - 1][j - 1] + dp[i][j - 1];
+            } else {
+                dp[i][j] = dp[i][j - 1];
+            }
+        }
+    }
+
+    return dp[t.length()][s.length()];
 };
