@@ -33,7 +33,7 @@
 // 0 <= s.length, t.length <= 1000
 // s and t consist of English letters.
 
-// 方法一：动态规划
+// 方法一：动态规划：m*n矩阵
 
 /**
  * @param {string} s
@@ -65,4 +65,44 @@ var numDistinct = function (s, t) {
 
     return dp[0][0]
 
+};
+
+// 方法一：动态规划：n*m矩阵
+
+// "babgbag"
+// "bag"
+
+// 用例不过，没找到原因
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {number}
+ */
+var numDistinct = function (s, t) {
+
+    let m = s.length;
+    let n = t.length;
+
+    const dp = new Array(n + 1).fill(0).map(() => new Array(m + 1).fill(0));
+
+    for (let col = 0; col <= m; col++) {
+        dp[0][col] = 1;
+    }
+
+    // console.log(dp);
+
+    for (let row = 1; row <= n; row++) {
+        for (let col = 1; col <= m; col++) {
+            if (s[col] === t[row]) {
+                dp[row][col] = dp[row - 1][col - 1] + dp[row][col - 1]
+            } else {
+                dp[row][col] = dp[row][col - 1]
+            }
+        }
+    }
+
+    console.log(dp);
+
+    return dp[n][m];
 };
