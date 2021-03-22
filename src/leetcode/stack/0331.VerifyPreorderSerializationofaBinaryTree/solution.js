@@ -57,3 +57,78 @@ var isValidSerialization = function (preorder) {
 
     return stack.length === 1 && stack[stack.length - 1] === '#';
 };
+
+// 方法二：计算入度出度
+
+/**
+ * @param {string} preorder
+ * @return {boolean}
+ */
+var isValidSerialization = function (preorder) {
+    const pre_order = preorder.split(',');
+
+    // 考虑根节点 出度为2 入度为 0  计算结果 diff == 2；此处为了方便根节点计算
+    let diff = 1; // diff 其实就是当前槽位
+
+    for (let i = 0; i < pre_order.length; i++) {
+
+        // 入度 - 1
+        diff = diff - 1;
+
+        // 槽位 < 0  - 当前槽位不足不合法
+        if (diff < 0) {
+            return false;
+        }
+
+        // 非叶子节点 出度 + 2 
+        if (pre_order[i] !== '#') {
+            diff = diff + 2;
+        }
+
+    }
+
+    // 槽位刚好被填满 - 合法
+    return diff === 0;
+};
+
+
+// 方法三：槽位 + 栈
+
+/**
+ * @param {string} preorder
+ * @return {boolean}
+ */
+var isValidSerialization = function (preorder) {
+    const pre_order = preorder.split(',');
+
+    const stack = [];
+
+    stack.push(1);
+
+    for (let i = 0; i < pre_order.length; i++) {
+        if (stack.length === 0) {
+            return false;
+        }
+
+        if (pre_order[i] === '#') {
+            stack[stack.length - 1] = stack[stack.length - 1] - 1;
+
+            if (stack[stack.length - 1] === 0) {
+                stack.pop();
+            }
+        } else {
+            // 不是 # 即为 数字
+
+            stack[stack.length - 1] = stack[stack.length - 1] - 1;
+
+            if (stack[stack.length - 1] === 0) {
+                stack.pop();
+            }
+
+            stack.push(2);
+
+        }
+    }
+
+    return stack.length === 0;
+};
