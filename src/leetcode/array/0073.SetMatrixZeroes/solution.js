@@ -55,3 +55,62 @@ var setZeroes = function (matrix) {
         }
     }
 };
+
+
+// 方法一：使用两个标记变量+用数组第一行和第一列代替标记数组
+
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var setZeroes = function (matrix) {
+    const m = matrix.length;
+    const n = matrix[0].length;
+
+    let flagRow0 = flagCol0 = false;
+
+    // 预处理 标记第一列是否存在0
+    for (let i = 0; i < m; i++) {
+        if (matrix[i][0] === 0) {
+            flagCol0 = true
+        }
+    }
+
+    // 预处理 标记第一行是否存在0
+    for (let i = 0; i < n; i++) {
+        if (matrix[0][i] === 0) {
+            flagRow0 = true;
+        }
+    }
+
+    // 用其他行列更新第一行和第一列
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (matrix[i][j] === 0) {
+                matrix[i][0] = matrix[0][j] = 0;
+            }
+        }
+    }
+
+    // 用第一行和第一列更新其他行列
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    // 利用标记变量 更新 第一行和第一列
+    if (flagCol0) {
+        for (let i = 0; i < m; i++) {
+            matrix[i][0] = 0;
+        }
+    }
+    if (flagRow0) {
+        for (let j = 0; j < n; j++) {
+            matrix[0][j] = 0;
+        }
+    }
+
+};
