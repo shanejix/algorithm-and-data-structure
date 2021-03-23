@@ -109,3 +109,42 @@ var inorderTraversal = function (root) {
 
     return res
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 方法二：迭代
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+
+    const stack = [];
+    const res = [];
+
+    while (root || stack.length) {
+        // left tree
+        while (root) {
+            stack.push(root)
+            root = root.left;
+        }
+
+        // current root
+        root = stack.pop();
+        res.push(root.val);
+
+        // right tree
+        root = root.right
+    }
+
+    return res
+};
