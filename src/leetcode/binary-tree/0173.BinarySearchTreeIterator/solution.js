@@ -91,3 +91,54 @@ BSTIterator.prototype.hasNext = function () {
  * var param_1 = obj.next()
  * var param_2 = obj.hasNext()
  */
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+//  方法一：递归预处理扁平化 - 优化
+
+/**
+ * @param {TreeNode} root
+ */
+var BSTIterator = function (root) {
+    this.idx = 0;
+    this.inorderList = []
+
+    this.inorderTravel(root, this.inorderList);
+};
+
+BSTIterator.prototype.inorderTravel = function (root, inorderList) {
+    if (!root) return
+
+    this.inorderTravel(root.left, inorderList);
+    inorderList.push(root.val);
+    this.inorderTravel(root.right, inorderList);
+}
+
+/**
+ * @return {number}
+ */
+BSTIterator.prototype.next = function () {
+    return this.inorderList[this.idx++]
+};
+
+/**
+ * @return {boolean}
+ */
+BSTIterator.prototype.hasNext = function () {
+    return this.idx < this.inorderList.length
+};
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * var obj = new BSTIterator(root)
+ * var param_1 = obj.next()
+ * var param_2 = obj.hasNext()
+ */
