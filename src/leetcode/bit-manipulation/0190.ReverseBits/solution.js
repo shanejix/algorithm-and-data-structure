@@ -45,3 +45,27 @@ var reverseBits = function (n) {
 
     return parseInt(bitArr.reverse().join(''), 2);
 };
+
+
+// 方法二：位运算
+
+
+// 11111111111111111111111111111101 
+// 上面用例不通过
+
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits = function (n) {
+
+    let res = 0;
+
+    for (let i = 0; i < 32; i++) {
+        res = (res << 1) | (n & 1)
+        n >>>= 1
+    }
+
+    return res
+
+};
