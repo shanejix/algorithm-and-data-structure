@@ -50,8 +50,7 @@ var trap = function (height) {
     return res
 };
 
-// 方法二：预处理 + xx
-
+// 方法二：预处理 + leftMax + rightMax
 
 /**
  * @param {number[]} height
