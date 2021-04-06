@@ -59,3 +59,32 @@ var removeDuplicates = function (nums) {
 
     return prev
 };
+
+
+// 方法二：通用解法
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+
+    return process(nums, 2);
+};
+
+/**
+ * 保留 k 位
+ * @param {*} nums 
+ * @param {*} k 
+ */
+function process(nums, k) {
+    let cnt = 0;
+
+    for (let num of nums) {
+        if (cnt < k || nums[cnt - k] !== num) {
+            nums[cnt++] = num;
+        }
+    }
+
+    return cnt;
+}
