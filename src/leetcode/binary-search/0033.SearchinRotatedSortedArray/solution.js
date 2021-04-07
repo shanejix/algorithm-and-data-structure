@@ -47,6 +47,7 @@ var search = function (nums, target) {
     let r = len - 1;
 
     while (l <= r) {
+        // why ? ceil
         const mid = Math.ceil((l + r) / 2)
 
         if (nums[mid] === target) {
@@ -54,12 +55,16 @@ var search = function (nums, target) {
         }
 
         if (nums[0] < nums[mid]) {
+            // 左半边有序
+
             if (nums[0] <= target && target < nums[mid]) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         } else {
+            // 右半边有序
+
             if (nums[mid] < target && target <= nums[len - 1]) {
                 l = mid + 1;
             } else {
