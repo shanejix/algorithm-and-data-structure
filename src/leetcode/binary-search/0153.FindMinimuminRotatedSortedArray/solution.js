@@ -48,7 +48,7 @@ var findMin = function (nums) {
     let r = len - 1;
 
     while (l < r) {
-        mid = l + r + 1 >> 2
+        let mid = l + r + 1 >> 2
 
         if (nums[mid] >= nums[0]) {
             l = mid
