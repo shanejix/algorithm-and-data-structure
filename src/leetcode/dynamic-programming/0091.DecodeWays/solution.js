@@ -77,3 +77,34 @@ var numDecodings = function (s) {
 
     return dp[n]
 };
+
+// 方法一：动态规划 - 优化
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var numDecodings = function (s) {
+    const n = s.length;
+
+    let a = 0, b = 1, c = 0;
+
+    for (let i = 1; i <= n; i++) {
+
+        c = 0;
+        // 第一种情况是我们使用了一个字符，即 s[i] 进行解码
+        if (s[i - 1] !== '0') {
+            c += b;
+        }
+
+        // 第二种情况是我们使用了两个字符，即 s[i-1]s[i−1] 和 s[i]s[i] 进行编码
+        if (i > 1 && s[i - 2] !== '0' && ((s[i - 2] - '0') * 10 + (s[i - 1] - '0') <= 26)) {
+            c += a;
+        }
+
+        a = b;
+        b = c;
+    }
+
+    return c;
+};
