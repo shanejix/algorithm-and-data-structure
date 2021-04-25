@@ -56,3 +56,44 @@ var increasingBST = function (root) {
     return newRoot.right;
 
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 方法二：中序遍历，在遍历的过程中修改接待你间的指向
+
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var increasingBST = function (root) {
+
+    const dummyNode = new TreeNode(-1);
+    let resNode = dummyNode;
+
+    function inorder(root) {
+        if (!root) {
+            return
+        }
+
+        inorder(root.left);
+
+        // 在中序遍历的过程中修改节点的指向
+        resNode.right = root;
+        root.left = null;
+        resNode = root;
+
+        inorder(root.right);
+    }
+
+    inorder(root)
+
+    return dummyNode.right;
+
+};
