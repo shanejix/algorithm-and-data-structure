@@ -82,7 +82,7 @@ var shipWithinDays = function (weights, D) {
  */
 function check(weights, mid, d) {
     // 需要运送的天数
-    let need = 1;
+    let need = 0;
     // **当前天** 运送的包裹重量之和
     let sum = 0;
 
@@ -98,5 +98,5 @@ function check(weights, mid, d) {
         sum = 0;
     }
 
-    return need - 1 <= d;
+    return need <= d;
 }
