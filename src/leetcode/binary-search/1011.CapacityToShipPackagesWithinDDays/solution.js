@@ -77,21 +77,26 @@ var shipWithinDays = function (weights, D) {
 /**
  * 判定问题: 当前运力是否满足 <= D 天
  * @param {*} weights 
- * @param {*} mid 
+ * @param {*} mid 运力
  * @param {*} d 
  */
 function check(weights, mid, d) {
-    let cnt = 1;
+    // 需要运送的天数
+    let need = 1;
+    // **当前天** 运送的包裹重量之和
+    let sum = 0;
 
-    let sum = weights[0];
-
-    for (let i = 1; i < weights.length; cnt++, sum = 0) {
+    for (let i = 0; i < weights.length;) {
 
         while (i < weights.length && sum + weights[i] <= mid) {
             sum += weights[i];
             i++;
         }
+
+        // 重置当前天运载的包裹重量
+        need++;
+        sum = 0;
     }
 
-    return cnt - 1 <= d;
+    return need - 1 <= d;
 }
