@@ -1,5 +1,7 @@
 // Given the root node of a binary search tree, return the sum of values of all nodes with a value in the range [low, high].
 
+const { default: sum } = require("../../../sum");
+
 //  
 
 // Example 1:
@@ -60,4 +62,39 @@ var rangeSumBST = function (root, low, high) {
     inorder(root);
 
     return res
+};
+
+// 方法一：迭代 - 广度优先遍历 
+
+/**
+ * @param {TreeNode} root
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+var rangeSumBST = function (root, low, high) {
+
+    let res = 0;
+
+    const queue = [root];
+
+    while (queue.length) {
+        let node = queue.shift();
+
+        if (!node) {
+            continue
+        } else if (node.val > high) {
+            queue.push(node.left)
+        } else if (node.val < low) {
+            queue.push(node.right);
+        } else {
+
+            // [low,high]
+            res += node.val
+            queue.push(node.left)
+            queue.push(node.right)
+        }
+    }
+
+    return res;
 };
