@@ -47,3 +47,29 @@ var judgeSquareSum = function (c) {
 
     return false
 };
+
+// 方法二：双指针
+
+/**
+ * @param {number} c
+ * @return {boolean}
+ */
+var judgeSquareSum = function (c) {
+
+    let a = 0;
+    let b = Math.floor(Math.sqrt(c));
+
+    while (a <= b) {
+        let sum = a ** 2 + b ** 2;
+
+        if (sum < c) {
+            a++
+        } else if (sum > c) {
+            b--;
+        } else {
+            return true
+        }
+    }
+
+    return false
+};
