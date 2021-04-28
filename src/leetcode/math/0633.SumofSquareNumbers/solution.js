@@ -37,7 +37,7 @@
  */
 var judgeSquareSum = function (c) {
 
-    for (let a = 0; a ** 2 < c; a++) {
+    for (let a = 0; a ** 2 <= c; a++) {
         let b = Math.sqrt(c - a ** 2);
 
         if (b === parseInt(b)) {
