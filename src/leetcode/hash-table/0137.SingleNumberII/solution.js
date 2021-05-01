@@ -35,7 +35,7 @@ var singleNumber = function (nums) {
     }
 
     let res
-    for (let { num, freq } of hash.entries()) {
+    for (let [num, freq] of hash.entries()) {
         if (freq === 1) {
             res = num;
             break;
