@@ -44,3 +44,28 @@ var singleNumber = function (nums) {
 
     return res
 };
+
+
+// 方法二：位运算
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+    let res = 0;
+
+    // 32位整型
+    for (let i = 0; i < 32; i++) {
+        let total = 0;
+        for (const num of nums) {
+            // num的第i位二进制位
+            total += (num >> i & 1)
+        }
+
+        // 出现三次数字的第i位二进制位的必然使3的倍数 || 没有出现
+        if (total % 3 !== 0) {
+            res = res | (1 << i)
+        }
+    }
+};
