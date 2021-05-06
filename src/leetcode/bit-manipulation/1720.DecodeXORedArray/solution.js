@@ -41,6 +41,14 @@ var decode = function (encoded, first) {
     arr[0] = first;
 
     for (let i = 1; i <= len; i++) {
+        // encoded[i] = arr[i] ^ arr[i + 1]
+        // 等式两边同时乘以 arr[i]
+        // arr[i] ^ encoded[i] = arr[i] ^ arr[i + 1] ^ arr[i]
+        // 按位异或性质：任意整数和自身做异或运算的结果都等于 0
+        // arr[i] ^ encoded[i] = arr[i] ^ arr[i] ^ arr[i + 1]
+        // arr[i] ^ encoded[i] = 0 ^ arr[i + 1]
+        // 按位异或性质：任意整数和 0 做异或运算的结果都等于其自身
+        // arr[i] ^ encoded[i] = arr[i + 1]
         arr[i] = arr[i - 1] ^ encoded[i - 1]
     }
 
