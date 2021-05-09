@@ -51,6 +51,8 @@
 // 1 <= m <= 10^6
 // 1 <= k <= n
 
+// 方法一：二分查找
+
 /**
  * @param {number[]} bloomDay 所有花的开放时间
  * @param {number} m 制作 m 束花
