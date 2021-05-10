@@ -73,3 +73,66 @@ function preorder(root) {
 
     return [...res, ...preorder(root.left), ...preorder(root.right)]
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 方法二：广度优先搜索 - 队列
+
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {boolean}
+ */
+var leafSimilar = function (root1, root2) {
+
+    const ans1 = [];
+    const ans2 = [];
+
+    preorder(root1, ans1)
+    preorder(root2, ans2)
+
+    return ans1.toString() === ans2.toString()
+};
+
+function preorder(root, ans) {
+    // const queue = [root];
+
+    // while (queue.length !== 0) {
+    //     let currNode = queue.shift();
+
+    //     if (currNode.left === null && currNode.right === null) {
+    //         ans.push(currNode.val)
+    //     }
+
+    //     if (currNode.left) {
+    //         queue.push(currNode.left);
+    //     }
+
+    //     if (currNode.right) {
+    //         queue.push(currNode.right)
+    //     }
+    // }
+
+    const queue = []
+    while (root !== null || queue.length !== 0) {
+        while (root !== null) {
+            queue.push(root);
+            root = root.left;
+        }
+
+        root = queue.pop();
+
+        if (root.left === null && root.right === null) {
+            ans.push(root.val)
+        }
+
+        root = root.right
+    }
+}
