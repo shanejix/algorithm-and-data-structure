@@ -56,12 +56,12 @@ var numWays = function (steps, arrLen) {
         for (let j = 0; j <= maxColumn; j++) {
             dp[i][j] = dp[i - 1][j];
 
-            // 当 j = 0 时，dp[i-1][j-1] = 0 
+            // dp[i][j] 当 j = 0 时，dp[i-1][j-1] = 0 
             if (j - 1 >= 0) {
                 dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MODULO;
             }
 
-            // 当 j = min(arrLen−1,steps) 时，dp[i−1][j+1] = 0
+            // dp[i][j] 当 j = min(arrLen−1,steps) 时，dp[i−1][j+1] = 0
             if (j + 1 <= maxColumn) {
                 dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MODULO;
             }
