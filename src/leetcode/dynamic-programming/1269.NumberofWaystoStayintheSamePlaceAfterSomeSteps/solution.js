@@ -54,19 +54,25 @@ var numWays = function (steps, arrLen) {
     // 因此，当 i <= i <= steps 时，状态转移方程为：dp[i][j] = dp[i - 1][j] + p[i - 1][j - 1] + dp[i - 1][j + 1];
     for (let i = 1; i <= steps; i++) {
         for (let j = 0; j <= maxColumn; j++) {
+
+            // 「原地」操作到达当前状态
             dp[i][j] = dp[i - 1][j];
 
+            // 指针不能移动到数组范围外,需要对下标进行判断，避免下标越界。
+
+            //「向右」操作到达当前状态
             // dp[i][j] 当 j = 0 时，dp[i-1][j-1] = 0 
             if (j - 1 >= 0) {
                 dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MODULO;
             }
 
+            // 向左」操作到达当前状态
             // dp[i][j] 当 j = min(arrLen−1,steps) 时，dp[i−1][j+1] = 0
             if (j + 1 <= maxColumn) {
                 dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MODULO;
             }
         }
     }
-    
+
     return dp[steps][0];
 };
