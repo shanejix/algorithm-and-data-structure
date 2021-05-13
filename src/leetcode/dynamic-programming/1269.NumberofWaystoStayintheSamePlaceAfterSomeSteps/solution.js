@@ -45,7 +45,7 @@ var numWays = function (steps, arrLen) {
     let maxColumn = Math.min(arrLen - 1, steps);
 
     // 定义 dp[i][j] 表示 在 i 步 操作后，指针位于 下标 j 的 方案数 0 <= i <= steps 0 <= j <= arrLen -1
-    const dp = new Array(steps + 1).fill(0).map(() => new Array(maxColumn + 1).fill());
+    const dp = new Array(steps + 1).fill(0).map(() => new Array(maxColumn + 1).fill(0));
 
     // 初始化边界：在 0 步 操作后 ，指针下标 位于 0 的方案 为 1 ，保持不动。// dp[0][j]=0  ( 1<= j <= min(arrLen -1,steps) ：
     dp[0][0] = 1;
@@ -67,5 +67,6 @@ var numWays = function (steps, arrLen) {
             }
         }
     }
+    
     return dp[steps][0];
 };
