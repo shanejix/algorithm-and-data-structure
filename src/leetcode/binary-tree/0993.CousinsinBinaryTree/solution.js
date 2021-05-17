@@ -96,3 +96,64 @@ var isCousins = function (root, x, y) {
 
     return xparent !== yparent && xdepth === ydepth;
 };
+
+
+// 方法二，广度优先搜索
+
+/**
+ * @param {TreeNode} root
+ * @param {number} x
+ * @param {number} y
+ * @return {boolean}
+ */
+var isCousins = function (root, x, y) {
+    let xparent = null;
+    let xdepth = null
+    let xfound = false;
+
+    let yparent = null;
+    let ydepth = null
+    let yfound = false;
+
+    /**
+     * 判断是否遍历到 x 或者 y
+     * @param {*} node 
+     * @param {*} parent 
+     * @param {*} depth 
+     */
+    function check(node, parent, depth) {
+        if (node.val === x) {
+            xparent = parent;
+            xdepth = depth;
+            xfound = true
+        } else if (node.val === y) {
+            yparent = parent
+            ydepth = depth;
+            yfound = true
+        }
+    }
+
+    // 辅助队列：[node , depth]
+    const queue = [[root, 0]]
+    check(root, null, 0)
+
+    while (queue.length) {
+        let [node, depth] = queue.shift();
+
+        if (node.left) {
+            queue.push([node.left, depth + 1])
+            check(node.left, node, depth + 1);
+        }
+
+        if (node.right) {
+            queue.push([node.right, depth + 1])
+            check(node.right, node, depth + 1)
+        }
+
+        if (xfound && yfound) {
+            break;
+        }
+    }
+
+    return xdepth === ydepth && xparent !== yparent
+};
