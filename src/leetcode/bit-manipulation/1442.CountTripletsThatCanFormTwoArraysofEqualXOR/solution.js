@@ -1,5 +1,7 @@
 // Given an array of integers arr.
 
+const { default: sum } = require("../../../sum");
+
 // We want to select three indices i, j and k where (0 <= i < j <= k < arr.length).
 
 // Let's define a and b as follows:
@@ -75,4 +77,47 @@ var countTriplets = function (arr) {
     }
 
     return ans
+};
+
+// 方法二：哈希表
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var countTriplets = function (arr) {
+
+    /**
+ * @param {number[]} arr
+ * @return {number}
+ */
+    var countTriplets = function (arr) {
+        const len = arr.length;
+
+        // 定义 s[i] 为 ：数组 arr 的 前 i+1 位异或前缀和
+        const s = [0];
+        for (let i of arr) {
+            s.push(s[s.length - 1] ^ i);
+        }
+
+        let ans = 0;
+
+        // 记录出现过的异或结果，存储格式：{ 异或结果 : [下标1, 下标2 ...] }
+        const map = new Map();
+
+        for (let k = 0; k <= len; k++) {
+            let list = map.get(s[k]) || [];
+
+            for (let [_, idx] of list.entries()) {
+                let i = idx + 1;
+                ans += k - i
+            }
+
+            list.push(k);
+            map.set(s[k], list);
+
+        }
+
+        return ans
+    };
 };
