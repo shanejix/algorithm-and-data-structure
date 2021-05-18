@@ -40,6 +40,8 @@
 // 1 <= arr.length <= 300
 // 1 <= arr[i] <= 10^8
 
+// 方法一：三层循环
+
 /**
  * @param {number[]} arr
  * @return {number}
