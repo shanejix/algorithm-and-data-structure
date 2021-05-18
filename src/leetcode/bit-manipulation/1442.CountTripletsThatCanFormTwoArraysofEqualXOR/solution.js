@@ -99,6 +99,10 @@ var countTriplets = function (arr) {
     let ans = 0;
     for (let i = 0; i < len; i++) {
         for (let k = i + 1; k < len; k++) {
+            // 连续的一段区间 [i, k]，并在这一段中找到分割点 j，使得区间内分割点左边的异或结果为 a，分割点右边的异或结果为 b。
+            // 并最终让 a 和 b 相等
+            // 由 a 与 b 相等，可以推导出 a ⊕ b = 0 再结合 a 和 b 的由来，可以推导出 [i, k] 连续一段的异或结果为 0。
+            // 因此，满足的 j 的个数为：k - i
             if (s[i] === s[k + 1]) {
                 ans += k - i
             }
