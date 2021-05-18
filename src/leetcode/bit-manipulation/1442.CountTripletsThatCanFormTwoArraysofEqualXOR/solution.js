@@ -1,7 +1,5 @@
 // Given an array of integers arr.
 
-const { default: sum } = require("../../../sum");
-
 // We want to select three indices i, j and k where (0 <= i < j <= k < arr.length).
 
 // Let's define a and b as follows:
