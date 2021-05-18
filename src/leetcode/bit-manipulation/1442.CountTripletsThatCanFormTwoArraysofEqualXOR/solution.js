@@ -79,6 +79,35 @@ var countTriplets = function (arr) {
     return ans
 };
 
+// 方法一：两层循环 优化
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var countTriplets = function (arr) {
+
+    const len = arr.length;
+
+    // 定义 s[i] 为 ：数组 arr 的 前 i+1 位异或前缀和
+    const s = [0];
+    for (let i of arr) {
+        s.push(s[s.length - 1] ^ i);
+    }
+
+    // 两层循环 
+    let ans = 0;
+    for (let i = 0; i < len; i++) {
+        for (let k = i + 1; k < len; k++) {
+            if (s[i] === s[k + 1]) {
+                ans += k - i
+            }
+        }
+    }
+
+    return ans
+};
+
 // 方法二：哈希表
 
 /**
