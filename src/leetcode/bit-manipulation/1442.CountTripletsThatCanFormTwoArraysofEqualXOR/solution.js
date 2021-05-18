@@ -114,43 +114,38 @@ var countTriplets = function (arr) {
 
 // 方法二：哈希表
 
+
+
 /**
- * @param {number[]} arr
- * @return {number}
- */
+* @param {number[]} arr
+* @return {number}
+*/
 var countTriplets = function (arr) {
+    const len = arr.length;
 
-    /**
- * @param {number[]} arr
- * @return {number}
- */
-    var countTriplets = function (arr) {
-        const len = arr.length;
+    // 定义 s[i] 为 ：数组 arr 的 前 i+1 位异或前缀和
+    const s = [0];
+    for (let i of arr) {
+        s.push(s[s.length - 1] ^ i);
+    }
 
-        // 定义 s[i] 为 ：数组 arr 的 前 i+1 位异或前缀和
-        const s = [0];
-        for (let i of arr) {
-            s.push(s[s.length - 1] ^ i);
+    let ans = 0;
+
+    // 记录出现过的异或结果，存储格式：{ 异或结果 : [下标1, 下标2 ...] }
+    const map = new Map();
+
+    for (let k = 0; k <= len; k++) {
+        let list = map.get(s[k]) || [];
+
+        for (let [_, idx] of list.entries()) {
+            let i = idx + 1;
+            ans += k - i
         }
 
-        let ans = 0;
+        list.push(k);
+        map.set(s[k], list);
 
-        // 记录出现过的异或结果，存储格式：{ 异或结果 : [下标1, 下标2 ...] }
-        const map = new Map();
+    }
 
-        for (let k = 0; k <= len; k++) {
-            let list = map.get(s[k]) || [];
-
-            for (let [_, idx] of list.entries()) {
-                let i = idx + 1;
-                ans += k - i
-            }
-
-            list.push(k);
-            map.set(s[k], list);
-
-        }
-
-        return ans
-    };
+    return ans
 };
