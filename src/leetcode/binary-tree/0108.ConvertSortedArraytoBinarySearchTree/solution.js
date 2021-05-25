@@ -44,7 +44,7 @@ var sortedArrayToBST = function (nums) {
 
     function toBST(nums, left, right) {
         if (left > right) {
-            return
+            return null
         }
 
         let mid = left + right >> 1;
