@@ -55,3 +55,44 @@ var removeElementsOpitmization = function (head, val) {
 
     return sentinel.next;
 }
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function (head, val) {
+
+    let newHead = newTail = new ListNode(null);
+
+    let p = head;
+
+    while (p) {
+        if (p.val === val) {
+            p = p.next;
+        } else {
+            // // 头插
+            // let node  =new ListNode(p.val);
+            // node.next = newHead.next;
+            // newHead.next = node;
+            // p = p.next;
+
+            // 尾插
+            let node = new ListNode(p.val);
+            newTail.next = node;
+            newTail = newTail.next;
+            p = p.next;
+
+        }
+    }
+
+    return newHead.next
+};
