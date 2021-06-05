@@ -12,6 +12,9 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
+// 方法一：迭代
+
 /**
  * @param {ListNode} head
  * @param {number} val
@@ -36,6 +39,8 @@ var removeElements = function (head, val) {
     return newHead;
 
 };
+
+// 方法二：迭代
 
 var removeElementsOpitmization = function (head, val) {
     let sentinel = new ListNode(0);
@@ -63,6 +68,8 @@ var removeElementsOpitmization = function (head, val) {
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
+// 方法三：迭代
 
 /**
  * @param {ListNode} head
@@ -95,4 +102,40 @@ var removeElements = function (head, val) {
     }
 
     return newHead.next
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+// 方法三：迭代 利用哑巴节点优化
+
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function (head, val) {
+
+    let newHead = new ListNode(null);
+
+    newHead.next = head;
+
+    let p = newHead;
+
+    // why p.next ???  p -> newHead 
+    while (p.next) {
+        if (p.next.val === val) {
+            p.next = p.next.next;
+        } else {
+            p = p.next
+        }
+    }
+
+    return newHead.next;
 };
