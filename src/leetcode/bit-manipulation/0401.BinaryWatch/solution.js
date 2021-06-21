@@ -48,3 +48,27 @@ var readBinaryWatch = function (turnedOn) {
 
     return ans
 };
+
+// 方法二：二进制枚举
+
+/**
+ * @param {number} turnedOn
+ * @return {string[]}
+ */
+var readBinaryWatch = function (turnedOn) {
+
+    const ans = []
+
+    for (let i = 0; i < 1024; i++) {
+        // 取出高四位
+        let h = i >> 6;
+        // 取出低6位
+        let m = i & 63;
+
+        if (h < 12 && m < 60 && i.toString(2).split('0').join('').length === turnedOn) {
+            ans.push(h + ':'(m < 10 ? '0' : '') + m)
+        }
+    }
+
+    return ans
+};
