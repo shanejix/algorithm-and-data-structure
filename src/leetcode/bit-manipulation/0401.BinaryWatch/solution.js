@@ -66,7 +66,7 @@ var readBinaryWatch = function (turnedOn) {
         let m = i & 63;
 
         if (h < 12 && m < 60 && i.toString(2).split('0').join('').length === turnedOn) {
-            ans.push(h + ':'(m < 10 ? '0' : '') + m)
+            ans.push(h + ':' + (m < 10 ? '0' : '') + m)
         }
     }
 
