@@ -54,3 +54,36 @@ var maxIceCream = function (costs, coins) {
 
     return count;
 };
+
+// 方法一：计数排序+贪心
+
+/**
+ * @param {number[]} costs
+ * @param {number} coins
+ * @return {number}
+ */
+var maxIceCream = function (costs, coins) {
+
+
+    // 1 <= costs.length <= 105
+    const freq = new Array(100001).fill(0);
+    for (const cost of costs) {
+        freq[cost]++
+    }
+
+    let count = 0;
+
+    for (let i = 1; i <= 100000; i++) {
+        if (coins >= i) {
+            // 可能凑不够 freq[i]
+            let currCount = Math.min(freq[i], Math.floor(coins / i))
+
+            count += currCount;
+            coins -= i * currCount
+        } else {
+            break
+        }
+    }
+
+    return count;
+};
