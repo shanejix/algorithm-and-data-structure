@@ -60,3 +60,49 @@ var frequencySort = function (s) {
 
 
 };
+
+
+// 方法二：桶排序
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var frequencySort = function (s) {
+
+    let freq = new Map();
+    for (let c of s) {
+        freq.set(c, (freq.get(c) || 0) + 1)
+    }
+
+
+    let max = -Infinity;
+    for (let f of freq.values()) {
+        if (f > max) {
+            max = f
+        }
+    }
+
+    const bucket = new Array(max + 1).fill(0).map(() => new Array());
+    for (let [k, f] of freq.entries()) {
+        bucket[f].push(k);
+    }
+
+    const ans = [];
+    for (let f = 1; f < bucket.length; f++) {
+        let chars = bucket[f];
+
+        while (chars.length) {
+            let currChar = chars.pop()
+            let fq = f;
+
+            while (fq) {
+                ans.push(currChar)
+                fq--
+            }
+        }
+    }
+
+    return ans.reverse().join('');
+
+};
