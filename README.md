@@ -3,6 +3,7 @@
 清单来自于[https://www.educative.io/courses/grokking-the-coding-interview](https://www.educative.io/courses/grokking-the-coding-interview)
 
 #### 01. 滑动窗口 (Pattern: Sliding Window)
+- 和等于 k 的最长子数组长度
 #### 02. 双指针 (Pattern: Two Pointers)
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 #### 04. 区间合并 (Pattern: Merge Intervals)
