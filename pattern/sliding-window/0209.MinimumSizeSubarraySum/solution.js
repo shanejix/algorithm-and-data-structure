@@ -57,3 +57,33 @@ var minSubArrayLen = function (target, nums) {
 
     return ans === Infinity ? 0 : ans
 };
+
+// 方法二：滑动窗口
+
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+
+    let ans = Infinity;
+    let len = nums.length;
+
+    let start = 0;
+    let end = 0;
+
+    let sum = 0;
+
+    while (end < len) {
+        sum = sum + nums[end];
+        while (sum >= target) {
+            ans = Math.min(ans, end - start + 1);
+            sum = sum - nums[start];
+            start++
+        }
+        end++
+    }
+
+    return ans === Infinity ? 0 : ans
+};
