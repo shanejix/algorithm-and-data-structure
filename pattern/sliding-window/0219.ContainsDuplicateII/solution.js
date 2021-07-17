@@ -45,3 +45,34 @@ var containsNearbyDuplicate = function (nums, k) {
     }
     return false;
 }
+
+// 方法二：滑动窗口 - 散列
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function (nums, k) {
+
+    // 维护长度为 k 的滑动窗口
+    const set = new Set();
+
+    for (let i = 0; i < nums.length; ++i) {
+        // 在散列表中搜索当前元素，找到了就返回 true
+        if (set.has(nums[i])) {
+            return true
+        }
+
+        // 在当前散列表中插入当前元素
+        set.add(nums[i]);
+
+        // 如果散列表的长度超过了 k ，删除散列表中最旧的元素
+        if (set.size > k) {
+            set.delete(nums[i - k])
+        }
+    }
+
+    return false;
+}
+
