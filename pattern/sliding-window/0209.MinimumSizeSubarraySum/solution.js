@@ -58,6 +58,50 @@ var minSubArrayLen = function (target, nums) {
     return ans === Infinity ? 0 : ans
 };
 
+
+// 方法一：前缀和 + 二分搜索
+
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+
+    let ans = Infinity;
+    let len = nums.length;
+
+    // 前缀和 
+    // preSum[i] = nums[0] + ... + nums[i-1]
+    // preSum[0] 表示前 0 个元素的前缀和为 0 
+    // preSum[1] = num[0] 
+    let preSum = new Array(len + 1).fill(0);
+
+    for (let i = 1; i < len; i++) {
+        preSum[i] = preSum[i - 1] + nums[i - 1]
+    }
+
+    for (let i = 1; i < len; i++) {
+        // 前缀和有 preSum[bound] - preSum[i-1] >= target
+        // 对于每个下标 i 可找到 bound 下标
+        let sum = target + preSum[i - 1];
+        // 前缀和单调递增(均为正数)，可使用二分查找
+        let bound = binarySearch(preSum, sum);
+
+        if (bound < 0) {
+            bound = - bound - 1;
+        }
+
+        if (bound < len) {
+            ans = Math.min(ans, bound - (i - 1))
+        }
+
+    }
+
+    return ans === Infinity ? 0 : ans
+
+};
+
 // 方法二：滑动窗口
 
 /**
