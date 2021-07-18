@@ -67,3 +67,33 @@ var lengthOfLongestSubstring = function (s) {
 
     return ans
 };
+
+// 方法二：滑动窗口
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+
+    // 记录 [start,end] 字符出现的次数
+    let map = new Map();
+    let ans = 0;
+
+    let start = 0, end = 0;
+
+    while (end < s.length) {
+        let right = s.charAt(end)
+        map.set(right, (map.get(right) || 0) + 1);
+
+        while (map.get(right) > 1) {
+            let left = s.charAt(start);
+            map.set(left, map.get(left) - 1);
+            start++
+        }
+        ans = Math.max(ans, end - start + 1)
+        end++
+    }
+
+    return ans
+};
