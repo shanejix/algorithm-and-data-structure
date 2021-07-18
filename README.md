@@ -1,7 +1,10 @@
 ### 分类列表
 
-清单来自于[https://www.educative.io/courses/grokking-the-coding-interview](https://www.educative.io/courses/grokking-the-coding-interview)
+清单来自于
 
+- [https://www.educative.io/courses/grokking-the-coding-interview](https://www.educative.io/courses/grokking-the-coding-interview)
+
+- [https://github.com/SharingSource/LogicStack-LeetCode/wiki](https://github.com/SharingSource/LogicStack-LeetCode/wiki)
 #### 01. 滑动窗口 (Pattern: Sliding Window)
 - [219. 存在重复元素 II](./pattern/sliding-window/0219.ContainsDuplicateII/solution.js)
 - [209. 长度最小的子数组](./pattern\sliding-window\0209.MinimumSizeSubarraySum\solution.js)
