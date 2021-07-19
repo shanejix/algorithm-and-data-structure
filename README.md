@@ -9,6 +9,7 @@
 - [219. 存在重复元素 II](./pattern/sliding-window/0219.ContainsDuplicateII/solution.js)
 - [209. 长度最小的子数组](./pattern\sliding-window\0209.MinimumSizeSubarraySum\solution.js)
 - [3. 无重复字符的最长子串](./pattern\sliding-window\0003.LongestSubstringWithoutRepeatingCharacters\solution.js)
+- [643. 子数组最大平均数 I](./pattern\pattern\sliding-window\0643.MaximumAverageSubarrayI\solution.js)
 #### 02. 双指针 (Pattern: Two Pointers)
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 #### 04. 区间合并 (Pattern: Merge Intervals)
