@@ -94,3 +94,35 @@ var findMaxAverage = function (nums, k) {
 
     return maxSum / k
 };
+
+// 方法二：前缀和
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+ var findMaxAverage = function (nums, k) {
+
+    let len = nums.length;
+
+    // 求前缀和 preSum[i] 表示 nums 的前 i 个数的和
+    let preSum = new Array(len + 1).fill(0);
+    for (let i = 1; i <= len; i++) {
+        preSum[i] = preSum[i - 1] + nums[i - 1]
+    }
+
+    let maxSum = preSum[k];
+
+    // end 表示遍历 nums 的个数
+    let end = k + 1;
+    while (end <= len) {
+        let start = end - k
+        // 区间和 <- 前缀和
+        let sum = preSum[end] - preSum[start];
+        maxSum = Math.max(maxSum, sum)
+        end++
+    }
+
+    return maxSum / k
+};
