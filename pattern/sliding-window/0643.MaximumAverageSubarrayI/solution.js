@@ -62,3 +62,35 @@ var findMaxAverage = function (nums, k) {
 
     return ans / k
 };
+
+// 方法一：滑动窗口 - 优化:直接维护窗口的和
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function (nums, k) {
+
+    let len = nums.length;
+
+    // 维护滑动窗口的和
+    let sum = 0;
+    // 滑动窗口的右侧下标
+    let end = 0
+    for (; end < k; end++) {
+        sum += nums[end]
+    }
+
+    let maxSum = sum;
+
+    // 窗口右移
+    while (end < len) {
+        // 随着 end 下标右移，不断更新 滑动窗口的和 sum
+        sum = sum + nums[end] - nums[end - k]
+        maxSum = Math.max(maxSum, sum)
+        end++
+    }
+
+    return maxSum / k
+};
