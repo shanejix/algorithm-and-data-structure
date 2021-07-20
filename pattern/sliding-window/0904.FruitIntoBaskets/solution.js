@@ -44,32 +44,51 @@
 
 // 🔥🔥🔥 翻译：求只包含两种元素的最长连续子序列
 
-// 方法一：滑动窗口
-
+// 方法一：滑动窗口 - 有问题
 /**
  * @param {number[]} fruits
  * @return {number}
  */
-var totalFruit = function (fruits) {
+ var totalFruit = function (fruits) {
     let len = fruits.length;
 
-    // 维护窗口内的种类个数
-    let set = new Set();
+    if (len <= 2) {
+        return len
+    }
 
-    set.add(fruits[0]);
-    set.add(fruits[1]);
+    let ans = 0;
+
+    // 维护窗口 种类 => 出现次数
+    let map = new Map();
+
+    map.set(fruits[0], (map.get(fruits[0]) || 0) + 1)
+    map.set(fruits[1], (map.get(fruits[1]) || 0) + 1);
 
     // 滑动窗口的右侧指针
     let end = 2
     // 滑动窗口左侧指针
     let start = 0
     while (end < len) {
-        set.add(fruits[end]);
-        while (set.size > 2) {
+        map.set(fruits[end], (map.get(fruits[end]) || 0) + 1);
+        while (uniSize(map) > 2) {
+            console.log(map.get(fruits[start]))
+            map.set(fruits[start], map.get(fruits[start]) - 1);
             start++
         }
+        ans = Math.max(ans, end - start + 1);
         end++
     }
 
-    return end - start
+    return ans
 };
+
+function uniSize(map) {
+    let set = new Set();
+    console.log(map)
+    for (let [fruit, count] of map) {
+        if (count > 0) {
+            set.add(fruit)
+        }
+    }
+    return set.size
+}
