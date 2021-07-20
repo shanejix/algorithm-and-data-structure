@@ -45,11 +45,12 @@
 // 🔥🔥🔥 翻译：求只包含两种元素的最长连续子序列
 
 // 方法一：滑动窗口 - 有问题
+
 /**
  * @param {number[]} fruits
  * @return {number}
  */
- var totalFruit = function (fruits) {
+var totalFruit = function (fruits) {
     let len = fruits.length;
 
     if (len <= 2) {
@@ -58,7 +59,7 @@
 
     let ans = 0;
 
-    // 维护窗口 种类 => 出现次数
+    // 记录窗口map 种类 => 出现次数
     let map = new Map();
 
     map.set(fruits[0], (map.get(fruits[0]) || 0) + 1)
@@ -71,7 +72,6 @@
     while (end < len) {
         map.set(fruits[end], (map.get(fruits[end]) || 0) + 1);
         while (uniSize(map) > 2) {
-            console.log(map.get(fruits[start]))
             map.set(fruits[start], map.get(fruits[start]) - 1);
             start++
         }
@@ -84,7 +84,6 @@
 
 function uniSize(map) {
     let set = new Set();
-    console.log(map)
     for (let [fruit, count] of map) {
         if (count > 0) {
             set.add(fruit)
@@ -92,3 +91,36 @@ function uniSize(map) {
     }
     return set.size
 }
+
+
+// 方法一：滑动窗口 - 优化
+
+/**
+ * @param {number[]} fruits
+ * @return {number}
+ */
+var totalFruit = function (fruits) {
+
+    const k = 2;
+    let res = 0;
+
+    // 记录窗口map 种类 => 出现次数
+    let map = new Map();
+    // 滑动窗口左右指针
+    let left = right = 0;
+
+    while (right < fruits.length) {
+        map.set(fruits[right], (map.get(fruits[right]) || 0) + 1)
+        while (map.size > k) {
+            map.set(fruits[left], (map.get(fruits[left]) - 1));
+            if (map.get(fruits[left]) === 0) {
+                map.delete(fruits[left]) // 🚩
+            }
+            left++
+        }
+        res = Math.max(res, right - left + 1);
+        right++
+    }
+
+    return res
+};
