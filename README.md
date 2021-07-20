@@ -12,6 +12,7 @@
 - [0003. 无重复字符的最长子串](./pattern\sliding-window\0003.LongestSubstringWithoutRepeatingCharacters\solution.js)
 - [0643. 子数组最大平均数 I](./pattern\sliding-window\0643.MaximumAverageSubarrayI\solution.js)
 - [1423. 可获得的最大点数](.\pattern/sliding-window/1423.MaximumPointsYouCanObtainfromCards/solution.js)
+- [0904. 水果成篮](.\pattern\sliding-window\0904.FruitIntoBaskets\solution.js)
 #### 02. 双指针 (Pattern: Two Pointers)
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 #### 04. 区间合并 (Pattern: Merge Intervals)
