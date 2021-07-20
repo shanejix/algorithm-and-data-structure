@@ -14,6 +14,7 @@
 - [1423. 可获得的最大点数](.\pattern/sliding-window/1423.MaximumPointsYouCanObtainfromCards/solution.js)
 - [0904. 水果成篮](./pattern/sliding-window/0904.FruitIntoBaskets/solution.js)
 #### 02. 双指针 (Pattern: Two Pointers)
+- [0026. 删除有序数组中的重复项](pattern\two-pointers\0026.RemoveDuplicatesfromSortedArray\solution.js)
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 #### 04. 区间合并 (Pattern: Merge Intervals)
 #### 05. 循环排序 (Pattern: Cyclic Sort)
