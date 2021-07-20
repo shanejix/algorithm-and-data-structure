@@ -57,12 +57,6 @@
     // 滑动窗口宽度
     let width = len - k;
 
-    const total = cardPoints.reduce((acc, card) => acc += card, 0);
-
-    if (width === 0) {
-        return total
-    }
-
     // 滑动窗口右侧指针
     let end = 0;
     // 维护滑动窗口的和
@@ -79,6 +73,8 @@
         minSum = Math.min(minSum, sum)
         end++
     }
+
+    const total = cardPoints.reduce((acc, card) => acc += card, 0);
 
     return total - minSum;
 };
