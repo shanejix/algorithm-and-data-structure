@@ -44,7 +44,7 @@
 
 // 🔥🔥🔥 翻译：求只包含两种元素的最长连续子序列
 
-// 方法一：滑动窗口 - 有问题
+// 🎨 方法一：滑动窗口 - 有问题
 
 /**
  * @param {number[]} fruits
@@ -92,8 +92,9 @@ function uniSize(map) {
     return set.size
 }
 
+// 🎨 方法一：滑动窗口 + map - 优化
 
-// 方法一：滑动窗口 - 优化
+// 📝 思路：构建区间 [left,right] 的窗口，并且用map记录窗口中下标标对应元素出现的次数，right 遍历数组时，更新追加right对应元素的map中出现的次数，不满足条件则右移left直到满足，过程后中不断更新 res
 
 /**
  * @param {number[]} fruits
