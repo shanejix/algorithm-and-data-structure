@@ -63,7 +63,9 @@ var findMaxAverage = function (nums, k) {
     return ans / k
 };
 
-// 方法一：滑动窗口 - 优化:直接维护窗口的和
+// 🎨 方法一：滑动窗口 - 优化:直接维护窗口的和
+
+// 📝 思路：用 end 遍历数组，过程中更新 [end -k,end] 固定窗口长度为 k 的区间和，并更新 ans
 
 /**
  * @param {number[]} nums
@@ -95,14 +97,16 @@ var findMaxAverage = function (nums, k) {
     return maxSum / k
 };
 
-// 方法二：前缀和
+// 🎨 方法二：前缀和
+
+// 📝 思路：用前缀和求区间和
 
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {number}
  */
- var findMaxAverage = function (nums, k) {
+var findMaxAverage = function (nums, k) {
 
     let len = nums.length;
 
