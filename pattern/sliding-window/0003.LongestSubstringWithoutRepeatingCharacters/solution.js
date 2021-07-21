@@ -72,7 +72,7 @@ var lengthOfLongestSubstring = function (s) {
 
 // 🎨 方法二：滑动窗口 + map
 
-// 📝 思路：构建区间 [start,end] 的窗口，并且用map记录窗口中小标对应元素出现的次数，end遍历字符串时，更新追加end对应元素的map中出现的次数，不满足条件则右移start直到满足，过程后中不断更新ans
+// 📝 思路：构建区间 [start,end] 的窗口，并且用map记录窗口中下标对应元素出现的次数，end遍历字符串时，更新追加end对应元素的map中出现的次数，不满足条件则右移start直到满足，过程后中不断更新ans
 
 /**
  * @param {string} s

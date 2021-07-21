@@ -96,6 +96,8 @@ function uniSize(map) {
 
 // 📝 思路：构建区间 [left,right] 的窗口，并且用map记录窗口中下标标对应元素出现的次数，right 遍历数组时，更新追加right对应元素的map中出现的次数，不满足条件则右移left直到满足，过程后中不断更新 res
 
+// 😁 类似：https://github.com/shanejix/algorithm-and-data-structure/blob/5219f60e19fbcf616aa84885583402bf8f5d4a39/pattern/sliding-window/0003.LongestSubstringWithoutRepeatingCharacters/solution.js
+
 /**
  * @param {number[]} fruits
  * @return {number}
