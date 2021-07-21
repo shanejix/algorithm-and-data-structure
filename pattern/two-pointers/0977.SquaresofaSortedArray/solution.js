@@ -27,7 +27,9 @@
 // 链接：https://leetcode-cn.com/problems/squares-of-a-sorted-array
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-// 方法一：双指针
+// 🎨 方法一：双指针
+
+// 📝 思路：头尾同时遍历非单调递减数组并将结果倒序记录到结果数组
 
 /**
  * @param {number[]} nums
