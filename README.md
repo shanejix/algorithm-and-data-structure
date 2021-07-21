@@ -16,7 +16,7 @@
 #### 02. 双指针 (Pattern: Two Pointers)
 - [0026. 删除有序数组中的重复项](pattern/two-pointers/0026.RemoveDuplicatesfromSortedArray/solution.js)
 - [0977. 有序数组的平方](pattern/two-pointers/0977.SquaresofaSortedArray/solution.js)
-- [0015. 三数之和](pattern/two-pointers/0026.RemoveDuplicatesfromSortedArray/solution.js)
+- [0015. 三数之和](pattern\two-pointers\0015.3Sum\solution.js)
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 #### 04. 区间合并 (Pattern: Merge Intervals)
 #### 05. 循环排序 (Pattern: Cyclic Sort)

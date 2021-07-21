@@ -47,7 +47,9 @@
 // 链接：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-// 方法一：双指针
+// 🎨 方法一：双指针
+
+// 📝 思路：初始时first和last指针分别指向第一个和第二个元素，last向右遍历中，如果和first所在元素不通，则追加到first后面（替换），遍历结束，first的长度就是去重后数组的长度
 
 /**
  * @param {number[]} nums
