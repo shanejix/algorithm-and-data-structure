@@ -44,14 +44,16 @@
 // 链接：https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-// 方法一：滑动窗口
+// 🎨 方法一：滑动窗口 
+
+// 📝 思路： 转化为利用滑动窗口求固定长度序列之和的最小值
 
 /**
  * @param {number[]} cardPoints
  * @param {number} k
  * @return {number}
  */
- var maxScore = function (cardPoints, k) {
+var maxScore = function (cardPoints, k) {
     let len = cardPoints.length;
 
     // 滑动窗口宽度
