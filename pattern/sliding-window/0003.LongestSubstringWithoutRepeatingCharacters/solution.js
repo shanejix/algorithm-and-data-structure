@@ -33,7 +33,9 @@
 // 链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-// 方法一：暴力法
+// 🎨 方法一：暴力法
+
+// 📝 思路：用下标 i 遍历字符串，固定 i 时，求得所有 以 i 为起点满足条件的子串，获得最终结果 
 
 /**
  * @param {string} s
@@ -68,7 +70,9 @@ var lengthOfLongestSubstring = function (s) {
     return ans
 };
 
-// 方法二：滑动窗口
+// 🎨 方法二：滑动窗口 + map
+
+// 📝 思路：构建区间 [start,end] 的窗口，并且用map记录窗口中小标对应元素出现的次数，end遍历字符串时，更新追加end对应元素的map中出现的次数，不满足条件则右移start直到满足，过程后中不断更新ans
 
 /**
  * @param {string} s
