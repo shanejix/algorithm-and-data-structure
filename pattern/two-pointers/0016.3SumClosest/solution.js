@@ -1,36 +1,27 @@
-// Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
-
-// Notice that the solution set must not contain duplicate triplets.
+// Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
 //  
 
 // Example 1:
 
-// Input: nums = [-1,0,1,2,-1,-4]
-// Output: [[-1,-1,2],[-1,0,1]]
-// Example 2:
-
-// Input: nums = []
-// Output: []
-// Example 3:
-
-// Input: nums = [0]
-// Output: []
+// Input: nums = [-1,2,1,-4], target = 1
+// Output: 2
+// Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 //  
 
 // Constraints:
 
-// 0 <= nums.length <= 3000
-// -105 <= nums[i] <= 105
+// 3 <= nums.length <= 10^3
+// -10^3 <= nums[i] <= 10^3
+// -10^4 <= target <= 10^4
 
 // 来源：力扣（LeetCode）
-// 链接：https://leetcode-cn.com/problems/3sum
+// 链接：https://leetcode-cn.com/problems/3sum-closest
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
 
 // 🎨 方法一：排序 + 双指针
 
-// 📝 思路：利用升序数组，在固定一个数字（下标i），求剩余两数之和在 i 右侧区间等于指定和（将三数之和转化为两数之和 => 双指针求升序数组两数之和等于指定和）
+// 📝 思路：有序数组，利用 i，j，k 三个指针，在 i 确定的情况下，使用 j ， k 双指针 遍历 i 右侧的和，
 
 /**
  * @param {number[]} nums
@@ -58,8 +49,7 @@ var threeSumClosest = function (nums, target) {
         let k = len - 1;
 
         while (j < k) {
-            // 跳过重复元素
-            if (j > i + 1 && j < len && nums[j] === nums[j - 1]) {
+            if (j > i && nums[j] === nums[j - 1]) {
                 j++
                 continue
             }
@@ -81,6 +71,4 @@ var threeSumClosest = function (nums, target) {
             }
         }
     }
-
-    return ans
 };
