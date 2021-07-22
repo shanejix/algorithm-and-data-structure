@@ -21,6 +21,7 @@
 - [0977. 有序数组的平方](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0977.SquaresofaSortedArray/solution.js)
 - [0015. 三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0015.3Sum/solution.js)
 - [0003. 无重复字符的最长子串](https://github.com/shanejix/algorithm-and-data-structure/blob/master/pattern/two-pointers/0003.LongestSubstringWithoutRepeatingCharacters/solution.js)
+- [0016. 最接近的三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/5ef1ae5760fc100983a1cd1d3ee2bcdb3e1ea800/pattern/two-pointers/0016.3SumClosest/solution.js)
 
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 
