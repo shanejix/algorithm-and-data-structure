@@ -46,37 +46,48 @@ var fourSum = function (nums, target) {
 
     let ans = [];
 
+    // 确定 i
     for (let i = 0; i < len; i++) {
 
-        let j = i + 1;
-
-        if (nums[j] === nums[j - 1]) {
-            j++
+        // 去重
+        if (i > 0 && nums[i] === nums[i - 1]) {
             continue
         }
 
-        let k = j + 1;
-        let l = len - 1
-
-        while (k < l) {
-            if (k > j + 1 && k < len && nums[k] === nums[k - 1]) {
-                k++
+        // 确定 j
+        for (let j = i + 1; j < len; j++) {
+            // 去重
+            if (j > i + 1 && nums[j] === nums[j - 1]) {
                 continue
             }
-            if (k > l) {
-                break;
-            }
 
-            let sum = nums[i] + nums[j] + nums[k] + nums[l];
+            let k = j + 1;
+            let l = len - 1
 
-            if (sum === target) {
-                ans.push([nums[i], nums[j], nums[k], nums[l]])
-            } else if (sum < target) {
-                k++
-            } else if (sum > target) {
-                l--
+            // 固定 i ，j,对 其 右侧区间使用双指针 k ，l 求和 
+            while (k < l) {
+                // 去重
+                while (k > j + 1 && k < len && nums[k] === nums[k - 1]) {
+                    k++
+                    continue
+                }
+                if (k > l) {
+                    break;
+                }
+
+                let sum = nums[i] + nums[j] + nums[k] + nums[l];
+
+                if (sum === target) {
+                    ans.push([nums[i], nums[j], nums[k], nums[l]])
+                } else if (sum < target) {
+                    k++
+                } else if (sum > target) {
+                    l--
+                }
             }
         }
+
+
     }
     return ans
 };
