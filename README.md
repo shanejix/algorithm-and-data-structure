@@ -23,6 +23,7 @@
 - [0015. 三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0015.3Sum/solution.js)
 - [0016. 最接近的三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/5ef1ae5760fc100983a1cd1d3ee2bcdb3e1ea800/pattern/two-pointers/0016.3SumClosest/solution.js)
 - [0018. 四数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum/solution.js)
+- [0027. 移除元素](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0027.RemoveElement/solution.js)
 
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 
