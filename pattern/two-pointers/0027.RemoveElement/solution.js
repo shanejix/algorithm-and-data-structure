@@ -53,7 +53,7 @@
 
 // 🎨 方法一：双指针
 
-// 📝 思路：用right遍历数组，用left记录不等于val的元素
+// 📝 思路：用 last 遍历数组，用 first 记录不等于 val 的元素
 
 /**
  * @param {number[]} nums
@@ -76,4 +76,32 @@ var removeElement = function (nums, val) {
 
     return first
 
+};
+
+// 🎨 方法一：双指针 - 优化
+
+// 📝 思路：双指针头尾遍历，将 val unshift 到数组末尾
+
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function (nums, val) {
+
+    let len = nums.length;
+
+    let first = 0;
+    let last = len;
+
+    while (first < last) {
+        if (nums[first] === val) {
+            nums[first] = nums[last - 1]
+            last--
+        } else {
+            first++
+        }
+    }
+
+    return last;
 };
