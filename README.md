@@ -17,6 +17,7 @@
 
 #### 02. 双指针 (Pattern: Two Pointers)
 
+- [0088. 合并两个有序数组](https://github.com/shanejix/algorithm-and-data-structure/blob/3690343d3b550c6212870f16c0a7adeb0e8b765b/pattern/two-pointers/0088.MergeSortedArray/solution.js)
 - [0026. 删除有序数组中的重复项](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0026.RemoveDuplicatesfromSortedArray/solution.js)
 - [0027. 移除元素](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0027.RemoveElement/solution.js)
 - [0977. 有序数组的平方](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0977.SquaresofaSortedArray/solution.js)
