@@ -40,6 +40,9 @@
 // 链接：https://leetcode-cn.com/problems/merge-sorted-array
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+// 🎨 方法一：双指针
+
+// 📝 思路：双指针分别逆序遍历两个数组，将较大值 unshift 到长数组末尾（赋值替换）
 
 /**
  * @param {number[]} nums1
