@@ -74,7 +74,7 @@ var detectCycle = function (head) {
 
 // 🎨 方法二：快慢执政
 
-// 📝 思路：https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/
+// 📝 思路：从快慢指针相遇的位置到环起点的步长 等于 从表头到环的起点的步长 https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/
 
 /**
  * @param {ListNode} head
