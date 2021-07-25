@@ -29,6 +29,8 @@
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 
 - [0141. Linked List Cycle](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum/solution.js)
+- [0142. Linked List Cycle II](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum/solution.js)
+- [0202. 快乐数](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum/solution.js)
 
 
 #### 04. 区间合并 (Pattern: Merge Intervals)
