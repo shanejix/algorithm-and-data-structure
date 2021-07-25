@@ -4,7 +4,7 @@ var path = require('path');
 
 
 var filesList = [];
-readFileList(path.resolve(__dirname, '../pattern'), filesList);
+readFileList(path.resolve(__dirname, '../leetcode'), filesList);
 // console.log(filesList);
 
 for (const filePath of filesList) {
@@ -14,7 +14,7 @@ for (const filePath of filesList) {
         // 将要创建的文件内容
         const content = fs.readFileSync(filePath, 'utf8')
         // 要创建的文件名
-        const fileName = filePath.split('/').filter((item) => /^[0-9]+/.test(item))[0];
+        const fileName = filePath.split('/').filter((item) => /[0-9]+/.test(item))[0];
         // 文件后缀
         const subfix = '.js'
         // 父级路径
