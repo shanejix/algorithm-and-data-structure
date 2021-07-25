@@ -14,7 +14,7 @@ for (const filePath of filesList) {
         // 将要创建的文件内容
         const content = fs.readFileSync(filePath, 'utf8')
         // 要创建的文件名
-        const fileName = filePath.split('/').filter((item) => /^[0-9]+/.test(item));
+        const fileName = filePath.split('/').filter((item) => /^[0-9]+/.test(item))[0];
         // 父级路径
         const faterPath = filePath.split(fileName)[0];
         // 写入文件
