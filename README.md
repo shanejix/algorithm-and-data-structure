@@ -36,6 +36,8 @@
 
 #### 04. 区间合并 (Pattern: Merge Intervals)
 
+- [0056. 合并区间](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum/solution.js)
+
 #### 05. 循环排序 (Pattern: Cyclic Sort)
 
 #### 06. 链表反转 (Pattern: In-place Reversal of a LinkedList)
