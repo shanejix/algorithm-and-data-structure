@@ -71,3 +71,43 @@ var detectCycle = function (head) {
 
     return ans
 };
+
+// 🎨 方法二：快慢执政
+
+// 📝 思路：https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+
+    if (head === null) {
+        return null
+    }
+
+    let slow = fast = head;
+
+    while (fast) {
+        slow = slow.next
+
+        if (fast.next !== null) {
+            fast = fast.next.next
+        } else {
+            return null
+        }
+
+        while (fast === slow) {
+            let ptr = head;
+
+            while (ptr !== slow) {
+                ptr = ptr.next
+                slow = slow.next
+            }
+
+            return ptr
+        }
+    }
+
+    return null
+};
