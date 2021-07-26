@@ -8,37 +8,11 @@
 
 #### 01. 滑动窗口 (Pattern: Sliding Window)
 
-- [0219. 存在重复元素 II](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/0219.ContainsDuplicateII.js)
-- [0209. 长度最小的子数组](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/0209.MinimumSizeSubarraySum.js)
-- [0003. 无重复字符的最长子串](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/0003.LongestSubstringWithoutRepeatingCharacters.js)
-- [0643. 子数组最大平均数 I](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/0643.MaximumAverageSubarrayI.js)
-- [1423. 可获得的最大点数](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/1423.MaximumPointsYouCanObtainfromCards.js)
-- [0904. 水果成篮](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/sliding-window/0904.FruitIntoBaskets.js)
-
 #### 02. 双指针 (Pattern: Two Pointers)
-
-- [0088. 合并两个有序数组](https://github.com/shanejix/algorithm-and-data-structure/blob/3690343d3b550c6212870f16c0a7adeb0e8b765b/pattern/two-pointers/0088.MergeSortedArray.js)
-- [0026. 删除有序数组中的重复项](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0026.RemoveDuplicatesfromSortedArray.js)
-- [0027. 移除元素](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0027.RemoveElement.js)
-- [0977. 有序数组的平方](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0977.SquaresofaSortedArray.js)
-- [0003. 无重复字符的最长子串](https://github.com/shanejix/algorithm-and-data-structure/blob/master/pattern/two-pointers/0003.LongestSubstringWithoutRepeatingCharacters.js)
-- [0015. 三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/pattern/two-pointers/0015.3Sum.js)
-- [0016. 最接近的三数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/5ef1ae5760fc100983a1cd1d3ee2bcdb3e1ea800/pattern/two-pointers/0016.3SumClosest.js)
-- [0018. 四数之和](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
 
 #### 03. 快慢指针 (Pattern: Fast & Slow pointers)
 
-- [0141. Linked List Cycle](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-- [0142. Linked List Cycle II](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-- [0202. 快乐数](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-- [0876. 链表的中间结点](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-
-
 #### 04. 区间合并 (Pattern: Merge Intervals)
-
-- [0056. 合并区间](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-- [0057. 插入区间](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
-- [0986. 区间列表的交集](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
 
 #### 05. 循环排序 (Pattern: Cyclic Sort)
 
