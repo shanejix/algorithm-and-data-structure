@@ -37,6 +37,8 @@
 #### 04. 区间合并 (Pattern: Merge Intervals)
 
 - [0056. 合并区间](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
+- [0057. 插入区间](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
+- [0986. 区间列表的交集](https://github.com/shanejix/algorithm-and-data-structure/blob/16e43e8784d6bd9bb07cbd13a1454abe188c7980/pattern/two-pointers/0018.4Sum.js)
 
 #### 05. 循环排序 (Pattern: Cyclic Sort)
 
