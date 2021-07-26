@@ -63,3 +63,24 @@ var missingNumber = function (nums) {
 
     return missed
 };
+
+// 🎨 方法一：位运算
+
+// 📝 思路：利用异或性质
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function (nums) {
+
+    let len = nums.length;
+
+    let missed = len;// [0]
+
+    for (let i = 0; i < len; i++) {
+        missed ^= nums[i] ^ i
+    }
+
+    return missed
+};
