@@ -59,3 +59,37 @@ var reverseList = function (head) {
 
     return newHead.next;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+// 🎨 方法一：头插法 - 优化
+
+// 📝 思路：遍历链表，依次插入新链表头部后面
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ var reverseList = function (head) {
+
+    let newHead = new ListNode(null);
+
+    let p = newHead;
+
+    while (head) {
+        let tmp = head
+        head = head.next
+
+        tmp.next = newHead.next;
+        newHead.next = tmp;
+
+    }
+
+    return newHead.next;
+};
