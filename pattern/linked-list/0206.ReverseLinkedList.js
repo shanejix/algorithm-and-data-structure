@@ -76,7 +76,7 @@ var reverseList = function (head) {
  * @param {ListNode} head
  * @return {ListNode}
  */
- var reverseList = function (head) {
+var reverseList = function (head) {
 
     let newHead = new ListNode(null);
 
@@ -92,4 +92,25 @@ var reverseList = function (head) {
     }
 
     return newHead.next;
+};
+
+// 🎨 方法二：递归 - 优化
+
+// 📝 思路：将已经反转部分的头部的next指向未被反转部分的尾部
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+
+    if (head === null || head.next === null) {
+        return head
+    }
+
+    let newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+
+    return newHead;
 };
