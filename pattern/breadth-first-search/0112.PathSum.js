@@ -63,3 +63,46 @@ var hasPathSum = function (root, targetSum) {
     return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val)
 
 };
+
+// 🎨 方法二：BFS
+
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ */
+var hasPathSum = function (root, targetSum) {
+
+    // 树可能为空
+    if (root === null) {
+        return false
+    }
+
+    // 储存将要遍历的节点
+    const queNode = [root];
+    // 储存将要遍历的节点的路径和
+    const queValue = [root.val]
+
+    while (queNode.length) {
+        let curNode = queNode.pop();
+        let pathVal = queValue.pop();
+
+        // 叶子节点
+        if (curNode.left === null && curNode.right === null) {
+            if (pathVal === targetSum) {
+                return true
+            }
+            continue;
+        }
+
+        if (curNode.left) {
+            queNode.push(curNode.left);
+            queValue.push(curNode.left.val + pathVal);
+        }
+
+        if (curNode.right) {
+            queNode.push(curNode.right);
+            queValue.push(curNode.right.val + pathVal);
+        }
+    }
+};
