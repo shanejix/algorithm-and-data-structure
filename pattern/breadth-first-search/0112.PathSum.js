@@ -66,6 +66,8 @@ var hasPathSum = function (root, targetSum) {
 
 // 🎨 方法二：BFS
 
+// 📝 思路：用两个队列分别存储节点和节点的路径和
+
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
