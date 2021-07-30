@@ -58,15 +58,15 @@ var levelOrder = function (root) {
 
         while (size) {
 
-            let top = queue.shift()
-            level.push(top.val)
+            let currNode = queue.shift()
+            level.push(currNode.val)
 
-            if (top.left) {
-                queue.push(top.left)
+            if (currNode.left) {
+                queue.push(currNode.left)
             }
 
-            if (top.right) {
-                queue.push(top.right)
+            if (currNode.right) {
+                queue.push(currNode.right)
             }
 
             size--
