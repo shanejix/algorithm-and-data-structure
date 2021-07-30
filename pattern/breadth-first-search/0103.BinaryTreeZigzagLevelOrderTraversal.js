@@ -52,7 +52,7 @@ var zigzagLevelOrder = function (root) {
     const ans = [];
     const queNode = [root]
 
-    let isZigzag = true
+    let isOrderLeft  = true
 
     while (queNode.length) {
         let size = queNode.length;
@@ -61,7 +61,7 @@ var zigzagLevelOrder = function (root) {
         while (size) {
             let currNode = queNode.shift();
 
-            if (isZigzag) {
+            if (isOrderLeft ) {
                 level.push(currNode.val);
             } else {
                 level.unshift(currNode.val);
@@ -80,7 +80,7 @@ var zigzagLevelOrder = function (root) {
 
         ans.push([...level]);
         level.length = 0;
-        isZigzag = !isZigzag
+        isOrderLeft  = !isOrderLeft 
     }
 
     return ans
