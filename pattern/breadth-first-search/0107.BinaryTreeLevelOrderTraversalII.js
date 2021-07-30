@@ -77,3 +77,47 @@ var levelOrderBottom = function (root) {
 
     return ans.reverse()
 };
+
+
+// 🎨 方法一：二叉树的按层遍历  + 优化
+
+// 📝 思路：同 102 题
+
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrderBottom = function (root) {
+
+    if (root === null) {
+        return []
+    }
+
+    const ans = [];
+    const queNode = [root]
+
+    while (queNode.length) {
+        let size = queNode.length;
+        const level = [];
+
+        while (size) {
+            let currNode = queNode.shift();
+            level.push(currNode.val);
+
+            if (currNode.left) {
+                queNode.push(currNode.left)
+            }
+
+            if (currNode.right) {
+                queNode.push(currNode.right);
+            }
+
+            size--
+        }
+
+        ans.unshift([...level]); // 新元素从头加入level 这里可以维护一个链表
+        level.length = 0;
+    }
+
+    return ans
+};
