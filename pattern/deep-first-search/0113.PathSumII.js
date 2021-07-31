@@ -43,6 +43,11 @@
  * }
  */
 
+// 🎨 方法二：DFS
+
+// 📝 思路：深度优先遍历时，存储路径
+
+
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
@@ -50,12 +55,40 @@
  */
 var pathSum = function (root, targetSum) {
 
+    ans = [];
+    const path = []
+
+    dfs(root, targetSum, path);
+
+    return ans
 
 };
 
-// 🎨 方法二：BFS
+function dfs(root, targetSum, path) {
+    if (root === null) {
+        return []
+    }
 
-// 📝 思路：用两个队列分别存储节点和节点的路径
+    path.push(root.val)
+
+    if (root.left === null && root.right === null) {
+        const pathSum = path.reduce((acc, num) => acc + num, 0)
+        if (pathSum === targetSum) {
+            ans.push([...path]);
+        }
+    }
+
+    if (root.left) {
+        dfs(root.left, targetSum, path)
+    }
+
+    if (root.right) {
+        dfs(root.right, targetSum, path)
+    }
+
+    path.pop();
+
+}
 
 /**
  * Definition for a binary tree node.
@@ -65,6 +98,11 @@ var pathSum = function (root, targetSum) {
  *     this.right = (right===undefined ? null : right)
  * }
  */
+
+// 🎨 方法二：BFS
+
+// 📝 思路：用两个队列分别存储节点和节点的路径
+
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
