@@ -30,6 +30,66 @@
 // 链接：https://leetcode-cn.com/problems/path-sum-ii
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+// 🎨 方法一：DFS
+
+// 📝 思路：用两个队列分别存储节点和节点的路径
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 🎨 方法二：DFS
+
+// 📝 思路：深度优先遍历时，存储路径
+
+
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {number[][]}
+ */
+ var pathSum = function (root, targetSum) {
+
+    ans = [];
+    const path = []
+
+    dfs(root, targetSum, path);
+
+    return ans
+
+};
+
+function dfs(root, targetSum, path) {
+    if (root === null) {
+        return []
+    }
+
+    path.push(root.val)
+
+    if (root.left === null && root.right === null) {
+        const pathSum = path.reduce((acc, num) => acc + num, 0)
+        if (pathSum === targetSum) {
+            ans.push([...path]);
+        }
+    }
+
+    if (root.left) {
+        dfs(root.left, targetSum, path)
+    }
+
+    if (root.right) {
+        dfs(root.right, targetSum, path)
+    }
+
+    path.pop();
+
+}
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -43,14 +103,6 @@
 
 // 📝 思路：用两个队列分别存储节点和节点的路径
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
