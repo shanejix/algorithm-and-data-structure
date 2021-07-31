@@ -29,6 +29,8 @@
 
 // 🎨 方法一：DFS
 
+// 📝 思路: 前缀和
+
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
@@ -36,30 +38,45 @@
  */
 var pathSum = function (root, targetSum) {
 
+    // 全局变量 hashmap 用于存储前缀和 以及 对应的 个数
     map = new Map();
+    // case: []
     map.set(0, 1);
 
+    // 全局变量 目标和
     target = targetSum;
 
     return dfs(root, 0);
 
 };
 
+/**
+ * dfs
+ * @param {*} root 
+ * @param {*} currSum 当前路径上的和
+ * @returns 
+ */
 function dfs(root, currSum) {
     if (root === null) {
         return 0;
     }
 
+    // 当前路径和
     currSum += root.val
-
+    // 当前路径前的 路径和 是否存在 currSum - target；没有则为 0 
     let res = map.get(currSum - target) || 0;
+    // 更新当前 路径和  的 个数
     map.set(currSum, (map.get(currSum) || 0) + 1);
 
+    // 递归左子树
     let left = dfs(root.left, currSum)
+    // 递归右子树
     let right = dfs(root.right, currSum)
 
+    // 回溯后 更新当前 路径和 的 个数
     map.set(currSum, map.get(currSum) - 1);
 
+    // 当前节点 + 左子树 + 右子树 的 结果
     return res + left + right;
 }
 
