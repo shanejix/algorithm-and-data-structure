@@ -69,3 +69,62 @@ function dfs(root, deep, minDeep) {
 
     return Math.min(minDeep, minDeepLeft, minDeepRight)
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// 🎨 方法二：BFS
+
+// 📝 思路：用两个队列分别存储节点和节点的深度
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDepth = function (root) {
+
+    if (root === null) {
+        return 0
+    }
+
+    const queNode = [root]
+    const queDeep = [1];
+
+    let minDeep = Infinity
+
+    while (queNode.length) {
+
+        let size = queNode.length;
+
+        while (size) {
+            let currNode = queNode.shift();
+            let currDeep = queDeep.shift();
+
+            if (currNode.left === null && currNode.right === null) {
+                minDeep = Math.min(minDeep, currDeep);
+            }
+
+            if (currNode.left) {
+                queNode.push(currNode.left)
+                queDeep.push(currDeep + 1);
+            }
+
+            if (currNode.right) {
+                queNode.push(currNode.right)
+                queDeep.push(currDeep + 1);
+            }
+
+            size--
+        }
+    }
+
+    return minDeep
+};
+
