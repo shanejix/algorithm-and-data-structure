@@ -26,6 +26,46 @@
 // 链接：https://leetcode-cn.com/problems/path-sum-iii
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+
+// 🎨 方法一：DFS
+
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {number[][]}
+ */
+var pathSum = function (root, targetSum) {
+
+    map = new Map();
+    map.set(0, 1);
+
+    target = targetSum;
+
+    return dfs(root, 0);
+
+};
+
+function dfs(root, currSum) {
+    if (root === null) {
+        return 0;
+    }
+
+    currSum += root.val
+
+    let res = map.get(currSum - target) || 0;
+    map.set(currSum, (map.get(currSum) || 0) + 1);
+
+    let left = dfs(root.left, currSum)
+    let right = dfs(root.right, currSum)
+
+    map.set(currSum, map.get(currSum) - 1);
+
+    return res + left + right;
+}
+
+
+
+
 // 🎨 方法一：DFS
 
 // 📝 思路: todo 有错误
