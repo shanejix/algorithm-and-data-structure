@@ -42,11 +42,13 @@
 // 链接：https://leetcode-cn.com/problems/find-median-from-data-stream
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+// 🎨 方法一：排序
+
 /**
  * initialize your data structure here.
  */
 var MedianFinder = function () {
-
+    this.data = []
 };
 
 /** 
@@ -54,14 +56,22 @@ var MedianFinder = function () {
  * @return {void}
  */
 MedianFinder.prototype.addNum = function (num) {
-
+    this.data.push(num)
 };
 
 /**
  * @return {number}
  */
 MedianFinder.prototype.findMedian = function () {
-
+    
+    this.data.sort((a, b) => a - b)
+    const mid = Math.floor(this.data.length / 2);
+    
+    if (this.data.length % 2) {
+        return this.data[mid]
+    } else {
+        return (this.data[mid] + this.data[mid - 1]) / 2
+    }
 };
 
 /**
