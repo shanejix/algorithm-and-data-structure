@@ -80,3 +80,7 @@ MedianFinder.prototype.findMedian = function () {
  * obj.addNum(num)
  * var param_2 = obj.findMedian()
  */
+
+// 🎨 方法二：插入排序
+
+// 📝 思路：保持输入容器始终排序
