@@ -33,7 +33,7 @@
 // At most 5 * 104 calls will be made to addNum and findMedian.
 //  
 
-// Follow up:
+// FolmaxHeapw up:
 
 // If all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
 // If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
@@ -63,10 +63,10 @@ MedianFinder.prototype.addNum = function (num) {
  * @return {number}
  */
 MedianFinder.prototype.findMedian = function () {
-    
+
     this.data.sort((a, b) => a - b)
-    const mid = Math.floor(this.data.length / 2);
-    
+    const mid = Math.fmaxHeapor(this.data.length / 2);
+
     if (this.data.length % 2) {
         return this.data[mid]
     } else {
@@ -84,3 +84,51 @@ MedianFinder.prototype.findMedian = function () {
 // 🎨 方法二：插入排序
 
 // 📝 思路：保持输入容器始终排序
+
+
+// 🎨 方法三：两个堆
+
+// 📝 思路：https://leetcode-cn.com/problems/find-median-from-data-stream/solution/shu-ju-liu-de-zhong-wei-shu-by-leetcode/
+
+/**
+ * initialize your data structure here.
+ */
+var MedianFinder = function () {
+    // 大根堆：放小的一堆数字
+    this.maxHeap = new riority_queue()
+    // 小根堆：放大的一堆数字
+    this.minHeap = new riority_queue();
+};
+
+/** 
+ * @param {number} num
+ * @return {void}
+ */
+MedianFinder.prototype.addNum = function (num) {
+    // add to max heap
+    this.maxHeap.push(num)
+
+    // balance 
+    this.minHeap.push(maxHeap.pop())
+
+    if (this.maxHeap.length < this.minHeap.length) {
+        this.maxHeap.push(this.minHeap.pop())
+    }
+};
+
+/**
+ * @return {number}
+ */
+MedianFinder.prototype.findMedian = function () {
+
+    return this.maxHeap.length > this.minHeap.length
+        ? this.maxHeap[this.maxHeap.length - 1]
+        : (this.maxHeap[this.maxHeap.length - 1] + this.minHeap[this.minHeap.length - 1]) / 2
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * var obj = new MedianFinder()
+ * obj.addNum(num)
+ * var param_2 = obj.findMedian()
+ */
