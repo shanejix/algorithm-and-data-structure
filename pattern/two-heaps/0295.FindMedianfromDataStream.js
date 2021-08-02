@@ -93,11 +93,17 @@ MedianFinder.prototype.findMedian = function () {
 /**
  * initialize your data structure here.
  */
+
+class Priority_Queue { }
+
+/**
+ * initialize your data structure here.
+ */
 var MedianFinder = function () {
     // 大根堆：放小的一堆数字
-    this.maxHeap = new riority_queue()
+    this.maxHeap = new Priority_Queue()
     // 小根堆：放大的一堆数字
-    this.minHeap = new riority_queue();
+    this.minHeap = new Priority_Queue();
 };
 
 /** 
@@ -132,3 +138,4 @@ MedianFinder.prototype.findMedian = function () {
  * obj.addNum(num)
  * var param_2 = obj.findMedian()
  */
+
