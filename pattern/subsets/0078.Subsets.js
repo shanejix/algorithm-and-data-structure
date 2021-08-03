@@ -34,19 +34,30 @@
  */
 var subsets = function (nums) {
 
+    // 用 target 记录选中的结果
     const target = [];
     const ans = [];
 
+    /**
+     * 对数组nums深度优先遍历
+     * @param {*} current 当前位置
+     * @param {*} nums 
+     * @returns 
+     */
     const dfs = (current, nums) => {
 
+        // 递归结束条件：当深度进入数组nums最大长度（深度）nums.length -1 的下一层 nums.length
         if (current === nums.length) {
+            // 记录当前选择的结果
             ans.push(target.slice())
             return;
         }
 
+        // 选中当前层
         target.push(nums[current])
         dfs(current + 1, nums)
 
+        // 不选中当前层
         target.pop();
         dfs(current + 1, nums)
 
