@@ -31,6 +31,48 @@
 // 链接：https://leetcode-cn.com/problems/combinations
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+// 🎨 方法一：回溯递归
+
+// 📝 思路：测试不通过
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function (n, k) {
+    const ans = [];
+    const target = [];
+
+    if (k <= 0 || n < k) {
+        return res;
+    }
+
+    const dfs = (n, deep) => {
+
+        if (target.length + (n - deep + 1) < k) {
+            ans.push(target.slice());
+            return;
+        }
+
+        target.push(deep);
+        dfs(n, deep + 1);
+
+        target.pop()
+        dfs(n, deep + 1);
+
+    }
+
+    dfs(n, 1)
+
+    return ans;
+};
+
+
+// 🎨 方法一：回溯递归
+
+// 📝 思路：测试不通过
+
 /**
  * @param {number} n
  * @param {number} k
@@ -47,7 +89,7 @@ var combine = function (n, k) {
     const dfs = (n, deep) => {
 
         if (target.length === k) {
-            ans.push(target);
+            ans.push(target.slice());
             return;
         }
 
@@ -59,7 +101,7 @@ var combine = function (n, k) {
 
     }
 
-    dfs(n, 0)
+    dfs(n, 1)
 
     return ans;
 };
