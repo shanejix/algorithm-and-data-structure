@@ -28,7 +28,7 @@
 
 // 🎨 方法一：回溯递归
 
-// 📝 思路：https://leetcode-cn.com/problems/permutations/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-mfrp/
+// 📝 思路：递归树，用used记录已经选择的num，在叶子节点求得结果 https://leetcode-cn.com/problems/permutations/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-mfrp/
 
 /**
  * @param {number[]} nums
@@ -39,10 +39,17 @@ var permute = function (nums) {
     const target = [];
     const used = [];
 
+    /**
+     * 深度优先遍历nums
+     * @param {*} nums 
+     * @param {*} deep 深度/宽度/层
+     * @param {*} used 记录nums中已经选择的num
+     */
     const dfs = (nums, deep, used) => {
 
         if (deep >= nums.length) {
             ans.push(target.slice())
+            return;
         }
 
         for (let i = 0; i < nums.length; i++) {
