@@ -71,13 +71,13 @@ var subsetsWithDup = function (nums) {
 
 // 🎨 方法一：回溯 - 优化
 
-// 📝 思路：先将数组排序；递归时，若发现没有选择上一个数，且当前数字与上一个数相同，则可以跳过当前生成的子集
+// 📝 思路：https://leetcode-cn.com/problems/subsets-ii/solution/90-zi-ji-iiche-di-li-jie-zi-ji-wen-ti-ru-djmf/
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
 var subsetsWithDup = function (nums) {
-
+    // 去重需要排序
     nums.sort((a, b) => a - b);
 
     const ans = [];
@@ -98,6 +98,7 @@ var subsetsWithDup = function (nums) {
 
         dfs(nums, deep + 1, false);
 
+        // 🔥树层去重区别与树枝去重：递归时，若发现没有选择上一个数，且当前数字与上一个数相同，则可以跳过当前生成的子集
         if (!choosePre && nums[deep - 1] === nums[deep]) {
             return
         }
