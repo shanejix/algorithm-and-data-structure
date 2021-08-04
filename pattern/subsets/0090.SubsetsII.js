@@ -72,6 +72,7 @@ var subsetsWithDup = function (nums) {
 // 🎨 方法一：回溯 - 优化
 
 // 📝 思路：https://leetcode-cn.com/problems/subsets-ii/solution/90-zi-ji-iiche-di-li-jie-zi-ji-wen-ti-ru-djmf/
+
 /**
  * @param {number[]} nums
  * @return {number[][]}
@@ -112,4 +113,41 @@ var subsetsWithDup = function (nums) {
 
     return ans
 
+};
+
+// 🎨 方法一：回溯 - 优化 - 宁一种实现
+
+// 📝 思路：https://leetcode-cn.com/problems/subsets-ii/solution/90-zi-ji-iiche-di-li-jie-zi-ji-wen-ti-ru-djmf/
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsetsWithDup = function (nums) {
+    let ans = []
+    let path = []
+
+    nums.sort((a, b) => a - b);
+
+    function dfs(nums, deep) {
+
+        ans.push(path.slice(0))
+
+        if (deep >= nums.length) {
+            return
+        }
+
+        for (let i = deep; i < nums.length; i++) {
+            if (i > deep && nums[i] === nums[i - 1]) {
+                continue
+            }
+            path.push(nums[i])
+            dfs(nums, i + 1)
+            path.pop()
+        }
+    }
+
+    dfs(0, nums)
+
+    return ans
 };
