@@ -70,4 +70,26 @@ var subsets = function (nums) {
 
 // 🎨 方法二：迭代
 
-// 📝 思路：回溯思想
+// 📝 思路：发现 0/1 序列对应的二进制数正好从 0 到 2^n - 1; 可以枚举 mask in [0, 2^n - 1] 构建所有的子集
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function (nums) {
+    const ans = [];
+    const n = nums.length;
+
+    // 生成 0/1 字符串
+    for (let mask = 0; mask < (1 << n); ++mask) {
+        const t = [];
+        for (let i = 0; i < n; ++i) {
+            // 对于数组中的每个数，如果 0 / 1 字符串中该数位为 1 则加入子集 反之跳过
+            if (mask & (1 << i)) {
+                t.push(nums[i]);
+            }
+        }
+        ans.push(t);
+    }
+    return ans;
+};
