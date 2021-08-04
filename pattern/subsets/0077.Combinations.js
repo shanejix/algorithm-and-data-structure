@@ -37,5 +37,29 @@
  * @return {number[][]}
  */
 var combine = function (n, k) {
+    const ans = [];
+    const target = [];
 
+    if (k <= 0 || n < k) {
+        return res;
+    }
+
+    const dfs = (n, deep) => {
+
+        if (target.length === k) {
+            ans.push(target);
+            return;
+        }
+
+        for (let i = deep; i <= n; i++) {
+            target.push(i);
+            dfs(n, deep + 1);
+            target.pop();
+        }
+
+    }
+
+    dfs(n, 0)
+
+    return ans;
 };
