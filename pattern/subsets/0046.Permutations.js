@@ -52,6 +52,7 @@ var permute = function (nums) {
             return;
         }
 
+        // 回溯递归，递归树的递归过程是纵向的，for循环是横向的
         for (let i = 0; i < nums.length; i++) {
             const currNum = nums[i];
 
