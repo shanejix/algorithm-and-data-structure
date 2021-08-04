@@ -38,6 +38,12 @@ var subsetsWithDup = function (nums) {
     const set = new Set();
     const target = [];
 
+    /**
+     * 深度优先遍历数组nums
+     * @param {*} nums 
+     * @param {*} deep 深度/宽度
+     * @returns 
+     */
     const dfs = (nums, deep) => {
         if (deep >= nums.length) {
             set.add(JSON.stringify([...target]));
