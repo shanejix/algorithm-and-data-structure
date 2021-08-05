@@ -42,28 +42,33 @@
  */
 var combine = function (n, k) {
     const ans = [];
-    const target = [];
 
     if (k <= 0 || n < k) {
         return res;
     }
 
-    const dfs = (n, deep) => {
+    const dfs = (deep, target) => {
 
+        // 剪枝：target 长度加上区间 [deep, n] 的长度小于 k，不可能构造出长度为 k 的 target
         if (target.length + (n - deep + 1) < k) {
-            ans.push(target.slice());
+
             return;
         }
 
-        target.push(deep);
-        dfs(n, deep + 1);
+        // 记录合法的答案
+        if (target.length === k) {
+            ans.push(target.slice())
+            return;
+        }
 
-        target.pop()
-        dfs(n, deep + 1);
+        // 考虑选择当前位置
+        dfs(deep + 1, [...target, deep]);
+        // 不考虑选择当前位置
+        dfs(deep + 1, [...target]);
 
     }
 
-    dfs(n, 1)
+    dfs(1, [])
 
     return ans;
 };
