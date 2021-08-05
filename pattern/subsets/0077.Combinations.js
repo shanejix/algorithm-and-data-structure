@@ -97,7 +97,7 @@ var combine = function (n, k) {
         return res;
     }
 
-    const dfs = (n, deep) => {
+    const dfs = (deep, target) => {
 
         if (target.length === k) {
             ans.push(target.slice());
@@ -106,13 +106,13 @@ var combine = function (n, k) {
 
         for (let i = deep; i <= n; i++) {
             target.push(i);
-            dfs(n, deep + 1);
+            dfs(deep + 1, target);
             target.pop();
         }
 
     }
 
-    dfs(n, 1)
+    dfs(1, target)
 
     return ans;
 };
