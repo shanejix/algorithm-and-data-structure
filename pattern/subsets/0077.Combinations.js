@@ -82,7 +82,7 @@ var combine = function (n, k) {
 
 // 🎨 方法一：回溯递归 - 另一种
 
-// 📝 思路：有bug
+// 📝 思路：有bug https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/
 
 /**
  * @param {number} n
