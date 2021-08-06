@@ -44,5 +44,5 @@
 
 ### 思维导图
 
-![solution-method](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/assets-method.png)
-![data-structure](https://github.com/shanejix/algorithm-and-data-structure/blob/62f6224b6ca97a622b256f397ad5f0b474096efe/assets/data-structure.png)
+![solution-method](./assets/solution-method.png)
+![data-structure](./assets/data-structure.png)
