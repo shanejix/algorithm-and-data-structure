@@ -34,13 +34,11 @@
 
 // 🎨 方法一：回溯
 
-// 📝 思路：有bug
-
 /**
  * @param {string} s
  * @return {string[]}
  */
-var letterCasePermutation = function (s) {
+ var letterCasePermutation = function (s) {
 
     const ans = [];
 
@@ -56,15 +54,15 @@ var letterCasePermutation = function (s) {
 
             if (isFinite(currLetter)) {
                 target.push(currLetter)
-                dfs(letters, deep + 1, target);
+                dfs(letters, i + 1, target);
                 target.pop();
             } else {
                 target.push(currLetter.toUpperCase())
-                dfs(letters, deep + 1, target);
+                dfs(letters, i + 1, target);
                 target.pop();
 
                 target.push(currLetter.toLowerCase());
-                dfs(letters, deep + 1, target);
+                dfs(letters, i + 1, target);
                 target.pop();
             }
 
