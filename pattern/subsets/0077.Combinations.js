@@ -33,8 +33,6 @@
 
 // 🎨 方法一：回溯递归
 
-// 📝 思路：测试不通过
-
 /**
  * @param {number} n
  * @param {number} k
@@ -82,7 +80,7 @@ var combine = function (n, k) {
 
 // 🎨 方法一：回溯递归 - 另一种
 
-// 📝 思路：有bug https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/
+// 📝 思路：https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/
 
 /**
  * @param {number} n
@@ -106,7 +104,7 @@ var combine = function (n, k) {
 
         for (let i = deep; i <= n; i++) {
             target.push(i);
-            dfs(deep + 1, target);
+            dfs(i + 1, target); // 🔥 注意 i + 1
             target.pop();
         }
 
