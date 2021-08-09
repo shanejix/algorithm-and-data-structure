@@ -70,7 +70,7 @@ function getRightBorder(nums, target) {
     while (left <= right) {
         let mid = left + right >> 1
 
-        if (nums[left] > target) {
+        if (nums[mid] > target) {
             right = mid - 1
         } else {
             left = mid + 1
@@ -99,7 +99,7 @@ function getLeftBorder(nums, target) {
     while (left <= right) {
         let mid = left + right >> 1
 
-        if (nums[left] >= target) {
+        if (nums[mid] >= target) {
             right = mid - 1
             // 更新左边界
             leftBorder = right;
