@@ -84,5 +84,7 @@ var nextGreatestLetter = function (letters, target) {
         }
     }
 
-    return left === letters.length ? letters[0] : letters[left]
+    // return left === letters.length ? letters[0] : letters[left]
+
+    return letters[left % letters.length] // 🔥
 };
