@@ -62,7 +62,7 @@ var nextGreatestLetter = function (letters, target) {
 
 // 🎨 方法一：二分查找
 
-// 📝 思路：如果存在比target大的最小值，那么位置应该在 left；
+// 📝 思路：如果存在比target大的最小值，那么位置应该在 left；三种情形，target不在letters范围，target在letters范围但不在letters中，target在letters中
 
 /**
  * @param {character[]} letters
