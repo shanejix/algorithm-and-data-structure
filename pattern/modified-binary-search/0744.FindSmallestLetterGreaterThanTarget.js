@@ -59,3 +59,30 @@ var nextGreatestLetter = function (letters, target) {
     return letters[0]
 
 };
+
+// 🎨 方法一：二分查找
+
+// 📝 思路：如果存在比target大的最小值，那么位置应该在 left；
+
+/**
+ * @param {character[]} letters
+ * @param {character} target
+ * @return {character}
+ */
+var nextGreatestLetter = function (letters, target) {
+    let left = 0;
+    let right = letters.length - 1;
+
+    while (left <= right) {
+        let mid = left + ((right - left) >> 2);
+
+        if (letters[mid] > target) {
+            right = mid - 1
+        } else {
+            // <= 合并为一种情况
+            left = mid + 1
+        }
+    }
+
+    return left === letters.length ? letters[0] : letters[left]
+};
