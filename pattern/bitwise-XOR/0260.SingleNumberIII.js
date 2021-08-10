@@ -31,7 +31,7 @@
 
 // 🎨 方法一：位运算
 
-// 📝 思路：结合了 leetcode 0136 和 leetcode 0137
+// 📝 思路：结合了 leetcode 0136 和 leetcode 0137 https://leetcode-cn.com/problems/single-number-iii/solution/dong-hua-tu-jie-yi-ding-neng-hui-by-yuan-gqg8/
 
 /**
  * @param {number[]} nums
