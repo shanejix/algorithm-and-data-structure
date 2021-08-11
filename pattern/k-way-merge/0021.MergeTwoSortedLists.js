@@ -54,3 +54,14 @@ var mergeTwoLists = function (l1, l2) {
     return l1
   }
 };
+
+// 🎨 方法二：双指针
+
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (l1, l2) {
+
+};
