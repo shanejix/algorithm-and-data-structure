@@ -99,7 +99,7 @@ var mergeKLists = function (lists) {
 };
 
 /**
- * 合并两个有序链表
+ * 合并两个有序链表 leetcode 0021
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
