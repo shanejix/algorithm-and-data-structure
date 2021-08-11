@@ -82,8 +82,6 @@ var mergeTwoLists = function (l1, l2) {
 };
 
 
-// 🎨 方法二：迭代
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -91,6 +89,9 @@ var mergeTwoLists = function (l1, l2) {
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
+// 🎨 方法二：迭代
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
