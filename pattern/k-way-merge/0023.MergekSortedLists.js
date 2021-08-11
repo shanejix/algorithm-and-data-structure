@@ -38,3 +38,57 @@
 // 来源：力扣（LeetCode）
 // 链接：https://leetcode-cn.com/problems/merge-k-sorted-lists
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+// 🎨 方法一：顺序合并
+
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function (lists) {
+
+    let ans = null;
+
+    for (let list of lists) {
+        ans = mergeTwoLists(ans, list)
+    }
+
+    return ans
+
+};
+
+/**
+ * 合并两个有序链表
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+function mergeTwoLists(l1, l2) {
+
+    let head = tail = new ListNode(null)
+
+    while (l1 && l2) {
+
+        if (l1.val <= l2.val) {
+            tail.next = l1;
+            l1 = l1.next;
+        } else {
+            tail.next = l2;
+            l2 = l2.next
+        }
+
+        tail = tail.next
+    }
+
+    tail.next = l1 || l2
+
+    return head.next;
+}
