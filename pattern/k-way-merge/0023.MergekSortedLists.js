@@ -65,6 +65,39 @@ var mergeKLists = function (lists) {
 
 };
 
+// 🎨 方法二：分治合并 - 顺序合并优化
+
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function (lists) {
+
+    /**
+     * 分治合共lists
+     * @param {*} lists 
+     * @param {*} l 
+     * @param {*} r 
+     */
+    const merge = (lists, l, r) => {
+        if (l === r) {
+            return lists[l]
+        }
+
+
+        if (l > r) {
+            return null
+        }
+
+        let mid = l + r >> 1;
+
+        return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r))
+    }
+
+    // [0,lists.lenght - 1]
+    return merge(lists, 0, lists.length - 1)
+};
+
 /**
  * 合并两个有序链表
  * @param {ListNode} l1
