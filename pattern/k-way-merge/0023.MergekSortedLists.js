@@ -125,3 +125,41 @@ function mergeTwoLists(l1, l2) {
 
     return head.next;
 }
+
+// 🎨 方法三：优先级队列
+
+// 📝 思路：维护 k 个链表的头节点的优先级队列 使用 leetcode 自带库 https://github.com/datastructures-js/priority-queue
+
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function (lists) {
+
+    let head = tail = new ListNode(null);
+
+    let queue = new MinPriorityQueue();
+
+    for (let list of lists) {
+        if (list) {
+            // 按照头节点元素的val权重入队
+            queue.enqueue(list, list.val)
+        }
+    }
+
+    while (!queue.isEmpty()) {
+        const { element: currHead } = queue.dequeue();
+
+        tail.next = currHead;
+        tail = tail.next;
+
+        if (currHead.next) {
+            // 维护 k 个链表的头节点的优先级队列
+            queue.enqueue(currHead.next, currHead.next.val)
+        }
+    }
+
+    tail.next = null;
+
+    return head.next;
+};
