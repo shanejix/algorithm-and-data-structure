@@ -73,3 +73,45 @@ var coinChange = function (coins, amount) {
     return -1
 
 };
+
+// 🎨 方法一：递归
+
+// 📝 思路：枚举
+
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+    // 组合硬币的数量
+    let res = Infinity
+
+    coins.sort((a, b) => b - a);
+
+    if (coins.length === 0) {
+        return -1
+    }
+
+    const getMinCoinCount = (coins, rest, count) => {
+        // 递归终止的条件
+        if (rest < 0) {
+            return
+        }
+
+        if (rest === 0) {
+            res = Math.min(res, count)
+        }
+
+        // 枚举
+        for (let coin of coins) {
+            getMinCoinCount(coins, rest - coin, count + 1)
+        }
+
+
+    }
+    getMinCoinCount(coins, amount, 0);
+
+    // 没有任意的硬币组合能组成总金额，则返回 -1
+    return res === Infinity ? -1 : res
+};
