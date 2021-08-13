@@ -93,6 +93,13 @@ var coinChange = function (coins, amount) {
         return -1
     }
 
+    /**
+     * 获取最小数量
+     * @param {*} coins 
+     * @param {*} rest 
+     * @param {*} count 
+     * @returns 
+     */
     const getMinCoinCount = (coins, rest, count) => {
         // 递归终止的条件
         if (rest < 0) {
@@ -110,6 +117,49 @@ var coinChange = function (coins, amount) {
 
 
     }
+
+    getMinCoinCount(coins, amount, 0);
+
+    // 没有任意的硬币组合能组成总金额，则返回 -1
+    return res === Infinity ? -1 : res
+};
+
+// 🎨 方法三：回溯
+
+// 📝 思路：枚举
+
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+    // 组合硬币的数量
+    let res = Infinity
+
+    coins.sort((a, b) => b - a);
+
+    if (coins.length === 0) {
+        return -1
+    }
+
+    const getMinCoinCount = (coins, rest, k) => {
+        // 递归终止的条件
+        if (k === coins.length) {
+            res = Math.min(res, getMinCoinCountOfValue())
+        }
+
+        for (let i = k; i < coins.length; i++) {
+            // swap
+            [coins[k], coins[i]] = [coins[i], coins[k]]
+            // 做出选择
+            res = Math.min(res, getMinCoinCount(coins, rest, k + 1))
+            // 回溯
+            [coins[k], coins[i]] = [coins[i], coins[k]]
+        }
+
+    }
+
     getMinCoinCount(coins, amount, 0);
 
     // 没有任意的硬币组合能组成总金额，则返回 -1
