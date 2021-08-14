@@ -143,6 +143,13 @@ var coinChange = function (coins, amount) {
         return -1
     }
 
+    /**
+     * 从当前组合中求最小硬币数量
+     * @param {*} coins 
+     * @param {*} total 
+     * @param {*} index 
+     * @returns 
+     */
     const getMinCoinCountOfValue = (coins, total, index) => {
 
         if (index === coins.length) {
@@ -175,6 +182,12 @@ var coinChange = function (coins, amount) {
         return minResult
     }
 
+    /**
+     * 求所有满足条件的组合
+     * @param {*} coins 
+     * @param {*} amount 
+     * @param {*} index 
+     */
     const getMinCoinCount = (coins, amount, index) => {
         // 递归终止的条件
         if (index === coins.length) {
