@@ -254,9 +254,9 @@ var coinChange = function (coins, amount) {
     return res === Infinity ? -1 : res
 };
 
-// 🎨 方法二：递归 + 记忆化搜索
+// 🎨 方法四：递归 + 记忆化搜索
 
-// 📝 思路：枚举存在带量重复，用memo缓存重复计算的值 ；用例没通过
+// 📝 思路：枚举存在大量重复，用memo缓存重复计算的值
 
 /**
  * @param {number[]} coins
@@ -266,8 +266,11 @@ var coinChange = function (coins, amount) {
 var coinChange = function (coins, amount) {
     // 组合硬币的数量
     let res = Infinity
-    // 缓存重复计算的值,memo[total] 表示币值数量为 total 可以换取的最小硬币数量，不能换取则为 -1
-    const memo = new Array(amount).fill(-1);
+    // 缓存重复计算的值,memo[total] 表示币值数量为 total 可以换取的最小硬币数量，没有缓存则为 -2
+    const memo = new Array(amount + 1).fill(-2);
+
+    // 0 对应的结果为 0
+    memo[0] = 0
 
     coins.sort((a, b) => b - a);
 
@@ -282,31 +285,54 @@ var coinChange = function (coins, amount) {
      * @returns 
      */
     const getMinCoinCount = (coins, total) => {
+        // 递归终止的条件
         if (total < 0) {
             return -1
         }
 
+        // 递归终止的条件
         if (total === 0) {
             return 0
         }
 
-        if (memo[total - 1] !== 0) {
-            return memo[total - 1]
+        // 先从缓存中查找 memo[total]
+        if (memo[total] !== -2) {
+            return memo[total]
         }
 
-        let min = Infinity
+        let minCount = Infinity
 
+        // 遍历所有面值
         for (let i = 0; i < coins.length; i++) {
-            let res = getMinCoinCount(coins, total - coins[i]);
+            // 如果当前面值大于总额则跳过
+            if (coins[i] > total) {
+                continue
+            }
 
-            if (res >= 0 && res < min) {
-                min = res + 1
+            // 使用当前面额，并求剩余总额的最小硬币数量
+            let restCount = getMinCoinCount(coins, total - coins[i]);
+
+            if (restCount === -1) {
+                // 当前选择的coins[i] 组合不成立，跳过
+                continue
+            }
+
+            // 更新最小总额
+            let totalCount = 1 + restCount;
+            if (totalCount < minCount) {
+                minCount = totalCount
             }
         }
 
-        memo[total - 1] = (min === Infinity ? -1 : min)
+        // 如果没有可用组合，返回 -1
+        if (minCount === Infinity) {
+            memo[total] = -1;
+            return -1
+        }
 
-        return memo[amount - 1]
+        // 更新缓存
+        memo[total] = minCount;
+        return minCount
 
     }
 
