@@ -126,7 +126,7 @@ var coinChange = function (coins, amount) {
 
 // 🎨 方法三：回溯
 
-// 📝 思路：枚举
+// 📝 思路：用例没通过
 
 /**
  * @param {number[]} coins
@@ -197,4 +197,63 @@ var coinChange = function (coins, amount) {
 
     // 没有任意的硬币组合能组成总金额，则返回 -1
     return res === Infinity ? -1 : res
+};
+
+// 🎨 方法二：递归 + 记忆化搜索
+
+// 📝 思路：枚举存在带量重复，用memo缓存重复计算的值 ；用例没通过
+
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+    // 组合硬币的数量
+    let res = Infinity
+    // 缓存重复计算的值,memo[total] 表示币值数量为 total 可以换取的最小硬币数量，不能换取则为 -1
+    const memo = new Array(amount).fill(-1);
+
+    coins.sort((a, b) => b - a);
+
+    if (coins.length === 0) {
+        return -1
+    }
+
+    /**
+     * 找到 total 数量零钱可以兑换的最少硬币数量
+     * @param {*} coins 
+     * @param {*} total 
+     * @returns 
+     */
+    const getMinCoinCount = (coins, total) => {
+        if (total < 0) {
+            return -1
+        }
+
+        if (total === 0) {
+            return 0
+        }
+
+        if (memo[total - 1] !== 0) {
+            return memo[total - 1]
+        }
+
+        let min = Infinity
+
+        for (let i = 0; i < coins.length; i++) {
+            let res = getMinCoinCount(coins, total - coins[i]);
+
+            if (res >= 0 && res < min) {
+                min = res + 1
+            }
+        }
+
+        memo[total - 1] = (min === Infinity ? -1 : min)
+
+        return memo[amount - 1]
+
+    }
+
+    return getMinCoinCount(coins, amount)
 };
