@@ -338,3 +338,61 @@ var coinChange = function (coins, amount) {
 
     return getMinCoinCount(coins, amount)
 };
+
+// 🎨 方法五：动态规划
+
+// 📝 思路：自底向上，记忆化化搜索
+
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+
+    // memo[total] 表示币值数量为 total 可以换取的最小硬币数量，没有缓存则为 -1
+    const memo = new Array(amount + 1).fill(-1)
+    // 初始化状态
+    memo[0] = 0
+
+    // 币值总额状态从 1 到 amount
+    for (let v = 1; v <= amount; v++) {
+        // 当前币值总额 v 对应的能凑齐最小硬币数量
+        let minCount = Infinity;
+
+        // 对当前币值总额 v 枚举所有的 硬币面值
+        for (let i = 0; i < coins.length; i++) {
+            let currValue = coins[i]
+
+            // 如果当前面值大于币值总额，跳过
+            if (currValue > v) {
+                continue
+            }
+
+            // 使用当前面值，得到剩余币值总额
+            let rest = v - currValue
+            // 从缓存中取出剩余币值总额对应的最小硬币数量
+            let restCount = memo[rest]
+
+            // -1 则表示 组合不成立 跳过
+            if (restCount == -1) {
+                continue
+            }
+
+            // 当前币值组合成立
+            let currCount = 1 + restCount;
+
+            // 更新当前币值总额 v 的最小硬币数量
+            if (currCount < minCount) {
+                minCount = currCount
+            }
+        }
+
+        // 当前币值总额 v 的最小硬币数量若存在则缓存
+        if (minCount !== Infinity) {
+            memo[v] = minCount
+        }
+    }
+
+    return memo[amount]
+};
