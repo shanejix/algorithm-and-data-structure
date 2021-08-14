@@ -124,7 +124,49 @@ var coinChange = function (coins, amount) {
     return res === Infinity ? -1 : res
 };
 
-// 🎨 方法三：回溯
+// 🎨 方法三：递归 + 贪心
+
+// 📝 思路：https://leetcode-cn.com/problems/coin-change/solution/322-by-ikaruga/
+
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+    // 组合硬币的数量
+    let res = Infinity
+
+    coins.sort((a, b) => b - a);
+
+    if (coins.length === 0) {
+        return -1
+    }
+
+    const getMinCoinCount = (coins, rest, index, count) => {
+        // 递归终止的条件
+        if (rest < 0) {
+            return
+        }
+
+        if (rest === 0) {
+            res = Math.min(res, count)
+        }
+
+        // 贪心 : 用当前存在的最大面值硬币凑出最小硬币数量，凑不起则讲最大硬币数量逐个递减
+        for (let i = Math.floor(rest / coins[index]); i >= 0 && i + count < res; i--) {
+            getMinCoinCount(coins, rest - i * coins[index], index + 1, count + i)
+        }
+
+    }
+
+    getMinCoinCount(coins, amount, 0, 0);
+
+    // 没有任意的硬币组合能组成总金额，则返回 -1
+    return res === Infinity ? -1 : res
+};
+
+// 🎨 方法三：回溯 二
 
 // 📝 思路：用例没通过
 
