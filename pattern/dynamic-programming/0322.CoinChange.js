@@ -143,19 +143,52 @@ var coinChange = function (coins, amount) {
         return -1
     }
 
-    const getMinCoinCount = (coins, rest, k) => {
-        // 递归终止的条件
-        if (k === coins.length) {
-            res = Math.min(res, getMinCoinCountOfValue())
+    const getMinCoinCountOfValue = (coins, total, index) => {
+
+        if (index === coins.length) {
+            return Infinity
         }
 
-        for (let i = k; i < coins.length; i++) {
+        let minResult = Infinity
+        let currValue = coins[index]
+        let maxCount = Math.floor(total / currValue)
+
+        for (let count = maxCount; count >= 0; count--) {
+            let rest = total - count * currValue
+
+            if (rest === 0) {
+                minResult = Math.min(minResult, count)
+            }
+
+            let restCount = getMinCoinCountOfValue(coins, rest, index + 1)
+
+            if (restCount === Infinity) {
+                if (count === 0) {
+                    break
+                }
+                continue
+            }
+
+            minResult = Math.min(minResult, count + restCount)
+        }
+
+        return minResult
+    }
+
+    const getMinCoinCount = (coins, amount, index) => {
+        // 递归终止的条件
+        if (index === coins.length) {
+            // getMinCoinCountOfValue() 对重新排序后的coins求最小硬币数量
+            res = Math.min(res, getMinCoinCountOfValue(coins, amount, 0))
+        }
+
+        for (let i = index; i < coins.length; i++) {
             // swap
-            [coins[k], coins[i]] = [coins[i], coins[k]]
+            [coins[index], coins[i]] = [coins[i], coins[index]]
             // 做出选择
-            res = Math.min(res, getMinCoinCount(coins, rest, k + 1))
-            // 回溯
-            [coins[k], coins[i]] = [coins[i], coins[k]]
+            res = Math.min(res, getMinCoinCount(coins, amount, index + 1))
+            // 回溯 撤销选择
+            [coins[index], coins[i]] = [coins[i], coins[index]]
         }
 
     }
