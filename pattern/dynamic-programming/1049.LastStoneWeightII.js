@@ -60,8 +60,8 @@ var lastStoneWeightII = function (stones) {
 
     // 背包容量
     const w = Math.floor(sum / 2);
-
-    const dp = new Array(m + 1).fill(false)
+    // dp[w]表示容量为w的背包能放下东西的最大价值
+    const dp = new Array(m + 1).fill(0)
 
     for (const weight of stones) {
         for (let i = w; i >= weight; i--) {
