@@ -61,3 +61,53 @@ var maxSubArray = function (nums) {
 
     return res
 };
+
+// 🎨 方法一：动态规划 - 优化
+
+// 📝 思路：dp[i] 仅和 dp[i-1] 有关，因此可以进行状态压缩，用两个整型变量替换dp数组
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+    let n = nums.length;
+
+    if (n === 0) {
+        return 0
+    }
+
+    // 定义 dp[i] 表示以 i 为结束位置的最大最大子数组和
+    // const dp = new Array(n).fill(-Infinity);
+
+    // ⚡
+    let dp_0 = nums[0];
+    let dp_1 = 0;
+
+
+    // dp[0] = nums[0];
+
+    // let res = dp[0];
+
+    // ⚡
+    let res = dp_0;
+
+    // 遍历nums
+    for (let i = 1; i < n; i++) {
+
+        // dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+
+        // ⚡
+        dp_1 = Math.max(nums[i], dp_0 + nums[i])
+
+        // res = Math.max(res, dp[i])
+
+        // ⚡
+        dp_0 = dp_1;
+
+        // ⚡
+        res = Math.max(res, dp_1)
+    }
+
+    return res
+};
