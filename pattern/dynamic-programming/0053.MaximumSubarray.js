@@ -45,7 +45,7 @@ var maxSubArray = function (nums) {
     }
 
     // 定义 dp[i] 表示以 i 为结束位置的最大最大子数组和
-    const dp = new Array(n).fill(Infinity);
+    const dp = new Array(n).fill(-Infinity);
 
     dp[0] = nums[0];
 
