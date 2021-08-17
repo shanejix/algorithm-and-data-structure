@@ -50,6 +50,7 @@ var longestCommonSubsequence = function (text1, text2) {
 
     console.log(n, m);
 
+    // dp[i][j] 表示： text1[0,i] 和 text2[0,j] 的最长公共子序列的长度 
     const dp = new Array(n + 1).fill(0).map(() => new Array(m + 1).fill(0));
 
     console.log(dp)
