@@ -57,7 +57,7 @@ var longestPalindrome = function (s) {
     for (let j = 1; j < n; j++) {
 
         for (let i = 0; i < j; i++) {
-            // 子串 [i,j]
+            // 子串 [i,j] : j - i < 3 的三种情形：a aa aba
             dp[i][j] = s[i] === s[j] && (j - i < 3 || dp[i + 1][j - 1])
 
             if (dp[i][j]) {
@@ -93,17 +93,19 @@ var longestPalindrome = function (s) {
         ans++
     }
 
-    for (let l = 0; j < n; l++) {
+    for (let l = 0; l < n; l++) {
 
         for (let i = 0; i + l < n; i++) {
             let j = i + l
+            
+            // [i,j]
 
             if (l === 0) {
-                dp[i][j] = true;
+                dp[i][j] = true; // a
             } else if (l === 1) {
-                dp[i][j] = s[i] === s[j];
+                dp[i][j] = s[i] === s[j]; // aa
             } else {
-                dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1];
+                dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1]; // aba ...
             }
 
             if (dp[i][j] && l + 1 > res.length) {
