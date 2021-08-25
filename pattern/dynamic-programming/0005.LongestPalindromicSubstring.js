@@ -97,7 +97,7 @@ var longestPalindrome = function (s) {
 
         for (let i = 0; i + l < n; i++) {
             let j = i + l
-            
+
             // [i,j]
 
             if (l === 0) {
