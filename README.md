@@ -4,8 +4,6 @@
 
 [https://www.educative.io/courses/grokking-the-coding-interview](https://www.educative.io/courses/grokking-the-coding-interview)
 
-[https://github.com/SharingSource/LogicStack-LeetCode/wiki](https://github.com/SharingSource/LogicStack-LeetCode/wiki)
-
 #### 01. 滑动窗口 (Pattern: Sliding Window)
 
 #### 02. 双指针 (Pattern: Two Pointers)
