@@ -30,3 +30,33 @@
 // 来源：力扣（LeetCode）
 // 链接：https://leetcode-cn.com/problems/longest-increasing-subsequence
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+// 🎨 方法一：动态规划
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function (nums) {
+
+  let n = nums.length;
+
+  if (n === 0) {
+    return 0
+  }
+
+  // memo 定义 dp[i] 表示 区间 [0,i] 的最长上升子序列
+  let dp = new Array(n).fill(1)
+
+  let res = 1
+  for (let j = 1; j < n; j++) {
+    for (let i = 0; i < j; i++) {
+      if (nums[i] < nums[j]) {
+        dp[j] = Math.max(dp[i] + 1, dp[j])
+        res = Math.max(res, dp[j])
+      }
+    }
+  }
+
+  return res
+};
